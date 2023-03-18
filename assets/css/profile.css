@@ -1,0 +1,335 @@
+@font-face {
+  font-family: "Wremena-norm";
+  src: url(/assets/fonts/Wremena/Wremena.ttf);
+}
+@font-face {
+  font-family: "Lora-bold";
+  src: url(/assets/fonts/Lora/Lora-SemiBold.ttf);
+}
+body {
+  margin: 0;
+}
+/* Редактор прокрутки списка адресов */
+body::-webkit-scrollbar {
+  width: 15px;
+  background-color: #f9f9fd;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #877cb9;
+}
+body::-webkit-scrollbar-track {
+  background-color: #f9f9fd;
+}
+
+/* Блок навигации */
+.navigation {
+  position: cover;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background: #191616;
+}
+.logo {
+  width: 220px;
+  height: 50px;
+  margin-left: 45px;
+  margin-top: 25px;
+}
+.logo:hover {
+  scale:1.1;
+  cursor: pointer;
+}
+.headers {
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+  gap: 80px;
+}
+.headers > a {
+  font-family: "Wremena-norm";
+  font-size: 24px;
+  text-align: center;
+  color: #fefefe;
+  height: 30px;
+}
+.headers > a > h4:hover {
+  font-family: "Wremena-norm";
+  color: #877cb9;
+  cursor: pointer;
+  height: 30px;
+  border-radius: 0px;
+}
+a:active,
+a:hover,
+a {
+  text-decoration: none;
+}
+#cart {
+  width: 50px;
+  height: 50px;
+  margin-right: 30px;
+  margin-top: -5px;
+}
+#cart:hover {
+  scale:1.1;
+  cursor: pointer;
+}
+
+/* Вкладки*/
+.nav {
+  font-size: 20px;
+}
+.nav-tabs .nav-link.active {
+  background-color: #191616;
+  color: #fefefe;
+  font-family: "Wremena-norm";
+  border-color: #191616;
+  margin-bottom: 0px;
+}
+.nav-tabs .nav-link {
+  margin-bottom: 0px;
+  background: #fefefe;
+  border: #191616 solid 1px transparent;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+.nav-link {
+  display: block;
+  color: #191616;
+  font-family: "Wremena-norm";
+  border-radius: 0px;
+
+  text-decoration: none;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out;
+}
+.nav-link:focus,
+.nav-link:hover {
+  color: #877cb9;
+}
+/* Личные данные*/
+.profile_form {
+  width: 350px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: "Wremena-norm";
+  color: #191616;
+}
+.form_inp {
+  display: flex;
+  gap: 10px;
+}
+.form_inp>input {
+font-size: 20px;
+}
+label {
+  font-size: 22px;
+}
+#change_profile,
+#exit {
+  font-family: "Lora-bold";
+  font-size: 18px;
+  color: #191616;
+  border: none;
+  margin-left: 10px;
+}
+#exit:hover,
+#change_profile:hover {
+  background-color: #877cb9;
+  color: #fefefe;
+}
+
+#data-tab-pane{
+  border: #9d9d9d 1px solid;
+  padding: 10px;
+}
+.error{
+  margin: 0px;
+  color: crimson;
+}
+/* Кастом радиокнопок
+.custom-radio {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+.custom-radio + label {
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+}
+.custom-radio + label::before {
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  flex-grow: 0;
+  border: 1px solid #191616;
+  border-radius: 50%;
+  margin-right: 0.5em;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 50% 50%;
+}
+.custom-radio:not(:disabled):not(:checked) + label:hover::before {
+  border-color: #877cb9;
+}
+.custom-radio:checked + label::before {
+  background-image: url(/img/радиокнопка.png);
+  background-size: cover;
+  border-color: #191616;
+}
+.custom-radio:disabled + label::before{
+  border-color: #05050577;
+  background-color: #88888879;
+}
+.label_radio{
+  font-size: 17px;
+} */
+
+
+/* Заказы*/
+.order{
+  padding: 10px;
+  font-family: "Lora-bold";
+  font-size: 20px;
+  border: #9d9d9d 1px solid;
+  
+}
+.order_products{
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px;
+}
+.order_item{
+  display: flex;
+  gap: 20px;
+  padding: 10px;
+}
+.order_item:hover{
+  cursor: pointer;
+  
+  box-shadow: #7e7e7e 0px 5px 15px;
+}
+.order_item:hover .order_pic{
+  box-shadow: none;
+}
+.info_product>p, .order_status, .order_date , .order_address{
+  color: #505050;
+  font-family: "Wremena-norm";
+}
+span, #order_status, #order_date, #order_address{
+  color: #191616;
+  margin-left: 10px;
+  font-family: "Lora-bold";
+}
+.order_pic{
+  object-fit: cover;
+  width: 220px;height: 250px;
+  border: #9d9d9d 1px solid;
+  box-shadow: #7e7e7e 0px 5px 15px;
+}
+
+.order_title, .order_status, .order_date, .order_address{
+  display: flex;
+  margin-top: 10px;
+}
+.card_size {
+  border: #191616 1px solid;
+  padding: 5px;
+  height: 30px;
+  font-size: 20px;
+  text-align: center;
+  background-color: #191616;
+  color: #fefefe;
+  font-family: "Wremena-norm";
+}
+.tab-pane>h4{
+  padding: 30px;
+  font-family: "Lora-bold";
+}
+
+/* Покупки*/
+.buy{
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat( 5, 1fr);
+  gap: 30px;
+  min-height: 100px;
+}
+.buy_item{
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.buy_item:hover .buy_pic{
+  box-shadow: none;
+}
+.buy_item:hover{
+box-shadow: #7e7e7e 0px 5px 15px;
+cursor: pointer;
+}
+.buy_info{
+  display: flex;
+  justify-content: space-between;
+  font-family: "Lora-bold";
+  font-size: 20px;
+  color: #191616;
+}
+.buy_info>p{
+  margin-bottom: 0px;
+  margin-top: 10px;
+}
+.buy_pic{
+  width: 220px;height: 250px;
+  object-fit: cover;
+  box-shadow: #7e7e7e 0px 5px 15px;
+}
+
+/* Блок футера */
+.footer {
+  margin-top: 200px;
+  justify-content: center;
+  padding: 10px;
+  display: flex;
+  gap: 120px;
+  background-color: #191616;
+}
+.fot_main {
+  border-bottom: #fefefe 2px solid;
+  padding-bottom: 5px;
+}
+.footer_logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.footer_pic {
+  margin-top: 10px;
+  margin-left: 60px;
+  width: 300px;
+}
+.profile > a {
+  text-decoration: none;
+  font-size: 20px;
+  text-align: center;
+  color: #fefefe;
+  font-family: "Wremena-norm";
+}
+.help > a {
+  text-decoration: none;
+  font-size: 20px;
+  text-align: center;
+  color: #fefefe;
+  font-family: "Wremena-norm";
+}
+.help > a:hover,
+.profile > a :hover {
+  color: #877cb9;
+}

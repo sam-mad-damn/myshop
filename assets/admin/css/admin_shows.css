@@ -1,0 +1,275 @@
+@font-face {
+  font-family: "Lora-norm";
+  src: url(/fonts/Lora/Lora-Regular.ttf);
+}
+@font-face {
+  font-family: "Wremena-bold";
+  src: url(/fonts/Lora/Lora-SemiBold.ttf);
+}
+body {
+  margin: 0;
+}
+/* Редактор прокрутки списка адресов */
+body::-webkit-scrollbar {
+  width: 15px;
+  background-color: #f9f9fd;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #877cb9;
+}
+body::-webkit-scrollbar-track {
+  background-color: #f9f9fd;
+}
+
+.cont {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+/* навигация*/
+.nav {
+  background-color: #191616;
+  min-height: 657px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.logo {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+hr {
+  color: #fefefe;
+}
+.nav-link.active {
+  color: #877cb9;
+  border-color: #191616;
+}
+.nav-link {
+  font-size: 25px;
+  display: block;
+  color: #191616;
+  font-family: "Lora-norm";
+  border-radius: 0px;
+  color: #fefefe;
+
+  text-decoration: none;
+  transition: color 0.15s ease-in-out;
+}
+.nav-link:focus,
+.nav-link:hover {
+  color: #877cb9;
+}
+
+/* Таблица*/
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.block {
+  padding: 10px;
+  font-family: "Wremena-bold";
+}
+.table {
+  border: #9d9d9d 1px solid;
+  font-family: "Wremena-bold";
+  color: #191616;
+  font-size: 18px;
+}
+.table-title {
+  background-color: #9a75b4;
+}
+th,
+td {
+  border: #4e4e4e 1px solid;
+}
+th {
+  font-size: 18px;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+}
+.btn {
+  padding: 4px;
+}
+.btn-success {
+  background-color: #82b97c;
+  color: #191616;
+  font-family: "Wremena-bold";
+}
+.btn-danger {
+  background-color: #b97c7c;
+}
+.shows_pics {
+  width: 560px;
+}
+.shows_pic {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-left: 5px;
+}
+td > p {
+  margin: 0; /* Убираем внешний отступ */
+  -webkit-line-clamp: 3; /* Число отображаемых строк */
+  display: -webkit-box; /* Включаем флексбоксы */
+  -webkit-box-orient: vertical; /* Вертикальная ориентация */
+  overflow: hidden; /* Обрезаем всё за пределами блока */
+}
+
+/* Модальное окно добавление */
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  display: none;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.61);
+}
+
+.modal_main {
+  position: relative;
+  max-width: 800px;
+  height: 320px;
+  padding: 30px;
+  background-color: #fefefe;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "Lora-norm";
+}
+.add_product {
+  display: grid;
+  grid-template-areas:
+    "a a"
+    "b b"
+    "c c"
+    "d d";
+}
+.item1 {
+  grid-area: a;
+}
+.item2 {
+  grid-area: b;
+}
+.item3 {
+  grid-area: c;
+}
+.item4 {
+  margin-top: 10px;
+}
+span {
+  font-family: "Wremena-bold";
+}
+.modal__close {
+  position: absolute;
+  top: 0px;
+  right: 15px;
+  cursor: pointer;
+  font-size: 50px;
+}
+.modal__close:hover {
+  color: #877cb9;
+}
+.modal__title {
+  font-size: 25px;
+  margin-top: 0px;
+  font-family: "Wremena-bold";
+  display: flex;
+}
+/*Модальное изменение*/
+.modal-wrapper_show_change {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  display: none;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.61);
+}
+.modal_main_show_change {
+  position: relative;
+  max-width: 800px;
+  min-height: 420px;
+  padding: 30px;
+  background-color: #fefefe;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "Lora-norm";
+}
+.show_change {
+  display: grid;
+  grid-template-areas:
+    "a "
+    "b "
+    "c "
+    "d "
+    " e";
+}
+.item_1 {
+  grid-area: a;
+}
+.item_2 {
+  grid-area: b;
+}
+.item_3 {
+  grid-area: c;
+}
+.item_4 {
+  grid-area: d;
+}
+.item_5 {
+  margin-top: 10px;
+  grid-area: e;
+}
+/*Модальное окно удаление*/
+.modal-wrapper_del_show {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  display: none;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.61);
+}
+
+.modal_main_del_show {
+  position: relative;
+  max-width: 500px;
+  min-height: 220px;
+  padding: 30px;
+  background-color: #fefefe;
+  margin-top: 120px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "Lora-norm";
+}
+
+.dropdown-menu {
+  padding: 10px;
+}
+.shows,
+.info,
+.shows_pics {
+  display: flex;
+}
+.shows_pic {
+  object-fit: cover;
+  padding: 5px;
+  width: 100px;
+  height: 100px;
+}
+.btn-outline-danger {
+  font-family: "Wremena-bold";
+}

@@ -1,0 +1,101 @@
+@font-face {
+    font-family: "Lora-norm";
+    src: url(/fonts/Lora/Lora-Regular.ttf);
+  }
+  @font-face {
+    font-family: "Wremena-bold";
+    src: url(/fonts/Lora/Lora-SemiBold.ttf);
+  }
+  body {
+    margin: 0;
+  }
+  /* Редактор прокрутки списка адресов */
+  body::-webkit-scrollbar {
+    width: 15px;
+    background-color: #f9f9fd;
+  }
+  body::-webkit-scrollbar-thumb {
+    background-color: #877cb9;
+  }
+  body::-webkit-scrollbar-track {
+    background-color: #f9f9fd;
+  }
+
+.cont {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+/* навигация*/
+.nav {
+  background-color: #191616;
+  min-height: 657px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.logo{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+hr{
+    color: #fefefe;
+}
+.nav-link.active {
+  color: #877cb9;
+  border-color: #191616;
+}
+.nav-link {
+  font-size: 25px;
+  display: block;
+  color: #191616;
+  font-family: "Lora-norm";
+  border-radius: 0px;
+  color: #fefefe;
+
+  text-decoration: none;
+  transition: color 0.15s ease-in-out;
+}
+.nav-link:focus, .nav-link:hover {
+  color: #877cb9;
+}
+
+/**/
+h3{
+    padding: 10px;
+    font-family: "Wremena-bold";
+    background-color: #877cb9;
+}
+.profile_form {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-family: "Wremena-bold";
+    color: #191616;
+    
+  }
+  .form_inp {
+    display: flex;
+    gap: 10px;
+  }
+  label {
+    font-size: 20px;
+  }
+  #change_profile,
+  #exit {
+    font-family: "Lora-norm";
+    font-size: 18px;
+    color: #191616;
+    border: none;
+    margin-left: 10px;
+  }
+  #exit:hover,
+  #change_profile:hover {
+    background-color: #877cb9;
+    color: #fefefe;
+  }
+
+  #data-tab-pane{
+    border: #9d9d9d 1px solid;
+    padding: 10px;
+  }

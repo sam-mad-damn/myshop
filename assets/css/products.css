@@ -1,0 +1,295 @@
+
+
+/* Блок товаров */
+.products_txt {
+  background-color: #c8c8c8;
+  height: 40px;
+}
+.products_txt > p {
+  text-align: center;
+  font-family: "Lora-bold";
+  color: #191616;
+  font-size: 25px;
+  margin-top: 30px;
+}
+.products_txt > p:hover {
+  cursor: default;
+}
+.sorting {
+  position: absolute;
+  top: 135px;
+  right: 10px;
+}
+#sort {
+  background-color: #19161600;
+  border: 1px solid #7e7e7e;
+  border-radius: 3px;
+  font-family: "Lora-bold";
+}
+/* Кнопка выпадающего списка */
+.dropbtn {
+  background-color: #19161600;
+  font-family: "Lora-bold";
+  font-size: 16px;
+  border: none;
+}
+
+/* Контейнер <div> - необходим для размещения выпадающего содержимого */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Выпадающее содержимое (скрыто по умолчанию) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Ссылки внутри выпадающего списка */
+.dropdown-content a {
+  color: black;
+  padding: 10px ;
+  text-decoration: none;
+  font-family: "Lora-bold";
+  font-size: 16px;
+  display: block;
+}
+
+/* Изменение цвета выпадающих ссылок при наведении курсора */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Показать выпадающее меню при наведении курсора */
+.dropdown:hover .dropdown-content {display: block;}
+
+.products_block {
+  display: grid;
+  grid-template-columns: repeat(2, 300px 1fr);
+}
+/* Аккордеон*/
+.features {
+  margin-left: 30px;
+  margin-top: 30px;
+}
+.accordion-item {
+  border: 0px;
+}
+.accordion-button {
+  background-color: #fefefe;
+  font-size: 18px;
+  font-family: "Lora-bold";
+  border: 2px solid #191616;
+  padding: 5px;
+}
+.accordion-button:focus {
+  border-color: #191616;
+  box-shadow: none;
+}
+.accordion-body {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #191616;
+}
+.accordion-button:not(.collapsed) {
+  color: #191616;
+  background-color: #ffffff;
+  box-shadow: none;
+}
+.accordion-button:not(.collapsed)::after {
+  background-image: url(/img/стрелка\ вниз.svg);
+  transform: rotate(-180deg);
+}
+label {
+  font-size: 16px;
+  font-family: "Lora-bold";
+}
+#chooseText {
+  width: 100px;
+  margin-left: 10px;
+}
+.sizes {
+  display: grid;
+  grid-template-columns: repeat(3, 60px);
+  text-align: center;
+  gap: 20px;
+}
+.size_btn {
+  background-color: #191616;
+  color: #fefefe;
+  border: none;
+  padding: 4px;
+  font-size: 17px;
+  font-family: "Lora-bold";
+}
+.size_btn:hover {
+  cursor: pointer;
+  background-color: #050404;
+}
+.size_btn:focus {
+  background-color: #877cb9;
+}
+.active{
+  background-color: #877cb9;
+}
+
+/*Кастом чекбоксов */
+/* .custom-checkbox {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+.custom-checkbox + label {
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+}
+.custom-checkbox + label::before {
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  flex-grow: 0;
+  border: 1px solid #191616;
+  margin-right: 0.5em;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 50% 50%;
+}
+.custom-checkbox:not(:disabled):not(:checked) + label:hover::before {
+  border-color: #877cb9;
+}
+.custom-checkbox:not(:disabled):checked + label::before {
+  background-image: url(/assets/img/чекбокс.png);
+  background-size: cover;
+  border-color: #191616;
+} */
+
+/*Кастом радиокнопок */
+.custom-radio {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+.custom-radio + label {
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+}
+.custom-radio + label::before {
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  flex-grow: 0;
+  border: 1px solid #191616;
+  border-radius: 50%;
+  margin-right: 0.5em;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 50% 50%;
+}
+.custom-radio:not(:disabled):not(:checked) + label:hover::before {
+  border-color: #877cb9;
+}
+.custom-radio:checked + label::before {
+  background-image: url(/assets/img/радиокнопка.png);
+  background-size: cover;
+  border-color: #191616;
+}
+
+/* Карточки товаров*/
+.products {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.card {
+  margin-top: 10px;
+  margin-left: 40px;
+  background-color: #191616;
+  border: none;
+  border-radius: 5px;
+  color: #fefefe;
+  font-family: "Wremena-norm";
+  width: 280px;
+  scale: 0.9;
+  box-shadow: #7e7e7e 0px 5px 15px;
+}
+.card:hover {
+  cursor: pointer;
+  box-shadow: #7e7e7e 0px 5px 30px;
+}
+.card_sizes {
+  display: flex;
+}
+.card_size {
+  padding: 5px;
+  margin-right: 10px;
+  color: #877cb9;
+  font-family: "Lora-bold";
+  text-align: center;
+  border: #877cb9 1px solid;
+}
+.pic_card {
+  border-radius: 5px 5px 0 0;
+  width: 280px;
+  height: 240px;
+  object-fit: cover;
+}
+.card_head {
+  margin-top: 10px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-family: "Wremena-norm";
+}
+.card_head>h4{
+  font-family: "Lora-norm";
+}
+.card_main {
+  margin-top: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: "Wremena-norm";
+  font-size: 18px;
+}
+hr {
+  margin: 0;
+}
+
+
+/* Нумерация*/
+.pagination{
+  /* position: relative;
+  bottom: -1000px;
+  right: 400px; */
+  margin-top: 10px;
+  margin-right: 10px;
+}
+.page-item.active .page-link {
+  z-index: 3;
+  color: #fefefe;
+  background-color: #877cb9;
+  border-color: #877cb9;
+}
+
+.page-link:hover {
+  color: #877cb9;
+  background-color: #877cb947;
+  border: 1px solid #877cb9;
+}
+.page-link {
+  color: #191616;
+  border: #7e7e7e solid 1px;
+}
+.page-link:focus {
+  box-shadow: none;
+}

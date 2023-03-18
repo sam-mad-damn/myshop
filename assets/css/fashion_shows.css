@@ -1,0 +1,204 @@
+@font-face {
+  font-family: "Lora-norm";
+  src: url(/fonts/Lora/Lora-Regular.ttf);
+}
+@font-face {
+  font-family: "Lora-bold";
+  src: url(/fonts/Lora/Lora-SemiBold.ttf);
+}
+body {
+  margin: 0;
+}
+/* Редактор прокрутки списка адресов */
+body::-webkit-scrollbar {
+  width: 15px;
+  background-color: #f9f9fd;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #877cb9;
+}
+body::-webkit-scrollbar-track {
+  background-color: #f9f9fd;
+}
+
+/* Блок навигации */
+.navigation {
+  position: cover;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: #191616;
+}
+.logo {
+  width: 220px;
+  height: 50px;
+  margin-left: 45px;
+  margin-top: 25px;
+}
+.logo:hover {
+  scale:1.1;
+  cursor: pointer;
+}
+.headers {
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+  gap: 80px;
+}
+.headers > a {
+  font-family: "Lora-bold";
+  font-size: 25px;
+  text-align: center;
+  color: #fefefe;
+  height: 30px;
+}
+.head_collections {
+  color: #877cb9;
+}
+.headers > a > h4:hover {
+  font-family: "Lora-bold";
+  color: #877cb9;
+  cursor: pointer;
+  height: 30px;
+  border-radius: 0px;
+}
+a:active,
+a:hover,
+a {
+  text-decoration: none;
+}
+#cart {
+  width: 50px;
+  height: 50px;
+  margin-right: 30px;
+  margin-top: 22px;
+}
+#cart:hover {
+  scale:1.1;
+  cursor: pointer;
+}
+
+/* Блок показов */
+.news_txt {
+  margin-top: 30px;
+  background-color: #c8c8c8;
+  height: 40px;
+}
+.news_txt > p {
+  text-align: center;
+  font-family: "Lora-bold";
+  color: #191616;
+  font-size: 25px;
+  margin-top: 5px;
+}
+.shows {
+  display: flex;
+  flex-direction: row;
+}
+.shows_txt {
+  margin-top: 30px;
+  margin-left: 30px;
+  font-family: "Lora-norm";
+  font-size: 22px;
+}
+.shows_txt > h2 {
+  font-family: "Lora-bold";
+}
+/* Настройки каруселей*/
+.carousels {
+  margin-top: 30px;
+  margin-left: 30px;
+  border: 1px solid #9b9b9b;
+  box-shadow: #7e7e7e 0px 5px 15px;
+}
+.carousel-item {
+  margin-top: 30px;
+  margin-right: 0%;
+}
+#indicator_slide {
+  width: 50px;
+  height: 80px;
+}
+.carousel-control-prev-icon {
+  background-image: url(/img/стрелка\ влево.svg);
+}
+.carousel-control-next-icon {
+  background-image: url(/img/стрелка\ вправо.svg);
+}
+.carousel-control-next,
+.carousel-control-prev {
+  position: relative;
+}
+.carousels {
+  display: flex;
+  flex-direction: column;
+}
+.carousel-indicators {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+  margin-left: 100px;
+  position: relative;
+}
+.carousel-item-next {
+  display: none;
+}
+.carousel-item-end {
+  display: none;
+}
+.controls {
+  display: flex;
+  justify-content: space-between;
+  width: 600px;
+}
+.d-block {
+  width: 500px;
+  height: 550px;
+  object-fit: contain;
+}
+
+/* Блок футера */
+.footer {
+  margin-top: 80px;
+  justify-content: center;
+  padding: 10px;
+  display: flex;
+  gap: 120px;
+  background-color: #191616;
+}
+.fot_main {
+  border-bottom: #fefefe 2px solid;
+  padding-bottom: 5px;
+}
+.footer_logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.footer_pic {
+  margin-top: 10px;
+  margin-left: 60px;
+  width: 300px;
+}
+.profile > a {
+  text-decoration: none;
+  font-size: 20px;
+  text-align: center;
+  color: #fefefe;
+  font-family: "Lora-norm";
+}
+.help > a {
+  text-decoration: none;
+  font-size: 20px;
+  text-align: center;
+  color: #fefefe;
+  font-family: "Lora-norm";
+}
+.help>a:hover, .profile>a :hover{
+  color: #877cb9;
+  }
+  a>p{
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }

@@ -1,0 +1,170 @@
+
+
+/* Блог товаров*/
+.products {
+  display: grid;
+  grid-template-columns: 1, 1fr;
+  margin-top: 30px;
+}
+.products_cards {
+  margin-left: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.products_txt {
+  background-color: #c8c8c8;
+  height: 40px;
+}
+.products_txt > p {
+  text-align: center;
+  font-family: "Lora-bold";
+  color: #191616;
+  font-size: 25px;
+  margin-top: 5px;
+}
+.products_txt > p:hover {
+  cursor: default;
+}
+/* Карточки товаров*/
+.card {
+  background-color: rgba(25, 22, 22, 1);
+  width: 270px;
+  height: 320.86px;
+  margin-top: 30px;
+  border-radius: 4px;
+  
+  box-shadow: #7e7e7e 0px 5px 15px;
+}
+.card:hover {
+  scale: 1.05;
+  cursor: pointer;
+}
+.card_img {
+  object-fit: cover;
+  width: 270px;
+  height: 270.86px;
+  border-radius: 4px 4px 0px 0px;
+}
+.card > p {
+  font-family: "Wremena-norm";
+  color: #fefefe;
+  font-size: 26px;
+  text-align: center;
+  margin-top: 5px;
+}
+#arrow {
+  margin-right: 40px;
+  margin-top: 130px;
+  width: 70px;
+  height: 60px;
+}
+#arrow:hover {
+  scale: 1.1;
+  cursor: pointer;
+}
+
+/* Блок коллекций*/
+.collection_txt {
+  margin-top: 120px;
+  background-color: #c8c8c8;
+  height: 40px;
+}
+.collection_txt > p {
+  text-align: center;
+  font-family: "Lora-bold";
+  color: #191616;
+  font-size: 25px;
+  margin-top: 5px;
+}
+.collections_card {
+  display: flex;
+  justify-content: center;
+}
+#block1 {
+  margin-top: 30px;
+  width: 1349px;
+  
+  box-shadow: #7e7e7e 0px 5px 15px;
+}
+#block1:hover {
+  cursor: pointer;
+}
+.collections_btn {
+  background-color: #191616;
+  border: #191616 1px solid;
+  color: #fefefe;
+  font-family: "Wremena-norm";
+  font-size: 24px;
+  width: 350px;
+  height: 68px;
+  margin-top: 30px;
+}
+.collections_btn:hover {
+  cursor: pointer;
+  background-color: #050404;
+}
+
+/* Блок показов*/
+.news_txt {
+  margin-top: 120px;
+  background-color: #c8c8c8;
+  height: 40px;
+}
+.news_txt > p {
+  text-align: center;
+  font-family: "Lora-bold";
+  color: #191616;
+  font-size: 25px;
+  margin-top: 5px;
+}
+.news_all {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+}
+.pic_new {
+  margin: 0px 50px 10px 50px;
+  width: 350px;
+  height: 460px;
+}
+.block_news {
+  margin-top: 40px;
+  background-color: #493e3e;
+  height: 300px;
+  padding: 20px;
+}
+#picnewleft {
+  
+  box-shadow: #7e7e7e 0px 5px 15px;
+}
+#picnewright {
+  box-shadow: #7e7e7e 0px 5px 15px;
+}
+.new_head {
+  font-size: 22px;
+  text-align: left;
+  color: #fefefe;
+
+  font-family: "Wremena-norm";
+}
+.new_main {
+  font-size: 20px;
+  text-align: right;
+  color: #fefefe;
+  font-family: "Wremena-norm";
+}
+.new_next > p {
+  font-size: 22px;
+  color: #fefefe;
+}
+.new_next > p:hover {
+  color: #877cb9;
+  text-decoration: underline;
+}
+.line {
+  border-left: #191616 5px solid;
+  padding: 0px 10px 5px 10px;
+}
+
+

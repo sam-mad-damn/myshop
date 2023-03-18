@@ -1,0 +1,41 @@
+/* Блок футера */
+.footer {
+  margin-top: 120px;
+  justify-content: center;
+  padding: 10px;
+  display: flex;
+  gap: 120px;
+  background-color: #191616;
+}
+.fot_main {
+  border-bottom: #fefefe 2px solid;
+  padding-bottom: 5px;
+}
+.footer_logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.footer_pic {
+  margin-top: 10px;
+  margin-left: 60px;
+  width: 300px;
+}
+.profile > a {
+  text-decoration: none;
+  font-size: 20px;
+  text-align: center;
+  color: #fefefe;
+  font-family: "Wremena-norm";
+}
+.help > a {
+  text-decoration: none;
+  font-size: 20px;
+  text-align: center;
+  color: #fefefe;
+  font-family: "Wremena-norm";
+}
+.help > a:hover,
+.profile > a :hover {
+  color: #877cb9;
+}
