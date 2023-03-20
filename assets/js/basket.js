@@ -47,8 +47,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         //кнопка оформить заказ
         if (e.target.classList.contains("make-order")) {
+            let payType=document.querySelector(".pay").value
+            if (payType=="cart"){payType="карта"}
+            else {payType="наличные"}
             //отправляем запрос на создание заказа
-            outOnPage("add_order", {"user_id":e.target.dataset.user,"point":e.target.dataset.point});
+            outOnPage("add_order", {"user_id":e.target.dataset.user,"point":e.target.dataset.point,"pay_type": payType});
             //Надпись Заказ оформлен
             document.querySelector(".basket_is_empty").innerHTML = "Заказ успешно оформлен!";
             //очистка всей корзины

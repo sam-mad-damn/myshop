@@ -12,7 +12,7 @@ class Order
         return $query->fetchAll();
     }
 
-    public static function create($user_id, $point_id)
+    public static function create($user_id, $point_id,$pay_type)
     {
         //получаем корзину пользователя
         $basket = Basket::get_basket($user_id);
@@ -23,7 +23,7 @@ class Order
             //начинаем(запускаем) транзакцию
             $conn->beginTransaction();
             //1.создаем новый заказ(ловим его айдишник)
-            $order_id = self::add_order($user_id, $point_id, $conn);
+            $order_id = self::add_order($user_id, $point_id,$pay_type, $conn);
             //2.добавляем продукты в заказ
             self::add_products($basket, $order_id, $conn);
             //3.корректируем кол-во продуктов на складе
@@ -40,10 +40,10 @@ class Order
         }
     }
     //добавление записи в таблицу заказа
-    public static function add_order($user_id, $point_id, $conn)
+    public static function add_order($user_id, $point_id,$pay_type, $conn)
     {
-        $query = $conn->prepare("INSERT INTO `orders`(`created_at`, `updated_at`, `status_id`, `user_id`, `point_id`,`pay_type`) VALUES (:created_at,:updated_at,1,:user_id,:point_id)");
-        $query->execute(["created_at" => date("Y-m-d H:i:s"), "updated_at" => date("Y-m-d H:i:s"), "user_id" => $user_id, "point_id" => $point_id]);
+        $query = $conn->prepare("INSERT INTO `orders`(`created_at`, `updated_at`, `status_id`, `user_id`, `point_id`,pay_type) VALUES (:created_at,:updated_at,1,:user_id,:point_id,:pay_type)");
+        $query->execute(["created_at" => date("Y-m-d H:i:s"), "updated_at" => date("Y-m-d H:i:s"), "user_id" => $user_id, "point_id" => $point_id,"pay_type"=>$pay_type]);
         //получаем номер последней вставленной записи(т. е. Id заказа)
         return $conn->lastInsertId();
     }

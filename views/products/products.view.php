@@ -10,8 +10,8 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php" ?>
   <div class="dropdown">
     <button class="dropbtn">Сортировать</button>
     <div class="dropdown-content">
-      <a href="#">цена по убыванию</a>
-      <a href="#">цена по возрастанию</a>
+      <a href="/app/tables/products/products.php?sort=price_dec">сначала дорогие</a>
+      <a href="/app/tables/products/products.php?sort=price_asc">сначала дешёвые</a>
     </div>
   </div>
 </div>
@@ -29,7 +29,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php" ?>
           <div class="accordion-body">
               <input type="radio" onchange="this.form.submit()" id="all_collections" name="collection" checked value="all" class="custom-radio"><label for="all_collections" class="">Все</label>
               <?php foreach ($collections as $item) : ?>
-                <input type="radio" onchange="this.form.submit()" id="<?= $item->name ?>" name="collection" value="<?= $item->id ?>" <?php if (isset($_GET["collection"]) && $_GET["collection"] == $item->id) : echo ("checked");endif ?> class="custom-radio"><label for="<?= $item->name ?>" class=""><?= mb_strtoupper($item->name) ?></label>
+                <input type="radio" onchange="this.form.submit()" id="<?= $item->name ?>" name="collection" value="<?= $item->id ?>" <?php if (isset($_GET["collection"])&& $_GET["collection"] == $item->id || isset($_GET["collection_id"]) && $_GET["collection_id"] == $item->id ) : echo ("checked");endif ?> class="custom-radio"><label for="<?= $item->name ?>" class=""><?= mb_strtoupper($item->name) ?></label>
               <?php endforeach ?>
           </div>
         </div>

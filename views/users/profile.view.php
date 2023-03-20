@@ -56,7 +56,7 @@ var_dump($orders); ?>
     <button class="change_profile" id="change_profile">Редактировать</button>
     <a href="/app/tables/users/logout.php"><button id="exit">Выйти</button></a>
   </div>
-  <div class="tab-pane fade" id="delivery-tab-pane" role="tabpanel" aria-labelledby="delivery-tab" tabindex="0">
+  <div class="tab-pane fade" id="delivery-tab-pane" role="tabpanel" aria-labelledby="delivery-tab" tabindex="1">
     <?php foreach ($orders as $ord) :
       if ($ord->status_id != 4) : ?>
         <div class="order" id="order_962941234">
@@ -105,7 +105,7 @@ var_dump($orders); ?>
       <h4>У вас нет активных заказов</h4>
     <?php endif ?>
   </div>
-  <div class="tab-pane fade" id="buy-tab-pane" role="tabpanel" aria-labelledby="buy-tab" tabindex="0">
+  <div class="tab-pane fade" id="buy-tab-pane" role="tabpanel" aria-labelledby="buy-tab" tabindex="2">
     <div class="buy">
       <?php foreach ($orders as $ord) :
         if ($ord->status_id == 4) :

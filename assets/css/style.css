@@ -83,7 +83,7 @@
 }
 #block1 {
   margin-top: 30px;
-  width: 1349px;
+  width: 1309px;
   
   box-shadow: #7e7e7e 0px 5px 15px;
 }
@@ -154,11 +154,12 @@
   color: #fefefe;
   font-family: "Wremena-norm";
 }
-.new_next > p {
+.new_next {
+  font-family: "Wremena-norm";
   font-size: 22px;
   color: #fefefe;
 }
-.new_next > p:hover {
+.new_next:hover {
   color: #877cb9;
   text-decoration: underline;
 }

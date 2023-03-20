@@ -16,6 +16,23 @@ $materials = Material::all();
 
 $filter_prices = FILTER_PRICE;
 
+// переход со страницы коллекций
+if (isset($_GET["collection_id"])) {
+    $products_positions = Product::get_products_by_collection($_GET["collection_id"]);
+}
+// сортировка по цене
+if (isset($_GET["sort"])) {
+    $sort = $_GET['sort'];
+    switch ($sort) {
+        case "price_dec":
+            $products_positions = Product::sort_by_price_desc($_GET);
+            break;
+        case "price_asc":
+            $products_positions = Product::sort_by_price($_GET);
+            break;
+    }
+}
+// фильтрация по признакам
 if (isset($_GET["collection"]) && isset($_GET["material"]) && isset($_GET["size"]) && isset($_GET["price"])) {
     $products_positions = Product::filter($_GET);
 }

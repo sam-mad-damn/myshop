@@ -47,31 +47,6 @@ class Product
         $query->execute(["id" => $id]);
         return $query->fetch();
     }
-    // //ищем товар на складе по его id
-    // public static function find_product($product_position_id,$size_id)
-    // {
-    //     $query = Connection::make()->prepare("SELECT products.*
-    //     FROM products
-    //     WHERE product_position_id=:product_position_id AND size_id=:size_id");
-    //     $query->execute(["product_position_id" => $product_position_id,"size_id"=>$size_id]);
-    //     return $query->fetch();
-    // }
-    // public static function find_by_product_position_id($id)
-    // {
-    //     $query = Connection::make()->prepare("SELECT products_positions.*, 
-    //     materials.name as material, 
-    //     collections.name as collection, 
-    //     products.count as count ,
-    //     products.product_position_id as product_id ,
-    //     products.size_id as size_id
-    //     FROM products_positions 
-    //     INNER JOIN collections ON products_positions.collection_id=collections.id 
-    //     INNER JOIN materials ON products_positions.material_id=materials.id 
-    //     INNER JOIN products ON products.product_position_id=products_positions.id 
-    //     WHERE products.product_position_id=:id");
-    //     $query->execute(["id" => $id]);
-    //     return $query->fetch();
-    // }
     //получаем 3 товара из коллекции
     public static function get_3_products_by_collection($collection)
     {
@@ -100,46 +75,6 @@ class Product
     //     $query->execute($collections);
     //     return $query->fetchAll();
     // }
-    //получаем товары по указанному материалу
-    public static function get_products_by_material($material)
-    {
-        $query = Connection::make()->prepare("SELECT products_positions.* FROM products_positions WHERE material_id=?");
-        $query->execute([$material]);
-        return $query->fetchAll();
-    }
-    //получаем товары по указанному размеру
-    public static function get_products_by_size($size)
-    {
-        $query = Connection::make()->prepare("SELECT
-        `id`,
-        `name`,
-        `description`,
-        `photo`,
-        `price`
-        FROM
-        `products_positions`
-        INNER JOIN products ON products.product_position_id=products_positions.id
-        WHERE
-        products.size_id=?");
-        $query->execute([$size]);
-        return $query->fetchAll();
-    }
-    //получаем товары по указанному размеру
-    public static function get_products_by_price($price)
-    {
-        $query = Connection::make()->prepare("SELECT
-        `id`,
-        `name`,
-        `description`,
-        `photo`,
-        `price`
-        FROM
-        `products_positions`
-        WHERE
-        price<?");
-        $query->execute([$price]);
-        return $query->fetchAll();
-    }
     public static function filter($data)
     {
         foreach ($data as $key => $val) {
@@ -169,18 +104,42 @@ class Product
         return $query->fetchAll();
     }
 
-    //сортируем товары
-    public static function sorting($option, $category_id = null)
+    //сортируем товары по цене сначала дешевые
+    public static function sort_by_price()
     {
-        if ($category_id != null) {
-            $query = Connection::make()->prepare("SELECT products.*, countries.name as country, categories.name as category FROM products INNER JOIN countries ON products.country_id=countries.id INNER JOIN categories ON products.category_id=categories.id WHERE products.count>0 AND products.category_id=:category_id ORDER BY " . $option);
-            $query->execute(["category_id" => $category_id]);
-            return $query->fetchAll();
-        } else {
-            $query = Connection::make()->prepare("SELECT * FROM products ORDER BY " . $option);
-            $query->execute();
-            return $query->fetchAll();
-        }
+        $query = Connection::make()->prepare("SELECT
+        `id`,
+        `name`,
+        `description`,
+        `photo`,
+        `price`
+        FROM
+        `products_positions`
+        INNER JOIN products ON products.product_position_id = products_positions.id GROUP BY
+        id
+        ORDER BY
+        price
+        ");
+        $query->execute([]);
+        return $query->fetchAll();
+    }
+    //сортируем товары по цене сначала дорогие
+    public static function sort_by_price_desc()
+    {
+        $query = Connection::make()->prepare("SELECT
+        `id`,
+        `name`,
+        `description`,
+        `photo`,
+        `price`
+        FROM
+        `products_positions`
+        INNER JOIN products ON products.product_position_id = products_positions.id GROUP BY
+        id
+        ORDER BY
+        price DESC");
+        $query->execute([]);
+        return $query->fetchAll();
     }
     //обновляем кол-во товара на складе
     public static function update_count($basket, $conn = null)
