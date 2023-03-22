@@ -15,8 +15,15 @@
   font-family: "Wremena-norm";
 }
 .main-text{
-  
   font-size: 20px;
+}
+.sizes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.size_table{
+  object-fit: contain;
 }
 /* Аккордион
 .accordion {
