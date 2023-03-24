@@ -1,31 +1,33 @@
-
-/* Блок показов */
+/* #region Блок показов */
 .news_txt {
   margin-top: 30px;
   background-color: #c8c8c8;
-  height: 40px;
+  height: 50px;
 }
 .news_txt > p {
   text-align: center;
   font-family: "Lora-bold";
   color: #191616;
-  font-size: 25px;
-  margin-top: 5px;
+  font-size: 23px;
+  padding: 6px;
 }
 .shows {
   display: flex;
   flex-direction: row;
 }
 .shows_txt {
+  width: 500px;
   margin-top: 30px;
-  margin-left: 30px;
+  margin-left: 50px;
   font-family: "Lora-norm";
-  font-size: 22px;
+  font-size: 20px;
 }
 .shows_txt > h2 {
   font-family: "Lora-bold";
 }
-/* Настройки каруселей*/
+/* #endregion */
+
+/* #region Настройки каруселей*/
 .carousels {
   margin-top: 30px;
   margin-left: 30px;
@@ -74,6 +76,7 @@
 }
 .d-block {
   width: 500px;
-  height: 550px;
+  height: 500px;
   object-fit: contain;
 }
+/* #endregion */

@@ -1,5 +1,6 @@
 <?php
 
+use App\models\Basket;
 use App\models\Product;
 use App\models\Collection;
 use App\models\Material;

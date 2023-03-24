@@ -11,6 +11,11 @@ if (!isset($_SESSION["auth"]) || !$_SESSION["auth"]) {
 }
 $user = User::find($_SESSION["id"]);
 $orders=Order::find_by_user($user->id);
+foreach($orders as $order){
+    if ($order->status_id == 4){
+        $over_order_products=Order::get_products($_SESSION["id"]);
+    }
+}
 $order_products=Order::get_products($_SESSION["id"]);
 $data = date("d.m") + 3;
 

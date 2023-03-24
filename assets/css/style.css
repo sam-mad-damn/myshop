@@ -1,6 +1,4 @@
-
-
-/* Блог товаров*/
+/* #region Блог товаров*/
 .products {
   display: grid;
   grid-template-columns: 1, 1fr;
@@ -14,27 +12,30 @@
 }
 .products_txt {
   background-color: #c8c8c8;
-  height: 40px;
+  height: 50px;
 }
 .products_txt > p {
   text-align: center;
   font-family: "Lora-bold";
   color: #191616;
-  font-size: 25px;
-  margin-top: 5px;
+  font-size: 23px;
+  padding: 6px;
 }
 .products_txt > p:hover {
   cursor: default;
 }
-/* Карточки товаров*/
+/* #endregion */
+
+/* #region Карточки товаров*/
 .card {
   background-color: rgba(25, 22, 22, 1);
-  width: 270px;
-  height: 320.86px;
+  width: 250px;
+  height: 300.86px;
   margin-top: 30px;
   border-radius: 4px;
-  
+  border: none;
   box-shadow: #7e7e7e 0px 5px 15px;
+  transition: 0.4s;
 }
 .card:hover {
   scale: 1.05;
@@ -42,14 +43,14 @@
 }
 .card_img {
   object-fit: cover;
-  width: 270px;
-  height: 270.86px;
+  width: 250px;
+  height: 250.86px;
   border-radius: 4px 4px 0px 0px;
 }
 .card > p {
   font-family: "Wremena-norm";
   color: #fefefe;
-  font-size: 26px;
+  font-size: 23px;
   text-align: center;
   margin-top: 5px;
 }
@@ -58,24 +59,26 @@
   margin-top: 130px;
   width: 70px;
   height: 60px;
+  transition: 0.4s;
 }
 #arrow:hover {
   scale: 1.1;
   cursor: pointer;
 }
+/* #endregion */
 
-/* Блок коллекций*/
+/* #region Блок коллекций*/
 .collection_txt {
   margin-top: 120px;
   background-color: #c8c8c8;
-  height: 40px;
+  height: 50px;
 }
 .collection_txt > p {
   text-align: center;
   font-family: "Lora-bold";
   color: #191616;
-  font-size: 25px;
-  margin-top: 5px;
+  font-size: 23px;
+  padding: 6px;
 }
 .collections_card {
   display: flex;
@@ -95,69 +98,89 @@
   border: #191616 1px solid;
   color: #fefefe;
   font-family: "Wremena-norm";
-  font-size: 24px;
+  font-size: 23px;
   width: 350px;
   height: 68px;
   margin-top: 30px;
+  transition: 0.4s;
 }
 .collections_btn:hover {
   cursor: pointer;
   background-color: #050404;
 }
+/* #endregion */
 
-/* Блок показов*/
+/* #region Блок показов*/
 .news_txt {
   margin-top: 120px;
   background-color: #c8c8c8;
-  height: 40px;
+  height: 50px;
+  
 }
 .news_txt > p {
   text-align: center;
   font-family: "Lora-bold";
   color: #191616;
-  font-size: 25px;
-  margin-top: 5px;
+  font-size: 23px;
+  padding: 6px;
 }
 .news_all {
   display: flex;
   gap: 30px;
   margin-top: 30px;
+  width: 1000px;
+  margin-left: 10%;
+align-self:  center;
 }
-.pic_new {
-  margin: 0px 50px 10px 50px;
-  width: 350px;
-  height: 460px;
+.pic_new{
+
+  width: 300px;
+  height: 410px;
+
 }
 .block_news {
   margin-top: 40px;
   background-color: #493e3e;
-  height: 300px;
+  height: 280px;
   padding: 20px;
 }
-#picnewleft {
-  
-  box-shadow: #7e7e7e 0px 5px 15px;
+#picnewleft{
+  margin-left: 30px;
 }
-#picnewright {
-  box-shadow: #7e7e7e 0px 5px 15px;
+#picnewleft:hover {
+  transition: 0.3s ease-in-out;
+  box-shadow: #7e7e7e 10px 10px ;
 }
+#picnewleft:not(:hover) {
+  transition: 0.5s;
+}
+
+#picnewright:hover {
+  transition: 0.3s ease-in-out;
+  box-shadow: #7e7e7e -10px 10px ;
+}
+#picnewright:not(:hover) {
+  transition: 0.5s;
+}
+
 .new_head {
-  font-size: 22px;
+  font-size: 20px;
   text-align: left;
   color: #fefefe;
 
   font-family: "Wremena-norm";
 }
 .new_main {
-  font-size: 20px;
+  font-size: 18px;
   text-align: right;
   color: #fefefe;
   font-family: "Wremena-norm";
 }
 .new_next {
   font-family: "Wremena-norm";
-  font-size: 22px;
+  font-size: 20px;
   color: #fefefe;
+  transition: 0.5s;
 }
 .new_next:hover {
   color: #877cb9;
@@ -165,7 +188,52 @@
 }
 .line {
   border-left: #191616 5px solid;
-  padding: 0px 10px 5px 10px;
+  padding: 0px 10px 0px 10px;
 }
+/* #endregion */
 
-
+/* #region Блок адресов доставок */
+.addresses_txt{
+  margin-top: 80px;
+  background-color: #c8c8c8;
+  height: 50px;
+  display: block;
+}
+.addresses_txt > p {
+  text-align: center;
+  font-family: "Lora-bold";
+  color: #191616;
+  font-size: 23px;
+  margin-bottom: 0px;
+  padding: 6px;
+}
+.address{
+  display: grid;
+  grid-template-columns: 40% 60%;
+padding: 20px;
+width: 1000px;
+margin-left: 10%;
+align-self:  center;
+}
+.addresses{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 400px;
+  
+  font-family: "Lora-bold";
+  font-size: 16px;
+}
+.addresses>p{
+  color: #191616;
+  margin-bottom: 5px;
+}
+.addresses>p:hover{
+  cursor: default;
+  color: #877cb9;
+}
+iframe {
+  height: 450px;
+  border: #c8c8c8 1px solid;
+}
+/* #endregion */

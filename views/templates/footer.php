@@ -11,7 +11,7 @@
     </a>
   </div>
   <div class="footer_logo">
-    <a href="/"><img src="/assets/img/Логотип.png" alt="" /></a>
+    <a href="/"><img class="footer_logo_pic" src="/assets/img/Логотип.png" alt="" /></a>
     <img class="footer_pic" src="/assets/img/Почта.png" alt="" />
   </div>
   <div class="profile">

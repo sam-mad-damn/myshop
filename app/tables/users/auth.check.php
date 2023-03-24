@@ -18,6 +18,6 @@ if (isset($_POST["btn_auth"])) {
         $_SESSION["auth"]=true;
         $_SESSION["id"]=$user->id;
         $_SESSION["name"]=$user->name;
-        header("Location: /");
+        header("Location: /app/tables/products/products.php");
     }
 }

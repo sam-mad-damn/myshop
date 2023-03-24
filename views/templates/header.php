@@ -23,25 +23,25 @@
       <a href="/"><img class="logo" src="/assets/img/лого.png" alt="Логотип" /></a>
       <div class="headers">
         <a href="/app/tables/collections/collections.php">
-          <h4>Коллекции</h4>
+        Коллекции
         </a>
         <a href="/app/tables/products/products.php">
-          <h4>Товары</h4>
+          Товары
         </a>
         <?php
         if (!isset($_SESSION["auth"]) || !$_SESSION["auth"]) : ?>
           <a href="/app/tables/users/auth.php">
-            <h4>Вход</h4>
+          Вход
           </a>
           <a href="/app/tables/users/register.php">
-            <h4>Регистрация</h4>
+          Регистрация
           </a>
         <?php else : ?>
           <a href="/app/tables/users/profile.php">
-            <h4>Профиль</h4>
+          Профиль
           </a>
           <a href="/app/tables/users/logout.php">
-            <h4>Выйти</h4>
+          Выйти
           </a>
           <a href="/app/tables/baskets/basket.php"><img id="cart" src="/assets/img/Корзина.png" alt="Корзина" /></a>
         <?php endif ?>

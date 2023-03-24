@@ -1,25 +1,42 @@
 /* Блок футера */
 .footer {
-  margin-top: 120px;
+  margin-top: 110px;
   justify-content: center;
   padding: 10px;
   display: flex;
+justify-content: space-around;
   gap: 120px;
   background-color: #191616;
+  height: 160px;
 }
 .fot_main {
   border-bottom: #fefefe 2px solid;
   padding-bottom: 5px;
+  font-size: 23px;
+  margin-top: 10px;
 }
 .footer_logo {
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+}
+.footer_logo_pic{
+  width: 220px;
+  object-fit: cover;
 }
 .footer_pic {
   margin-top: 10px;
-  margin-left: 60px;
-  width: 300px;
+  margin-left: 20px;
+  width: 200px;
+}
+.profile,.help{
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
+a>p{
+  margin-bottom: 0px;
 }
 .profile > a {
   text-decoration: none;
@@ -27,6 +44,7 @@
   text-align: center;
   color: #fefefe;
   font-family: "Wremena-norm";
+  transition: 0.4s;
 }
 .help > a {
   text-decoration: none;
@@ -34,6 +52,7 @@
   text-align: center;
   color: #fefefe;
   font-family: "Wremena-norm";
+  transition: 0.4s;
 }
 .help > a:hover,
 .profile > a :hover {

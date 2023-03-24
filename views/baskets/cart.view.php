@@ -5,8 +5,9 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php" ?>
 </div>
 <div hidden class="empty_basket">
   <div class="empty_desc">
-    <h3>Ваша корзина пуста!</h3>
-    <h4>Вы можеть выбрать понравившийся товар в разделе "Товары"</h4>
+    <h4>Ваша корзина пуста!</h4>
+    <h5>Вы можеть выбрать понравившийся товар в разделе "Товары"</h5>
+    <h5>Последние поступления:</h5>
   </div>
   <div class="products_cards">
     <?php foreach ($products as $item) : ?>
@@ -23,7 +24,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php" ?>
 <div class="main_block">
   <div class="products">
     <div class="title">
-      <h3>Краткое описание товаров(<span class="products_count total_count"><?= $total_count ?? 0 ?></span>)</h3>
+      <h4>Краткое описание товаров(<span class="products_count total_count"><?= $total_count ?? 0 ?></span>)</h4>
       <button class="btn clean_basket">Очистить корзину</button>
     </div>
     <div class="items">
@@ -63,10 +64,10 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php" ?>
     </div>
   </div>
   <div class="result">
-    <h3>Итого</h3>
+    <h4>Итого</h4>
     <p>
       Стоимость заказа:
-      <span class="price total_cost" id="res_price"><?= $total_sum ?? 0 ?> </span>р.
+      <span class="price total_cost" id="res_price"><?= $total_sum ?? 0 ?></span>р.
     </p>
     <p>
       Доставка:
@@ -83,8 +84,8 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php" ?>
   </div>
   <div class="address">
     <div class="address_title">
-      <h3>Пункт выдачи</h3>
-      <p class="change_address">Изменить</p>
+      <h4>Пункт выдачи</h4>
+      <button class="btn change_address">Изменить</button>
     </div>
     <p>
       Адрес:

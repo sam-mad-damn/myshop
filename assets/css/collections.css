@@ -1,93 +1,15 @@
-@font-face {
-  font-family: "Wremena-norm";
-  src: url(/assets/fonts/Wremena/Wremena.ttf);
-}
-@font-face {
-  font-family: "Lora-bold";
-  src: url(/assets/fonts/Lora/Lora-SemiBold.ttf);
-}
-body {
-  margin: 0;
-}
-/* Редактор прокрутки списка адресов */
-body::-webkit-scrollbar {
-  width: 15px;
-  background-color: #f9f9fd;
-}
-body::-webkit-scrollbar-thumb {
-  background-color: #877cb9;
-}
-body::-webkit-scrollbar-track {
-  background-color: #f9f9fd;
-}
-
-/* Блок навигации */
-.navigation {
-  position: cover;
-  height: 100px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  background: #191616;
-}
-.logo {
-  width: 220px;
-  height: 50px;
-  margin-left: 45px;
-  margin-top: 25px;
-}
-.logo:hover {
-  scale:1.1;
-  cursor: pointer;
-}
-.headers {
-  display: flex;
-  flex-direction: row;
-  margin-top: 30px;
-  gap: 80px;
-}
-.headers > a {
-  font-family: "Wremena-norm";
-  font-size: 24px;
-  text-align: center;
-  color: #fefefe;
-  height: 30px;
-}
-.headers > a > h4:hover {
-  font-family: "Wremena-norm";
-  color: #877cb9;
-  cursor: pointer;
-  height: 30px;
-  border-radius: 0px;
-}
-a:active,
-a:hover,
-a {
-  text-decoration: none;
-}
-#cart {
-  width: 50px;
-  height: 50px;
-  margin-right: 30px;
-  margin-top: -5px;
-}
-#cart:hover {
-  scale:1.1;
-  cursor: pointer;
-}
-
-/* Блок коллекций */
+/*Блок коллекций */
 .collection_txt {
   margin-top: 30px;
   background-color: #c8c8c8;
-  height: 40px;
+  height: 50px;
 }
 .collection_txt > p {
   text-align: center;
   font-family: "Lora-bold";
   color: #191616;
-  font-size: 25px;
-  margin-top: 5px;
+  font-size: 23px;
+ padding: 6px;
 }
 .collection_pic {
   width: 350px;
@@ -112,7 +34,7 @@ a {
 .block {
   margin-top: 30px;
   font-family: "Wremena-norm";
-  font-size: 25px;
+  font-size: 23px;
   display: flex;
   justify-content: center;
 }
@@ -127,58 +49,22 @@ a {
 }
 .collection_desc>p{
   font-family: "Wremena-norm";
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .btn{
   background-color: #191616;
   border: #191616 1px solid;
+  border-radius: 0px;
   color: #fefefe;
-  font-family: "Lora-bold";
-  font-size: 22px;
+  font-family: "Wremena-norm";
+  font-size: 23px;
   height: 50px;
   margin-top: 10px;
   margin-bottom: 15px;
+  transition: 0.5s;
 }
-
-/* Блок футера */
-.footer {
-  margin-top: 80px;
-  justify-content: center;
-  padding: 10px;
-  display: flex;
-  gap: 120px;
-  background-color: #191616;
-}
-.fot_main {
-  border-bottom: #fefefe 2px solid;
-  padding-bottom: 5px;
-}
-.footer_logo {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.footer_pic {
-  margin-top: 10px;
-  margin-left: 60px;
-  width: 300px;
-}
-.profile > a {
-  text-decoration: none;
-  font-size: 20px;
-  text-align: center;
+.btn:hover{
   color: #fefefe;
-  font-family: "Wremena-norm";
+  background-color: #080707;
 }
-.help > a {
-  text-decoration: none;
-  font-size: 20px;
-  text-align: center;
-  color: #fefefe;
-  font-family: "Wremena-norm";
-}
-.help>a:hover, .profile>a :hover{
-  color: #877cb9;
-  }
- 

@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 })
                 e.target.hidden=true
                 document.querySelector(".save_profile").hidden=false
+                document.querySelector("#exit").hidden=true
             }
         })
 })

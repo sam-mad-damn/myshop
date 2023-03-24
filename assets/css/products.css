@@ -1,23 +1,22 @@
-
-
-/* Блок товаров */
+/* #region Блок товаров */
 .products_txt {
   background-color: #c8c8c8;
-  height: 40px;
+  height: 50px;
+  margin-top: 30px;
 }
 .products_txt > p {
   text-align: center;
   font-family: "Lora-bold";
   color: #191616;
-  font-size: 25px;
-  margin-top: 30px;
+  font-size: 23px;
+  padding: 6px;
 }
 .products_txt > p:hover {
   cursor: default;
 }
 .sorting {
   position: absolute;
-  top: 135px;
+  top: 130px;
   right: 10px;
 }
 #sort {
@@ -26,8 +25,13 @@
   border-radius: 3px;
   font-family: "Lora-bold";
 }
+label:hover {
+  cursor: pointer;
+}
 /* Кнопка выпадающего списка */
 .dropbtn {
+  
+  margin-top: 10px;
   background-color: #19161600;
   font-family: "Lora-bold";
   font-size: 16px;
@@ -47,15 +51,14 @@
   position: absolute;
   background-color: #f1f1f1;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
 /* Ссылки внутри выпадающего списка */
 .dropdown-content a {
-  
   color: black;
-  padding: 10px ;
+  padding: 10px;
   text-decoration: none;
   font-family: "Lora-bold";
   font-size: 16px;
@@ -63,16 +66,22 @@
 }
 
 /* Изменение цвета выпадающих ссылок при наведении курсора */
-.dropdown-content a:hover {background-color: #ddd;}
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
 
 /* Показать выпадающее меню при наведении курсора */
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
 .products_block {
   display: grid;
   grid-template-columns: repeat(2, 300px 1fr);
 }
-/* Аккордеон*/
+/* #endregion */
+
+/* #region Аккордеон*/
 .features {
   margin-left: 30px;
   margin-top: 30px;
@@ -82,19 +91,20 @@
 }
 .accordion-button {
   background-color: #fefefe;
-  font-size: 18px;
+  font-size: 20px;
   font-family: "Lora-bold";
-  border: 2px solid #191616;
+  border: 1px solid #c8c8c8;
   padding: 5px;
 }
 .accordion-button:focus {
-  border-color: #191616;
+  border-color: #c8c8c8;
   box-shadow: none;
 }
 .accordion-body {
   display: flex;
   flex-direction: column;
-  border: 2px solid #191616;
+  border: 1px solid #c8c8c8;
+  border-top: none;
 }
 .accordion-button:not(.collapsed) {
   color: #191616;
@@ -134,42 +144,9 @@ label {
 .size_btn:focus {
   background-color: #877cb9;
 }
-.active{
+.active {
   background-color: #877cb9;
 }
-
-/*Кастом чекбоксов */
-/* .custom-checkbox {
-  position: absolute;
-  z-index: -1;
-  opacity: 0;
-}
-.custom-checkbox + label {
-  display: inline-flex;
-  align-items: center;
-  user-select: none;
-}
-.custom-checkbox + label::before {
-  content: "";
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  flex-shrink: 0;
-  flex-grow: 0;
-  border: 1px solid #191616;
-  margin-right: 0.5em;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 50% 50%;
-}
-.custom-checkbox:not(:disabled):not(:checked) + label:hover::before {
-  border-color: #877cb9;
-}
-.custom-checkbox:not(:disabled):checked + label::before {
-  background-image: url(/assets/img/чекбокс.png);
-  background-size: cover;
-  border-color: #191616;
-} */
 
 /*Кастом радиокнопок */
 .custom-radio {
@@ -204,14 +181,16 @@ label {
   background-size: cover;
   border-color: #191616;
 }
+/* #endregion */
 
-/* Карточки товаров*/
+/* #region Карточки товаров*/
 .products {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 .card {
+  transition: 0.6s;
   margin-top: 10px;
   margin-left: 40px;
   background-color: #191616;
@@ -220,6 +199,7 @@ label {
   color: #fefefe;
   font-family: "Wremena-norm";
   width: 280px;
+  min-height: 420px;
   scale: 0.9;
   box-shadow: #7e7e7e 0px 5px 15px;
 }
@@ -229,6 +209,8 @@ label {
 }
 .card_sizes {
   display: flex;
+  position: fixed;
+  bottom: 10px;
 }
 .card_size {
   padding: 5px;
@@ -251,7 +233,7 @@ label {
   justify-content: space-between;
   font-family: "Wremena-norm";
 }
-.card_head>h4{
+.card_head > h4 {
   font-family: "Lora-norm";
 }
 .card_main {
@@ -263,13 +245,21 @@ label {
   font-family: "Wremena-norm";
   font-size: 18px;
 }
+
+.card_main > p {
+  line-height: 20px;
+  white-space: nowrap; /* Отменяем перенос текста */
+  overflow: hidden; /* Обрезаем содержимое */
+  text-overflow: ellipsis; /* Многоточие */
+}
+
 hr {
   margin: 0;
 }
+/* #endregion */
 
-
-/* Нумерация*/
-.pagination{
+/* #region Нумерация*/
+.pagination {
   /* position: relative;
   bottom: -1000px;
   right: 400px; */
@@ -295,3 +285,4 @@ hr {
 .page-link:focus {
   box-shadow: none;
 }
+/* #endregion */

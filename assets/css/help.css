@@ -1,5 +1,12 @@
-.help{
-  
+
+.helps{
+  width: 900px;
+  display: block;
+  margin-left: 15%;
+  align-self:  center;
+}
+.item{
+  background-color: #f1f1f1;
 }
 .head{
   background-color: #a199c3;
@@ -23,51 +30,6 @@
   gap: 20px;
 }
 .size_table{
+  width: 500px;
   object-fit: contain;
 }
-/* Аккордион
-.accordion {
-  font-family: "Lora-norm";
-}
-.accordion-button {
-  color: #191616;
-  background-color: #d9d9d9;
-  font-family: "Lora-bold";
-  font-size: 25px;
-  border: 1px solid #9d9d9d;
-}
-.accordion-button:focus {
-  border: none;
-  box-shadow: none;
-}
-.accordion-button:not(.collapsed) {
-  color: #191616;
-  background-color: #d9d9d9;
-}
-.accordion-body {
-  border: #d9d9d9 1px solid;
-  padding: 10px;
-}
-.accordion-body > p {
-  font-size: 20px;
-}
-.sizes {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-}
-.pic_sizes {
-  display: flex;
-}
-#size_table {
-  width: 600px;
-  height: 600px;
-  object-fit: contain;
-}
-#measure {
-  width: 650px;
-  height: 600px;
-  object-fit: contain;
-  border: #9d9d9d 1px solid;
-} */
-

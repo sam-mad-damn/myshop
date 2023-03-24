@@ -6,7 +6,7 @@ use App\models\Product;
 
 include_once $_SERVER["DOCUMENT_ROOT"] . "/bootstrap.php";
 //var_dump($_GET);
-if (isset($_SESSION["auth"])) {
+if (isset($_SESSION["auth"]) && $_SESSION["auth"]) {
     if (!isset($_GET["size"])) {
         $_SESSION["error"]["size"] = "Выберите размер";
         header("Location: /app/tables/products/product.php?id=" . $_GET['product_position_id']);

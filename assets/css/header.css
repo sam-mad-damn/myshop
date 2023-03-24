@@ -36,6 +36,7 @@
     height: 50px;
     margin-left: 45px;
     margin-top: 25px;
+    transition: 0.4s;
   }
   .logo:hover {
     cursor: pointer;
@@ -49,16 +50,18 @@
   }
   .headers > a {
     font-family: "Wremena-norm";
-    font-size: 24px;
+    font-size: 23px;
     text-align: center;
     color: #fefefe;
     height: 30px;
+    
   }
-  .headers > a > h4:hover {
+  .headers > a:hover {
     color: #877cb9;
     cursor: pointer;
     height: 30px;
     border-radius: 0px;
+    transition: ease-in-out 0.4s;
   }
   a:active,
   a:hover,
@@ -70,6 +73,7 @@
     height: 50px;
     margin-right: 30px;
     margin-top: -5px;
+    transition: 0.4s;
   }
   #cart:hover {
     scale:1.1;

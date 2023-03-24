@@ -6,7 +6,7 @@
   <div class="products_cards">
     <?php foreach ($products as $item) : ?>
       <a href="/app/tables/products/product.php?position_id=<?= $item->id ?>">
-        <div class="card" id="card1">
+        <div class="card" id="card-<?= $item->id ?>">
           <img class="card_img" src="<?= $item->photo ?>" alt="" />
           <p><?= $item->name ?></p>
         </div>
@@ -30,7 +30,7 @@
   </div>
   <div>
     <div class="news_all">
-      <img class="pic_new" id="picnewleft" src="/assets/img/Показ мод1.jpg" alt="" />
+      <a class="img_a" href="/app/tables/articles_fashion_shows/fashion_show.php"><img class="pic_new" id="picnewleft" src="/assets/img/Показ мод1.jpg" alt="" /></a>
       <div class="block_news">
         <div class="line">
           <p class="new_head">НОВОСТИ В МИРЕ МОДЫ</p>
@@ -44,8 +44,24 @@
           </a>
         </div>
       </div>
-      <img class="pic_new" id="picnewright" src="/assets/img/Показы мод2.jpg" alt="" />
+      <a class="img_a" href="/app/tables/articles_fashion_shows/fashion_show.php"><img class="pic_new" id="picnewright" src="/assets/img/Показы мод2.jpg" alt="" /></a>
     </div>
   </div>
 </div>
+<div class="points">
+  <div class="addresses_txt">
+    <p>АДРЕСА ДОСТАВКИ</p>
+  </div>
+  <div class="address">
+    <div class="addresses">
+      <?php foreach ($points as $item) : ?>
+        <p><? echo ($item->name . ", " . $item->work_time) ?></p>
+      <?php endforeach ?>
+    </div>
+    <div class="map" >
+      <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A5d2d751b341f2a01a49efbd45a5579b6002cab1e707f627ceb5e0190b7254d05&amp;width=100%25&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
+    </div>
+  </div>
+  </div>
+
 <?php include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/footer.php" ?>
