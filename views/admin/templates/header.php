@@ -13,7 +13,8 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
-    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="stylesheet" href="/assets/admin/css/<?= $link?>.css" />
+    <link rel="stylesheet" href="\assets\admin\css\header.css" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
@@ -35,7 +36,13 @@
                     <a class="navA-link" href="/app/admin/tables/products/products.php">Товары</a>
                 </li>
                 <li class="nav-item">
-                    <a class="navA-link" href="/app/admin/tables/categories/categories.php">Категории</a>
+                    <a class="navA-link" href="/app/admin/tables/collections/collections.php">Коллекции</a>
+                </li>
+                <li class="nav-item">
+                    <a class="navA-link" href="/app/admin/tables/shows/show.php">Показы мод</a>
+                </li>
+                <li class="nav-item">
+                    <a class="navA-link" href="/app/admin/tables/categories/categories.php">Статьи помощи</a>
                 </li>
             </div>
         </ul>

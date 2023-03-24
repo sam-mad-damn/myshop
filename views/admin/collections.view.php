@@ -1,50 +1,6 @@
-<!DOCTYPE html>
-<html lang="ru">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="apple-touch-icon" sizes="180x180" href="img/иконка/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="img/иконка/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="img/иконка/favicon-16x16.png" />
-    <link rel="manifest" href="img/иконка/site.webmanifest" />
-    <title>Админ</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
-    <link rel="stylesheet" href="/assets/css/admin_collections.css" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"></script>
-</head>
-
-<body>
-    <div class="cont">
-        <ul class="nav flex-column">
-            <img class="logo" src="/assets/img/лого.png" alt="">
-            <hr>
-            <div class="lis">
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="admin_profile.html">Личный кабинет</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="admin_index.html">Главная</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="admin_orders.html">Заказы</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="admin_products.html">Товары</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="admin_collections.html">Коллекции</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="admin_shows.html">Показы</a>
-                </li>
-            </div>
-        </ul>
+<?php
+include_once $_SERVER["DOCUMENT_ROOT"] . "/views/admin/templates/header.php";
+?>
         <div class="block">
             <div class="header">
                 <h3>Коллекции</h3>
@@ -169,7 +125,6 @@
                 </div>
             </div>
         </div>
-    </div>
-</body>
-
-</html>
+ <?php
+include_once $_SERVER["DOCUMENT_ROOT"] . "/views/admin/templates/footer.php";
+?>

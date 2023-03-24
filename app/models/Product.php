@@ -9,15 +9,20 @@ class Product
     //получаем товары отсортированные по новизне при условии что они есть на складе
     public static function all()
     {
-        $query = Connection::make()->query("SELECT products_positions.* FROM products_positions ORDER BY created_at ASC ");
+        $query = Connection::make()->query("SELECT products_positions.*,materials.name as material,collections.name as collection FROM products_positions 
+        INNER JOIN materials ON materials.id=products_positions.material_id
+        INNER JOIN collections ON collections.id=products_positions.collection_id ORDER BY created_at ASC ");
         return $query->fetchAll();
     }
     // 
-    // public static function all_products()
-    // {
-    //     $query = Connection::make()->query("SELECT products.product_position_id as product_id,products_positions.* FROM products_positions INNER JOIN products ON products.product_position_id=products_positions.id WHERE products.count>0");
-    //     return $query->fetchAll();
-    // }
+    public static function all_products()
+    {
+        $query = Connection::make()->query("SELECT products.product_position_id as product_id,products.count, products.size_id, materials.name as material,collections.name as collection, products_positions.* FROM products_positions INNER JOIN products ON products.product_position_id=products_positions.id
+        INNER JOIN materials ON materials.id=products_positions.material_id
+        INNER JOIN collections ON collections.id=products_positions.collection_id
+         WHERE products.count>0");
+        return $query->fetchAll();
+    }
     //все размеры в базе
     public static function get_all_sizes()
     {
