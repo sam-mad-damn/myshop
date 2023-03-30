@@ -4,9 +4,10 @@ use App\models\Product;
 
 include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php";
 if (!$product) : ?>
-<div class="empt_bas">
-  <h4 class="empty">К сожалению товара нет на складе, но скоро он появится!</h4>
-  <a class="back" href="/app/tables/products/products.php">&#8592;Вернуться к товарам</a>
+ <script src="/assets/js/product.js"></script>
+  <div class="empt_bas">
+    <h4 class="empty">К сожалению товара нет на складе, но скоро он появится!</h4>
+    <a class="back" href="/app/tables/products/products.php">&#8592;Вернуться к товарам</a>
   </div>
 <?php else : ?>
   <div class="product">
@@ -24,13 +25,11 @@ if (!$product) : ?>
       <p>Коллекция: <span><a href="/app/tables/products/products.php?collection_id=<?= $product->collection_id ?>"><?= mb_strtoupper($product->collection) ?></a></span></p>
       <p>Размер:</p>
       <form action="/app/tables/baskets/add.product.php">
+
         <input hidden type="text" value="<?= $product->id ?>" name="product_position_id">
         <div class="sizes">
           <?php foreach (Product::get_product_sizes($product->id) as $size) : ?>
-            <input class="custom-radio" <?php if (!empty($basket_products)) : foreach ($basket_products as $prod) : if ($prod->size_id == $size->size_id && $prod->product_id == $product->id) : echo ("checked");
-                                            endif;
-                                          endforeach;
-                                        endif; ?> type="radio" name="size" id="<?= $size->size ?>" value="<?= $size->size_id ?>" /><label class="card_size" for="<?= $size->size ?>"><?= $size->size ?></label>
+            <input class="custom-radio" type="radio" name="size" id="<?= $size->size ?>" value="<?= $size->size_id ?>" /><label class="card_size" for="<?= $size->size ?>"><?= $size->size ?></label>
           <?php endforeach ?>
         </div>
         <p class="error"><?= $_SESSION["error"]["size"] ?? "" ?></p>
@@ -39,7 +38,7 @@ if (!$product) : ?>
         <?php if (!empty($basket_products)) :
           foreach ($basket_products as $prod) :
             if ($prod->product_id == $product->id) : ?>
-              <p>Товар уже есть в корзине</p>
+              <p><a href="/app/tables/baskets/basket.php"> Товар уже есть в корзине</a></p>
         <?php endif;
           endforeach;
         endif; ?>
@@ -62,8 +61,7 @@ if (!$product) : ?>
       <a href="/app/tables/products/products.php?collection_id=<?= $product->collection_id ?>"><img id="arrow" src="/assets/img/стрелка.png" alt="Перейти к товарам этой коллекции" /></a>
     </div>
   </div>
-  <script src="/assets/js/product.js"></script>
-  <script src="/assets/js/fetch.js"></script>
+ 
 <?php endif ?>
 <?php unset($_SESSION["error"]);
 unset($_SESSION["good"]);

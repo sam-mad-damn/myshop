@@ -1,6 +1,8 @@
 <?php include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php"; ?>
+<script src="/assets/js/register.js"></script>
+<div class="registration">
 <form class="reg" method="POST" action="/app/tables/users/insert.php">
-  <h3 class="head" id="one">РЕГИСТРАЦИЯ</h3>
+  <h4 class="head" id="one">РЕГИСТРАЦИЯ</h4>
 
   <label for="name">Введите имя<span>*</span></label><input type="text" name="name" id="name" placeholder="Иван" value="<?= $_SESSION["name"] ?? "" ?>">
   <?php if (empty($_SESSION["name"])) : ?>
@@ -27,7 +29,7 @@
   <?php if (empty($_SESSION["email"])) : ?>
     <p class="error"><?= $_SESSION["error"]["empty"] ?? "" ?></p>
   <?php else : ?>
-    <p class="error"><?= $_SESSION["error"]["email"] ?? "" ?></p>
+    <p class="error"><?= $_SESSION["error"]["mail"] ?? "" ?></p>
   <?php endif; ?>
 
   <label for="password">Введите пароль<span>*</span></label><input type="password" name="password" id="password" placeholder="> 5 символов">
@@ -39,19 +41,13 @@
     <p class="error"><?= $_SESSION["error"]["emptyPas"] ?? "" ?></p>
   <?php endif; ?>
   <div class="agree">
-    <input type="checkBox" checked name="agreement" id="agreement">
+    <input type="checkBox" checked name="agreement" class="custom-checkbox" id="agreement">
     <label for="agreement">Согласен на обработку персональных данных</label>
   </div>
 
   <button class="login_btn btn_reg" name="btn_reg">ЗАРЕГИСТРИРОВАТЬСЯ</button>
 </form>
-<script>
-  //при включенном флажке кнопка становится активной
-  document.querySelector("#agreement").addEventListener("change", (e) => {
-    btn = document.querySelector(".btn_reg")
-    btn.disabled = !e.target.checked
-  })
-</script>
+</div>
 <?php
 unset($_SESSION["error"]);
 include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/footer.php" ?>

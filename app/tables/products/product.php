@@ -17,7 +17,10 @@ if($product){
 $collection_products=Product::get_3_products_by_collection($product->collection_id);
 }
 
-$basket_products=Basket::get_basket($_SESSION["id"]);
+if(isset($_SESSION["id"]) && !empty($_SESSION["id"])){
+   $basket_products=Basket::get_basket($_SESSION["id"]); 
+}
+
 
 include_once $_SERVER["DOCUMENT_ROOT"]."/views/products/product.view.php";
 

@@ -1,5 +1,6 @@
 <?php
 include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php" ?>
+<script src="/assets/js/basket.js"></script>
 <div class="cart_txt">
   <p>КОРЗИНА</p>
 </div>
@@ -71,7 +72,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php" ?>
     </p>
     <p>
       Доставка:
-      <span class="res_address"><?= $point->name ?></span>
+      <span class="res_address"><?php echo($point->city.", ".$point->name) ?></span>
     </p>
     <p>
       Оплата:
@@ -89,7 +90,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php" ?>
     </div>
     <p>
       Адрес:
-      <span class="address_txt"><?php echo ($point->name . ", ежедневно " . $point->work_time) ?></span>
+      <span class="address_txt"><?php echo ($point->city.", ".$point->name . ", ежедневно " . $point->work_time) ?></span>
     </p>
     <p>
       Примерная дата доставки:
@@ -108,7 +109,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php" ?>
       <div class="change_addresses">
         <?php foreach ($points as $item) : ?>
           <a href="/app/tables/baskets/basket.php?point_id=<?= $item->id ?>" class="modal_btn">
-            <? echo ($item->name . ", " . $item->work_time) ?>
+            <? echo ($item->city.", ".$item->name . ", " . $item->work_time) ?>
           </a>
         <?php endforeach ?>
       </div>
@@ -118,7 +119,5 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php" ?>
     </div>
   </div>
 </div>
-<script src="/assets/js/modal.js"></script>
-<script src="/assets/js/basket.js"></script>
-<script src="/assets/js/fetch.js"></script>
+
 <?php include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/footer.php" ?>

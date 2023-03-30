@@ -1,7 +1,9 @@
 <?php
 
 use App\models\Category;
+use App\models\Collection;
 use App\models\Country;
+use App\models\Material;
 use App\models\Product;
 
 include_once $_SERVER["DOCUMENT_ROOT"] . "/bootstrap.php";
@@ -9,6 +11,8 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/bootstrap.php";
 $link="admin_products";
 
 $products = Product::all();
+$collections=Collection::all();
+$sizes=Product::get_all_sizes();
 // $countries = Country::all();
 // $categories = Category::all();
 // // if(!empty($_GET) && isset($_GET["status_id"])){

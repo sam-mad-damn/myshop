@@ -3,6 +3,7 @@
 use App\models\Product;
 
 include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php" ?>
+<script src="/assets/js/products.js"></script>
 <div class="products_txt">
   <p>ТОВАРЫ</p>
 </div>
@@ -120,16 +121,14 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php" ?>
   </div>
   
 </div>
-<nav aria-label="Page navigation example">
+<!-- <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-end">
         <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
         <li class="page-item active"><a class="page-link" href="#">1</a></li>
-        <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+        
         <li class="page-item"><a class="page-link" href="#"> &raquo;</a></li>
       </ul>
-    </nav>
+</nav> -->
 </div>
-<script src="/assets/js/products.js"></script>
-<script src="/assets/js/fetch.js"></script>
+
 <?php include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/footer.php" ?>

@@ -7,15 +7,16 @@ document.addEventListener("DOMContentLoaded", () => {
         item.addEventListener("click", async (e) => {
             let res = await postJSON("/app/admin/tables/products/products.work.php",e.target.dataset.productId,"find" );
             console.log(res)
-            document.querySelector("#id").value=res.result.id
-            document.querySelector("#name").value=res.result.name
-            document.querySelector("#price").value=res.result.price
-            document.querySelector("#count").value=res.result.count
-            document.querySelector("#year").value=res.result.release_year
-            document.querySelector("#color").value=res.result.color
-            document.querySelector("#country").textContent=res.result.country
-            document.querySelector("#category").textContent=res.result.category
-            document.querySelector(".image").src=res.result.image
+            document.querySelector("#name").value=res.product.name
+            document.querySelector("#price").value=res.product.price
+            document.querySelector("#desc").value=res.product.description
+            
+            document.querySelector("#material").value=res.product.material
+            document.querySelector("#photo").src=res.product.photo
+            document.getElementById(`${res.product.collection}-c`).checked=true
+            res["sizes"].forEach(item => {
+                document.getElementById(`${item.size}-c`).checked=true
+            });
         })
     })
     document.querySelectorAll(".del_prod").forEach(item => {

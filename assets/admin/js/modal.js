@@ -8,7 +8,7 @@ function modalWork(btnName,modalName,closeName){
         modal.style.display = 'block'
     }))
     document.querySelector(closeName).addEventListener('click', () => {
-        closeModalWindow(modal);
+        location.reload()
     })
     modal.addEventListener('click', (e) => {
         if (e.target == e.currentTarget)

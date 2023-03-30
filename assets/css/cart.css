@@ -369,16 +369,20 @@ span {
 .modal_btn {
   background-color: #fefefe;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
   padding: 10px 10px 10px 10px;
   color: #191616;
   max-width: 100%;
-  font-size: 22px;
-  font-family: "Wremena-norm";
+  font-size: 18px;
+  font-family: "Lora-bold";
   margin-top: 10px;
   margin-right: 10px;
+  transition: 0.3s;
 }
-
+.change_addresses>a:hover{
+color: #5a5083;
+}
 .modal_btn:hover {
   background-color: #f0f0f0;
 }

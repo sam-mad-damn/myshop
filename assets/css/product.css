@@ -131,6 +131,7 @@ span>a:hover{
   text-align: center;
   background-color: #fefefe;
 }
+
 .active {
   border: #191616 1px solid;
   padding: 5px;
@@ -171,6 +172,13 @@ span>a:hover{
   color: #191616;
   font-size: 25px;
   margin-top: 5px;
+}
+p>a{
+  font-size: 18px;
+  color: #695ca4;
+}
+p>a:hover{
+  color: #4f496d;
 }
 /* #endregion */
 

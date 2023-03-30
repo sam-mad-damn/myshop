@@ -31,14 +31,24 @@ class Basket
     //получение всех пунктов выдачи из базы
     public static function get_all_points()
     {
-        $query = Connection::make()->query("SELECT * FROM points");
+        $query = Connection::make()->query("SELECT points.id,cities.name as city, points.name,points.work_time FROM `points`, cities WHERE cities.id=points.city_id");
         return $query->fetchAll();
     }
     public static function find_point($id)
     {
-        $query = Connection::make()->prepare("SELECT * FROM `points` WHERE id=?");
+        $query = Connection::make()->prepare("SELECT points.id,cities.name as city, points.name,points.work_time FROM `points`, cities WHERE cities.id=points.city_id AND points.id=?");
         $query->execute([$id]);
         return $query->fetch();
+    }
+    public static function find_points_by_city($id)
+    {
+        $query = Connection::make()->prepare("SELECT points.id,cities.name as city, points.name,points.work_time FROM `points`, cities WHERE cities.id=points.city_id AND points.city_id=?");
+        $query->execute([$id]);
+        return $query->fetchAll();
+    }
+    public static function get_point_cities(){
+        $query = Connection::make()->query("SELECT * FROM cities WHERE 1");
+        return $query->fetchAll();
     }
     //поиск товара в корзине пользователя
     public static function find($product_id, $size_id, $user_id)

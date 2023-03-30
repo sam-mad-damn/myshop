@@ -16,8 +16,9 @@ if (isset($_POST["btn_reg"])) {
     $_SESSION["email"] = $_POST["email"];
     $_SESSION["login"] = $_POST["login"];
     //проверка на пустые поля
+    unset($_POST["btn_reg"]);
     foreach ($_POST as $item ) {
-        if (empty($item) && $item!=$_POST["btn_reg"]) {
+        if (empty($item) ) {
             $_SESSION["error"]["empty"] = "Заполните поле";
         }
     }

@@ -36,6 +36,13 @@ class Product
         $query->execute(["id" => $id]);
         return $query->fetchAll();
     }
+    // 
+    public static function get_product_count($id)
+    {
+        $query = Connection::make()->prepare("SELECT SUM(count) as sum FROM `products` WHERE `product_position_id`=:product");
+        $query->execute(["product" => $id]);
+        return $query->fetch();
+    }
     //ищем товар на складе по его id
     public static function find($id)
     {
@@ -49,6 +56,29 @@ class Product
         INNER JOIN materials ON products_positions.material_id=materials.id 
         INNER JOIN products ON products.product_position_id=products_positions.id 
         WHERE products.product_position_id=:id");
+        $query->execute(["id" => $id]);
+        return $query->fetch();
+        // if (!$query->fetch()) {
+        //     $query = Connection::make()->prepare("SELECT products_positions.*, 
+        //         materials.name as material, 
+        //         collections.name as collection
+        //         FROM products_positions 
+        //         INNER JOIN collections ON products_positions.collection_id=collections.id 
+        //         INNER JOIN materials ON products_positions.material_id=materials.id 
+        //         WHERE products_positions.id=:id");
+        //     $query->execute(["id" => $id]);
+        //     return $query->fetch();
+        // }
+    }
+    public static function find_position($id)
+    {
+        $query = Connection::make()->prepare("SELECT products_positions.*, 
+        materials.name as material, 
+        collections.name as collection
+        FROM products_positions 
+        INNER JOIN collections ON products_positions.collection_id=collections.id 
+        INNER JOIN materials ON products_positions.material_id=materials.id 
+        WHERE products_positions.id=:id");
         $query->execute(["id" => $id]);
         return $query->fetch();
     }
@@ -162,23 +192,44 @@ class Product
             $query->execute();
         }
     }
-
-    //добавление продукта
-    public static function addProduct($data)
+    public static function add_material()
     {
-        $query = Connection::make()->prepare("INSERT INTO products (`name`, `price`, `count`, `release_year`, `color`, `image`, `country_id`, `category_id`, `created_at`, `updated_at`) VALUES(:name,:price,:count,:release_year,:color,:image,:country_id,:category_id,:created_at,:updated_at)");
-        return $query->execute([
+    }
+    //добавление товарной позиции
+    public static function add_product_position($data)
+    {
+        //добавляем в базу материал
+        Material::add($data["material"]);
+        // и находим его айди
+        $material_id = Material::find($data["material"])->id;
+
+        $conn = Connection::make();
+        //добавляем товар в базу
+        $query = $conn->prepare("INSERT INTO `products_positions`(`name`, `description`, `photo`, `price`, `created_at`, `material_id`, `collection_id`) VALUES (:name,:desc,:photo,:price,:created_at,:material_id,:collection_id)");
+        $query->execute([
             "name" => $data["name"],
+            "desc" => $data["desc"],
+            "photo" => $data["photo"],
             "price" => $data["price"],
-            "count" => $data["count"],
-            "release_year" => $data["year"],
-            "color" => $data["color"],
-            "image" => $data["image"],
-            "country_id" => $data["country_id"],
-            "category_id" => $data["category_id"],
             "created_at" =>  date("Y-m-d H:i:s"),
-            "updated_at" =>  date("Y-m-d H:i:s"),
+            "material_id" => $material_id,
+            "collection_id" => $data["collection"],
         ]);
+        //добавляем размеры товара в базу
+        $product_position_id = $conn->lastInsertId();
+        foreach ($data["size"] as $size_id) {
+            self::add_product($size_id, $product_position_id, $conn);
+        }
+    }
+    //добавление продукта
+    public static function add_product($size_id, $product_position_id, $conn)
+    {
+        $query = $conn->prepare("INSERT INTO `products`(`count`, `product_position_id`, `size_id`) VALUES (1,:product_position_id,:size_id)");
+        $query->execute([
+            "product_position_id" => $product_position_id,
+            "size_id" => $size_id,
+        ]);
+        return $query->fetch();
     }
     //удаление товара 
     public static function delProduct($product_id)

@@ -26,7 +26,7 @@ h3{
     font-size: 18px;
     color: #191616;
     border: none;
-    margin-left: 10px;
+    width: max-content;
   }
   #exit:hover,
   #change_profile:hover {
@@ -37,4 +37,46 @@ h3{
   #data-tab-pane{
     border: #9d9d9d 1px solid;
     padding: 10px;
+  }
+
+  /*  */
+  .modal-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    display: none;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.61);
+  }
+  
+  
+  .modal_main {
+    position: relative;
+    max-width: 800px;
+    min-height: 520px;
+    padding: 30px;
+    background-color: #fefefe;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: "Lora-norm";
+  }
+  .modal__close {
+    position: absolute;
+    top: 0px;
+    right: 15px;
+    cursor: pointer;
+    font-size: 50px;
+  }
+  .modal__close:hover {
+    color: #877cb9;
+  }
+  .modal__title {
+    font-size: 25px;
+    margin-top: 0px;
+    font-family: "Wremena-bold";
+    display: flex;
   }

@@ -4,6 +4,9 @@
   gap: 20px;
   justify-content: center;
 }
+.cont{
+  display: block;
+}
 .error{
   color: #db1a1a;
 }
@@ -15,12 +18,12 @@
   border: #191616 1px solid;
   color: #fefefe;
   font-family: "Wremena-norm";
-  font-size: 23px;
+  font-size: 20px;
   width: 350px;
   height: 50px;
   margin-top: 10px;
   margin-bottom: 15px;
-  margin-left: 50px;
+  justify-self: center;
 }
 .login_btn:hover {
   cursor: pointer;
@@ -28,26 +31,13 @@
 }
 .reg {
   display: grid;
-  grid-template-areas: 
-  "1" "1"
-  "2" "4"
-  "3" "5"
-  "6" "7"
-  "8" "8"
-  "9" "9"
-  ;
-  justify-content: center;
-  align-items: center;
   background-color: #d9d9d9;
   padding: 30px;
-  width: 500px;
-  margin-left: 30px;
+  width: 450px;
   margin-top: 30px;
   box-shadow: #7e7e7e 0px 5px 15px;
 }
-#one{
-grid-area: "1";
-}
+
 .head {
   text-align: center;
   font-family: "Lora-bold";
@@ -58,11 +48,12 @@ span {
   color: red;
 }
 input {
+  margin-left: 5%;
   margin-top: 5px;
-  margin-bottom: 15px;
-  font-size: 20px;
+  margin-bottom: 7px;
+  font-size: 18px;
   font-family: "Wremena-norm";
-  width: 60%;
+  width: 90%;
   border: none;
   border-radius: 3px;
   padding: 3px 4px;
@@ -70,15 +61,57 @@ input {
 }
 
 label {
+  margin-left: 5%;
   font-size: 20px;
   font-family: "Lora-bold";
 }
 .agree{
   display:flex ;
+  gap: 30px;
+  height: 30%;
+  margin-top: 10px;
 }
+/*Кастом чекбоксов */
+.custom-checkbox {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+.custom-checkbox + label {
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+}
+.custom-checkbox + label::before {
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  flex-grow: 0;
+  border: 1px solid #191616;
+  margin-right: 0.5em;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 50% 50%;
+}
+.custom-checkbox:not(:disabled):not(:checked) + label:hover::before {
+  border-color: #877cb9;
+}
+.custom-checkbox:not(:disabled):checked + label::before {
+  background-image: url(/assets/img/чекбокс.png);
+  background-size: cover;
+  border-color: #191616;
+}
+
 #agreement{
   box-shadow: none;
+  width: 20px;
+  height: 20px;
 }
 #agreement+label{
-  font-size: 18px;
+  font-size: 15px;
+}
+#agreement+label:hover{
+  cursor: pointer;
 }

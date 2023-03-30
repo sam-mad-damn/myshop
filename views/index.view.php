@@ -1,4 +1,8 @@
-<?php include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php" ?>
+<?php
+
+use App\models\Basket;
+
+include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php" ?>
 <div class="products">
   <div class="products_txt">
     <p>ТОВАРЫ</p>
@@ -54,14 +58,31 @@
   </div>
   <div class="address">
     <div class="addresses">
-      <?php foreach ($points as $item) : ?>
-        <p><? echo ($item->name . ", " . $item->work_time) ?></p>
-      <?php endforeach ?>
+      <?php foreach ($cities as $item) : ?>
+        
+        <table class=" table table-striped">
+          <thead>
+          
+            <tr>
+              <th><div>Город <span class="city"><?= $item->name ?></span></div></th>
+              <th>Время работы</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach (Basket::find_points_by_city($item->id) as $point) : ?>
+              <tr>
+                <td><?= $point->name ?></td>
+                <td><?= $point->work_time ?></td>
+              </tr>
+            <?php endforeach ?>
+
+          <?php endforeach ?>
+          </tbody>
+        </table>
     </div>
-    <div class="map" >
+    <div class="map">
       <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A5d2d751b341f2a01a49efbd45a5579b6002cab1e707f627ceb5e0190b7254d05&amp;width=100%25&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
     </div>
   </div>
-  </div>
-
+</div>
 <?php include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/footer.php" ?>

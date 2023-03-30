@@ -8,7 +8,5 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector("#save_profile").hidden=false;
         e.target.hidden=true;
     })
-    document.querySelector("#save_profile").addEventListener("click",(e)=>{
-        location.reload();
-    })
+    modalWork(".add_admin", ".modal-wrapper", ".modal__close")
 })

@@ -207,13 +207,18 @@ align-self:  center;
   margin-bottom: 0px;
   padding: 6px;
 }
+.city{
+  padding: 5px;
+  border-radius: 4px;
+  background-color: #a99be9;
+}
 .address{
   display: grid;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 35% 65%;
 padding: 20px;
-width: 1000px;
-margin-left: 10%;
+width: 1200px;
 align-self:  center;
+margin-left: 5%;
 }
 .addresses{
   display: flex;
@@ -233,7 +238,9 @@ align-self:  center;
   color: #877cb9;
 }
 iframe {
-  height: 450px;
+  margin-left: 10px;
+  margin-top: 30px;
+  min-height: 500px;
   border: #c8c8c8 1px solid;
 }
 /* #endregion */

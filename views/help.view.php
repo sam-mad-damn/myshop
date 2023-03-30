@@ -2,9 +2,7 @@
 
 use App\models\Articles;
 
-include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php";
-
-?>
+include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php";?>
 <div class="helps">
   <?php
   foreach ($articles_head as $item) : ?>
