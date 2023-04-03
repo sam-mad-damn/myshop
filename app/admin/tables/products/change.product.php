@@ -4,23 +4,49 @@ use App\models\Product;
 
 include_once $_SERVER["DOCUMENT_ROOT"] . "/bootstrap.php";
 
+
 var_dump($_FILES);
 var_dump($_POST);
+
 
 unset($_SESSION["error"]);
 unset($_SESSION["good"]);
 
-if (isset($_FILES["image"])) {
+// корректируем массив с кол-вом товаров по размерам
+    $counts;
+    foreach ($_POST["count_by_size"] as $key => $item) {
+        if ($item == "0") {
+            unset($_POST["count_by_size"][$key]);
+        } else {
+            $counts[] = $item;
+        }
+    }
+    if(!empty($counts)){
+        $_POST["count_by_size"] = $counts;
+    }else{
+        unset($_POST["size"]);
+    }
+    
 
-    if (empty($_FILES["image"]["name"])) {
-        $_POST["image"] = Product::find($_POST["id"])->image;
-        $res = Product::changeProduct($_POST);
+
+
+if (isset($_FILES["photo"])) {
+
+    $_POST["photo"] = Product::find($_POST["product_id"])->photo;
+
+    if (empty($_FILES["photo"]["name"])) {
+        // не изменяем фото, если оно не выбрано
+        $res = Product::change_product_position($_POST);
         header("Location: /app/admin/tables/products/products.php");
     } else {
-        $name = $_FILES["image"]["name"];
-        $tmp_name = $_FILES["image"]["tmp_name"];
-        $error = $_FILES["image"]["error"];
-        $size = $_FILES["image"]["size"];
+        // если выбрано новое фото, то удаляем старое
+        $new = explode("/", $_POST["photo"]);
+        unlink($_SERVER["DOCUMENT_ROOT"] . "/upload/" . $new[4]);
+
+        $name = $_FILES["photo"]["name"];
+        $tmp_name = $_FILES["photo"]["tmp_name"];
+        $error = $_FILES["photo"]["error"];
+        $size = $_FILES["photo"]["size"];
 
         //проверка расширения файла
         $extensions = ["png", "gif", "jpeg", "jpg", "webp", "jfif"];
@@ -44,29 +70,23 @@ if (isset($_FILES["image"])) {
                     if (!move_uploaded_file($tmp_name, $_SERVER["DOCUMENT_ROOT"] . "/upload/" . $new_name)) {
                         $_SESSION["error"] = "не удалось загрузить изображение товара";
                     } else {
-                        //header("Location: /app/admin/tables/products.php");
+                        header("Location: /app/admin/tables/products.php");
                     }
                 }
-            } else {
-                $_SESSION["error"] = "выберите файл";
-                header("Location: /app/admin/tables/products/products.php");
-            };
+            }
         } else {
             $_SESSION["error"] = "расширение файла должно быть : " . implode(", ", $extensions);
             header("Location: /app/admin/tables/products/products.php");
         }
+
         //если нет ошибок в сессии
         if (empty($_SESSION["error"])) {
             $_SESSION["good"] = "Товар успешно изменен";
-            if (isset($_POST["save"])) {
-                $_POST["image"] = $_SERVER["REQUEST_SCHEME"] . "://" . $_SERVER["HTTP_HOST"] . "/upload/" . $new_name;
-               // var_dump($_POST["image"]);
-                $arr=explode("/",Product::find($_POST["product_id"])->image);
-                $nameA=$_SERVER["DOCUMENT_ROOT"]."/upload/".$name;
-                unlink($nameA);
-                $res = Product::changeProduct($_POST);
-               header("Location: /app/admin/tables/products/products.php");
-            }
+            // формируем новое название для нового изображения
+            $_POST["photo"] = $_SERVER["REQUEST_SCHEME"] . "://" . $_SERVER["HTTP_HOST"] . "/upload/" . $new_name;
+            $arr = explode("/", Product::find($_POST["product_id"])->photo);
+            $res = Product::change_product_position($_POST);
+            header("Location: /app/admin/tables/products/products.php");
         }
     }
 };

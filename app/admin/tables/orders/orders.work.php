@@ -14,7 +14,7 @@ if ($stream != null) {
     
     $result = match ($action) {
         "confirm" =>Order::confirmOrder($arr),
-        "show"=>Order_product::getProducts($arr),
+        "show"=>Order::getProducts($arr),
         "find"=>Order::find($arr)
     };
     

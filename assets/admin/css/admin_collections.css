@@ -168,6 +168,31 @@ span {
   margin-right: auto;
   font-family: "Lora-norm";
 }
+.modal__close_del_collections{
+  position: absolute;
+  top: 0px;
+  right: 15px;
+  cursor: pointer;
+  font-size: 50px;
+}
+.modal__close_del_collections:hover {
+  color: #877cb9;
+}
+.info{
+  display: flex;
+}
+.collections{
+  display: grid;
+}
+#col_photo {
+  object-fit: cover;
+  padding: 5px;
+  width: 100px;
+  height: 100px;
+}
+.btn-outline-danger {
+  font-family: "Lora-bold";
+}
 
 .dropdown-menu {
   padding: 10px;

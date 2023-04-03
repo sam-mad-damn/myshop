@@ -10,10 +10,9 @@ if ($stream != null) {
     $arr = json_decode($stream)->data??false;
     $action=json_decode($stream)->action;
     $result = match ($action){
-        "find"=>Collection::find($arr),
-        "del"=>Collection::del($arr)
+        "find"=>Collection::find($arr)
     } ;
     echo json_encode([
-        "result" => $result
+        "result"=>$result
     ], JSON_UNESCAPED_UNICODE);
 }

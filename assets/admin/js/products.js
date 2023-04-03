@@ -2,41 +2,99 @@ document.addEventListener("DOMContentLoaded", () => {
     modalWork(".add_prod", ".modal-wrapper", ".modal__close");
     modalWork(".change_prod", ".modal-wrapper_change_product", ".modal__close_change_product");
     modalWork(".del_prod", ".modal-wrapper_del_products", ".modal__close_del_products");
-    product_id=0
+    product_id = 0
+    // добавление товара
+    document.querySelector(".add_prod").addEventListener("click",(e)=>{
+        
+            // показать/скрыть поле для ввода количества
+            document.querySelectorAll("[type='checkbox']").forEach(item => {
+                item.addEventListener("click", (e) => {
+                    if (e.target.checked) {
+                        document.querySelectorAll(".counts").forEach(element => {
+                            if (element.id == item.value) {
+                                element.hidden = false
+                            }
+                        });
+                    } else {
+                        document.querySelectorAll(".counts").forEach(element => {
+                            if (element.id == item.value) {
+                                element.hidden = true
+                            }
+                        });
+                    }
+                })
+            })
+            // чтобы нужные поля для количества сразу были включены
+            document.querySelectorAll("[type='checkbox']:checked").forEach(item => {
+                document.querySelectorAll(".counts").forEach(element => {
+                    if (element.id == item.value) {
+                        element.hidden = false
+                    }
+                });
+            })
+    })
+    // изменение товара
     document.querySelectorAll(".change_prod").forEach(item => {
         item.addEventListener("click", async (e) => {
-            let res = await postJSON("/app/admin/tables/products/products.work.php",e.target.dataset.productId,"find" );
-            console.log(res)
-            document.querySelector("#name").value=res.product.name
-            document.querySelector("#price").value=res.product.price
-            document.querySelector("#desc").value=res.product.description
-            
-            document.querySelector("#material").value=res.product.material
-            document.querySelector("#photo").src=res.product.photo
-            document.getElementById(`${res.product.collection}-c`).checked=true
-            res["sizes"].forEach(item => {
-                document.getElementById(`${item.size}-c`).checked=true
+            let { product, sizes } = await postJSON("/app/admin/tables/products/products.work.php", { "product_id": e.target.dataset.productId }, "find");
+
+            document.querySelector("#name").value = product.name
+            document.querySelector("#price").value = product.price
+            document.querySelector("#desc").value = product.description
+            document.querySelector("#material").value = product.material
+            document.querySelector("#photo").src = product.photo
+            document.getElementById(`${product.collection}-c`).checked = true
+            document.querySelector("[name='product_id']").value=product.id
+
+            sizes.forEach(item => {
+                document.getElementById(`${item.size}-c`).checked = true
+                document.querySelectorAll(`[name='count_by_size[]']`).forEach(number => {
+                    if (number.id == item.size_id) {
+                        number.value=item.count
+                    }
+                })
             });
+
+             // показать/скрыть поле для ввода количества
+             document.querySelectorAll("[type='checkbox']").forEach(item => {
+                item.addEventListener("click", (e) => {
+                    
+                    if (e.target.checked) {
+                        document.querySelectorAll(".counts").forEach(element => {
+                            if (element.id == item.value) {
+                                element.hidden = false
+                            }
+                        });
+                    } else {
+                        document.querySelectorAll(".counts").forEach(element => {
+                            if (element.id == item.value) {
+                                element.hidden = true
+                            }
+                        });
+                    }
+                })
+            })
+            // чтобы нужные поля для количества сразу были включены
+            document.querySelectorAll("[type='checkbox']:checked").forEach(item => {
+                document.querySelectorAll(".counts").forEach(element => {
+                    if (element.id == item.value) {
+                        element.hidden = false
+                    }
+                });
+            })
         })
     })
+    // удаление товара
     document.querySelectorAll(".del_prod").forEach(item => {
         item.addEventListener("click", async (e) => {
-            product_id=e.target.dataset.productId;
-            let res = await postJSON("/app/admin/tables/products/products.work.php",e.target.dataset.productId,"find" );
-            console.log(res)
-            document.querySelector("#info_id").textContent=res.result.id
-            document.querySelector("#info_status").textContent=res.result.status
-            document.querySelector("#info_image").src=res.result.image
-            document.querySelector("#inp_product_id").value=res.result.id
-            // document.querySelector("#id").value=res.result.id
-            // document.querySelector("#name").value=res.result.name
-            // document.querySelector("#price").value=res.result.price
-            // document.querySelector("#count").value=res.result.count
-            // document.querySelector("#year").value=res.result.release_year
-            // document.querySelector("#color").value=res.result.color
-            // document.querySelector("#country").textContent=res.result.country
-            // document.querySelector("#category").textContent=res.result.category
-            // document.querySelector(".image").textContent=res.result.image
+            product_id = e.target.dataset.productId;
+            console.log(product_id)
+            let { product, sizes } = await postJSON("/app/admin/tables/products/products.work.php", { "product_id": product_id }, "find");
+            console.log(product)
+            document.querySelector("#info_id").textContent = product.id
+            document.querySelector("#info_image").src = product.photo
+            document.querySelector("#info_status").textContent = product.name
+            document.querySelector("#inp_product_id").value = product.id
         })
     })
     // document.querySelector(".del_product").addEventListener("click",async(e)=>{

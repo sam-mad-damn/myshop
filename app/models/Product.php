@@ -92,7 +92,9 @@ class Product
     //получаем все товары указанной коллекции
     public static function get_products_by_collection($collection)
     {
-        $query = Connection::make()->prepare("SELECT products_positions.* FROM products_positions WHERE collection_id=:id");
+        $query = Connection::make()->prepare("SELECT products_positions.*,materials.name as material,collections.name as collection FROM products_positions 
+        INNER JOIN materials ON materials.id=products_positions.material_id
+        INNER JOIN collections ON collections.id=products_positions.collection_id WHERE collection_id=:id");
         $query->execute(["id" => $collection]);
         return $query->fetchAll();
     }
@@ -217,42 +219,61 @@ class Product
         ]);
         //добавляем размеры товара в базу
         $product_position_id = $conn->lastInsertId();
-        foreach ($data["size"] as $size_id) {
-            self::add_product($size_id, $product_position_id, $conn);
+        foreach ($data["size"] as $key => $size_id) {
+            self::add_product($size_id, $product_position_id, $data["count_by_size"][$key], $conn);
         }
     }
     //добавление продукта
-    public static function add_product($size_id, $product_position_id, $conn)
+    public static function add_product($size_id, $product_position_id, $count, $conn)
     {
-        $query = $conn->prepare("INSERT INTO `products`(`count`, `product_position_id`, `size_id`) VALUES (1,:product_position_id,:size_id)");
-        $query->execute([
+        $query = $conn->prepare("INSERT INTO `products`(`count`, `product_position_id`, `size_id`) VALUES (:count,:product_position_id,:size_id)");
+        return $query->execute([
+            "count" => $count,
             "product_position_id" => $product_position_id,
             "size_id" => $size_id,
         ]);
-        return $query->fetch();
     }
     //удаление товара 
     public static function delProduct($product_id)
     {
-        $query = Connection::make()->prepare("DELETE FROM `products` WHERE id=?");
+        $query = Connection::make()->prepare("DELETE FROM `products_positions` WHERE id=?");
         $query->execute([$product_id]);
         return true;
     }
     //изменение товара 
-    public static function changeProduct($data)
+    public static function change_product_position($data)
     {
-        $query = Connection::make()->prepare("UPDATE `products` SET `name`=:name,`price`=:price,`count`=:count,`release_year`=:year,`color`=:color,`image`=:image,`country_id`=:country_id,`category_id`=:category_id,`updated_at`=:updated_at WHERE id=:product_id");
-        return $query->execute([
+        //добавляем в базу материал
+        Material::add($data["material"]);
+        // и находим его айди
+        $material_id = Material::find($data["material"])->id;
+
+        $query = Connection::make()->prepare("UPDATE `products_positions` SET `name`=:name,`description`=:desc,`photo`=:photo,`price`=:price,`material_id`=:material_id,`collection_id`=:collection_id WHERE id=:product_id");
+        $query->execute([
             "name" => $data["name"],
+            "desc" => $data["desc"],
+            "photo" => $data["photo"],
             "price" => $data["price"],
-            "count" => $data["count"],
-            "year" => $data["year"],
-            "color" => $data["color"],
-            "image" => $data["image"],
-            "country_id" => $data["country_id"],
-            "category_id" => $data["category_id"],
-            "updated_at" => date("Y-m-d H:i:s"),
-            "product_id" => $data["id"]
+            "material_id" => $material_id,
+            "collection_id" => $data["collection"],
+            "product_id" => $data["product_id"]
+        ]);
+        if (isset($data["size"]) && !empty($data["size"])) {
+            foreach ($data["size"] as $key => $size_id) {
+                self::change_product($data["product_id"], $size_id, $data["count_by_size"][$key]);
+            }
+        }else{
+            $query=Connection::make()->prepare("DELETE FROM `products` WHERE product_position_id=:id");
+            $query->execute(["id"=>$data["product_id"]]);
+        }
+    }
+    public static function change_product($product_position_id, $size_id, $count)
+    {
+        $query = Connection::make()->prepare("UPDATE `products` SET `count`=:count WHERE product_position_id=:product_position_id AND size_id=:size_id");
+        return $query->execute([
+            "count" => $count,
+            "product_position_id" => $product_position_id,
+            "size_id" => $size_id
         ]);
     }
 }

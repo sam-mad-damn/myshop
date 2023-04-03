@@ -2,12 +2,15 @@
 
 use App\models\Product;
 
-include_once $_SERVER["DOCUMENT_ROOT"] . "/views/admin/templates/header.php";
-
+if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
+    include_once $_SERVER["DOCUMENT_ROOT"] . "/views/admin/templates/header.php";
+} else {
+    header("Location: /app/admin/");
+}
 ?>
 <div class="block">
     <div class="header">
-        <h3>Товары</h3>
+        <h3>Товары (<?= count($products)?>)<?php if (count($products) > 0 && isset($text)): echo $text; else: echo ""; endif;?></a></h3>
         <?php if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) : ?>
             <p class="error"><?= $_SESSION["error"] ?></p>
         <?php elseif (isset($_SESSION["good"]) && !empty($_SESSION["good"])) : ?>
@@ -16,6 +19,17 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/admin/templates/header.php";
         <div class="btns"><button type="button" class="btn btn-outline-success add_prod">Добавить</button>
         </div>
     </div>
+    <form class="filter" action="/app/admin/tables/products/products.php">
+        <h5>Фильтровать по коллекции:</h5>
+        <?php foreach ($collections as $item) : ?>
+            <button type="submit" name="collection_id" class="btn btn-light" value="<?= $item->id ?>">
+                <p for=""><?= $item->name ?></p>
+            </button>
+        <?php endforeach ?>
+        <button type="submit" name="collection_id" class="btn btn-light" value="all">
+            <p for="">Все</p>
+        </button>
+    </form>
     <table class="table table-hover">
         <thead>
             <tr class="table-title">
@@ -68,7 +82,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/admin/templates/header.php";
                         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                             <button type="button" data-product-id="<?= $product->id?>" class="btn btn-success change_prod"><img data-product-id="<?= $product->id?>" class="icon" src="/assets/img/3643749-edit-pen-pencil-write-writing_113397.svg" alt="Редактировать"></button>
 
-                            <button type="button" class="btn btn-danger del_prod"><img class="icon" src="/assets/img/crossoutline_102628.svg" alt="Удалить"></button>
+                            <button type="button" data-product-id="<?= $product->id?>" class="btn btn-danger del_prod"><img class="icon" src="/assets/img/crossoutline_102628.svg" data-product-id="<?= $product->id?>" alt="Удалить"></button>
                         </div>
                     </td>
                 </tr>
@@ -122,6 +136,9 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/admin/templates/header.php";
                         <label class="form-check-label" for="<?= $item->value ?>">
                             <?= $item->value ?>
                         </label>
+                        <div class="counts" hidden id="<?= $item->id?>">
+                            <label  for="<?= $item->id?>">Кол-во:</label><input type="number"  name="count_by_size[]" value="0" id="<?= $item->id?>">
+                        </div>
                     </div>
                 <?php endforeach ?>
             </div>
@@ -180,11 +197,16 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/admin/templates/header.php";
                         <label class="form-check-label" for="<?= $item->value ?>-c">
                             <?= $item->value ?>
                         </label>
+                        <div class="counts" hidden id="<?= $item->id?>">
+                            <label  for="<?= $item->id?>">Кол-во:</label><input type="number"  name="count_by_size[]" value="0" id="<?= $item->id?>">
+                        </div>
+                        
                     </div>
                 <?php endforeach ?>
             </div>
             <div class="col-6 item_8">
-                <button type="submit" class="btn btn-success">Сохранить</button>
+                <input type="text" name="product_id" hidden value="">
+                <button type="submit" name="change_prod" class="btn btn-success">Сохранить</button>
             </div>
         </form>
     </div>
@@ -196,18 +218,25 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/admin/templates/header.php";
         <h3 class="modal__title">Удалить товар?</h3>
         <div class="del_products">
             <div class="prod mb-3">
-                <div class="btn-group">
-                   
+            <div class="info">ID:<span id="info_id"></span>
+                </div>
+                <div class="info">Название:<span id="info_status"></span>
+                </div>
+                <div class="info ">Фото:<image class="product_photo" id="info_image"></image>
                 </div>
             </div>
         </div>
         <div class="col-6">
-            <button type="submit" class="btn btn-outline-danger">Удалить</button>
+        <form action="/app/admin/tables/products/del.product.php" method="POST">
+                <input type="text" hidden name="product_id" id="inp_product_id" value="">
+                <button type="submit" class="btn btn-outline-danger del_product">Удалить</button>
+            </form>
         </div>
     </div>
 </div>
 <script src="/assets/admin/js/products.js"></script>
 <?php
 unset($_SESSION["error"]);
+unset($_SESSION["good"]);
 include_once $_SERVER["DOCUMENT_ROOT"] . "/views/admin/templates/footer.php";
 ?>

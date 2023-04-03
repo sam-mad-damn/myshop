@@ -1,8 +1,20 @@
 /* Таблица*/
+.filter{
+  display: flex;
+  gap: 20px;
+  margin-bottom: 10px;
+}
 .header {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+}
+.btn-light>p{
+  
+  margin-bottom: 0px;
+}
+.btn-light{
+  background-color: #dbdbdb;
 }
 
 .block {
@@ -121,8 +133,8 @@ a:hover {
 .modal_main_change_product {
   position: relative;
   max-width: 800px;
-  min-height: 620px;
-  padding: 30px;
+  min-height: 500px;
+  padding: 20px;
   background-color: #fefefe;
   margin-top: 30px;
   margin-left: auto;
@@ -149,6 +161,12 @@ span {
 }
 .modal__close_change_product:hover {
   color: #877cb9;
+}
+.form-check{
+  display: flex;
+  gap: 10px;
+}
+.counts>label{
 }
 /* Модальное окно добавление товара*/
 .add_product {
@@ -256,4 +274,8 @@ span {
 }
 .btn-outline-danger {
   font-family: "Wremena-bold";
+}
+#info_image{
+  width: 100px;height: 100px;
+  object-fit: cover;
 }

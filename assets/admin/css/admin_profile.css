@@ -1,5 +1,5 @@
 /**/
-h3{
+.block>h3{
     padding: 10px;
     font-family: "Wremena-bold";
     background-color: #877cb9;
@@ -55,7 +55,7 @@ h3{
   
   .modal_main {
     position: relative;
-    max-width: 800px;
+    max-width: 500px;
     min-height: 520px;
     padding: 30px;
     background-color: #fefefe;
@@ -79,4 +79,42 @@ h3{
     margin-top: 0px;
     font-family: "Wremena-bold";
     display: flex;
+  }
+  .adding{
+    display: flex;
+  flex-direction: column;
+  justify-items: center;
+  padding: 10px;
+  width: 450px;
+  margin-top: 30px;
+  }
+  .adding>input,.inputs_pas>input {
+    font-size: 20px;
+    font-family: "Wremena-norm";
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 2px 3px;
+  }
+  
+  label {
+    font-size: 18px;
+    font-family: "Lora-bold";
+  }
+  label>span{
+    color: crimson;
+  }
+  .inputs_pas{
+    display: grid;
+  }
+  .btn_reg{
+    background-color: #191616;
+    border: #191616 1px solid;
+    color: #fefefe;
+    font-family: "Wremena-norm";
+    font-size: 23px;
+    margin-top: 10px;
+  }
+  .btn_reg:hover {
+    cursor: pointer;
+    background-color: #050404;
   }

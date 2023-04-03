@@ -51,11 +51,19 @@ th {
   margin-left: 5px;
 }
 td > p {
-  margin: 0; /* Убираем внешний отступ */
-  -webkit-line-clamp: 3; /* Число отображаемых строк */
-  display: -webkit-box; /* Включаем флексбоксы */
-  -webkit-box-orient: vertical; /* Вертикальная ориентация */
-  overflow: hidden; /* Обрезаем всё за пределами блока */
+ 
+ 
+}
+.desc{
+  width: 200px;
+  white-space: nowrap; /* Отменяем перенос текста */
+  overflow: hidden; /* Обрезаем содержимое */
+  padding: 5px; /* Поля */
+  text-overflow: ellipsis; /* Многоточие */
+}
+.desc:hover{
+  transition: 1s;
+  white-space:normal;
 }
 
 /* Модальное окно добавление */
@@ -181,7 +189,16 @@ span {
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.61);
 }
-
+.modal__close_del_show{
+  position: absolute;
+  top: 0px;
+  right: 15px;
+  cursor: pointer;
+  font-size: 50px;
+}
+.modal__close_del_show:hover {
+  color: #877cb9;
+}
 .modal_main_del_show {
   position: relative;
   max-width: 500px;

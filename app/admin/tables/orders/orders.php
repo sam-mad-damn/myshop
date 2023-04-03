@@ -13,7 +13,11 @@ if(!empty($_GET) && isset($_GET["status_id"])){
     if($_GET["status_id"]=="all"){
         $orders=Order::all();
     }else{
-        $text=" статуса ".Order::find($_GET["status_id"])->status;
+        $sort=Order::find($_GET["status_id"]);
+        if($sort){
+            $text=" статуса ".Order::find($_GET["status_id"])->status;
+        }
+        
         $orders=Order::filterByStatus($_GET["status_id"]);
     }
 }

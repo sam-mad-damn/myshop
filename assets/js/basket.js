@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelector(".main_block").hidden = true;
         }
     }
-
     //функция для вывода общего кол-ва, стоимости
     async function outOnPage(action, data) {
         let { product_in_basket, total_cost, total_count } = await postJSON("/app/tables/baskets/work.basket.php", data, action);

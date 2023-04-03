@@ -9,10 +9,11 @@ var_dump($_POST);
 
 unset($_SESSION["error"]);
 unset($_SESSION["good"]);
+unset($_POST["add"]);
 foreach ($_POST as $item) {
-    if (empty($item) && $item != "add") {
+    if (empty($item)) {
         $_SESSION["error"] = 'Ошибка: вы заполнили не все поля';
-        header("Location: /app/admin/tables/products/products.php");
+        // header("Location: /app/admin/tables/products/products.php");
         die();
     } else {
         $name = htmlspecialchars($_POST["name"]);
@@ -20,10 +21,10 @@ foreach ($_POST as $item) {
         $desc = htmlspecialchars($_POST["desc"]);
         $material = htmlspecialchars($_POST["material"]);
         //проверка 
-        if (!preg_match("/^[а-яА-Я]{2,}$/ui", $name) || !preg_match("/^[1-9]{3,}$/ui", $price) || !preg_match("/^[А-ЯЁ]*[а-яё]{10,}$/ui", $desc) || !preg_match("/^[а-яА-Я]{2,}$/ui", $material)) {
+        if (!preg_match("/^[а-яА-Я]{2,}$/ui", $name) || !preg_match("/^[1-9]{3,}$/ui", $price) || !preg_match("/^[А-ЯЁ]*\s*([а-яё]*|\d*\s*){4,20}$/ui", $desc) || !preg_match("/^[а-яА-Я]{2,}$/ui", $material)) {
             $_SESSION["error"] = "Ошибка: данные введены некорректно";
             header("Location: /app/admin/tables/products/products.php");
-            die();
+            // die();
         }
     }
 }
@@ -49,7 +50,7 @@ if (isset($_FILES["photo"])) {
             if ($size >= 3145728) {
                 $_SESSION["error"] = "Ошибка: изображение слишком большое";
                 header("Location: /app/admin/tables/products/products.php");
-                die();
+                // die();
             } else {
                 //проверка загрузки файла
                 $new_name = time() . "_" . $name;
@@ -57,26 +58,25 @@ if (isset($_FILES["photo"])) {
                     $_SESSION["error"] = "Ошибка: не удалось загрузить изображение товара";
                 } else {
                     header("Location: /app/admin/tables/products/products.php");
-                    die();
+                    // die();
                 }
             }
         } else {
             $_SESSION["error"] = "Ошибка: выберите файл";
             header("Location: /app/admin/tables/products/products.php");
-            die();
+            // die();
         };
     } else {
         $_SESSION["error"] = "Ошибка: расширение файла должно быть : " . implode(", ", $extensions);
         header("Location: /app/admin/tables/products/products.php");
-        die();
+        // die();
     }
 
     //если нет ошибок в сессии
     if (empty($_SESSION["error"])) {
         $_SESSION["good"] = "Товар успешно добавлен";
-        if (isset($_POST["add"])) {
-            $_POST["photo"] = $_SERVER["REQUEST_SCHEME"] . "://" . $_SERVER["HTTP_HOST"] . "/upload/" . $new_name;
-            $res = Product::add_product_position($_POST);
-        }
+        $_POST["photo"] = $_SERVER["REQUEST_SCHEME"] . "://" . $_SERVER["HTTP_HOST"] . "/upload/" . $new_name;
+        var_dump(Product::add_product_position($_POST));
+        
     }
 };

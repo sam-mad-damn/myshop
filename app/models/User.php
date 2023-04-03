@@ -19,7 +19,7 @@ class User
     }
     public static function getUser($login, $password)
     {
-        $query = Connection::make()->prepare("SELECT * FROM users WHERE login=:login");
+        $query = Connection::make()->prepare("SELECT users.*,roles.name as role FROM users INNER JOIN roles ON users.role_id=roles.id WHERE login=:login");
         $query->execute([
             "login" => $login,
         ]);
@@ -41,6 +41,19 @@ class User
     public static function insert($data)
     {
         $query = Connection::make()->prepare("INSERT INTO `users`( `name`, `surname`,`login`, `email`, `password`, `role_id`) VALUES (:name,:surname,:login,:email,:password,'2')");
+        return $query->execute([
+            "name" => $data["name"],
+            "surname" => $data["surname"],
+            "login" => $data["login"],
+            "email" => $data["email"],
+            "password" => password_hash($data["password"], PASSWORD_DEFAULT)
+        ]);
+        //вернет номер последней добавленной записи
+        //self::connect()->lastInsertId();
+    }
+    public static function add_admin($data)
+    {
+        $query = Connection::make()->prepare("INSERT INTO `users`( `name`, `surname`,`login`, `email`, `password`, `role_id`) VALUES (:name,:surname,:login,:email,:password,'1')");
         return $query->execute([
             "name" => $data["name"],
             "surname" => $data["surname"],

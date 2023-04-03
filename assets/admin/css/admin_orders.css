@@ -1,4 +1,9 @@
 /* Таблица*/
+.product_photo{
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
 .header {
   display: flex;
   justify-content: space-between;
@@ -8,11 +13,23 @@
   padding: 10px;
   font-family: "Wremena-bold";
 }
+.filter{
+  display: flex;
+  gap: 20px;
+}
+.btn-light>p{
+  margin-bottom: 0px;
+}
+.btn-light{
+  background-color: #d3d3d3;
+  margin-bottom: 5px;
+}
 .table {
   border: #9d9d9d 1px solid;
   font-family: "Wremena-bold";
   color: #191616;
   font-size: 18px;
+  margin-top: 10px;
 }
 .table-title {
   background-color: #877cb9;
@@ -70,8 +87,12 @@ a:hover {
   font-family: "Wremena-bold";
 }
 span{
-    color: #191616;
+    color: #5e529c;
     font-family: "Wremena-bold";
+}
+.block>p{
+  margin-bottom: 0px;
+  font-size: 18px;
 }
 
 /* Модальное окно отклонить */

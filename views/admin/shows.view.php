@@ -1,17 +1,23 @@
 <?php
-include_once $_SERVER["DOCUMENT_ROOT"] . "/views/admin/templates/header.php";
+if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
+    include_once $_SERVER["DOCUMENT_ROOT"] . "/views/admin/templates/header.php";
+} else {
+    header("Location: /app/admin/");
+}
+
+use App\models\Articles;
+
 ?>
+<script src="/assets/admin/js/shows.js"></script>
 <div class="block">
     <div class="header">
         <h3>Показы мод</h3>
-        <div class="btns"><button type="button" class="btn btn-outline-success">Добавить</button>
-            <button type="button" class="btn btn-outline-danger">Удалить</button>
+        <div class="btns"><button type="button" class="add_show btn btn-outline-success">Добавить</button>
         </div>
     </div>
     <table class="table table-hover">
         <thead>
             <tr class="table-title">
-                <th scope="col"><input type="checkBox" checked name="" id="all" value="all"></th>
                 <th scope="col">ID</th>
                 <th scope="col">Название</th>
                 <th scope="col">Описание</th>
@@ -20,39 +26,30 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/admin/templates/header.php";
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row"><input type="checkBox" checked name="" id="" value=""></th>
-                <th scope="row">1</th>
-                <td>PRADA</td>
-                <td>
-                    <p> Над коллекциями Prada вместе с Миуччей Прадой продолжает работать Раф Симонс, и
-                        становится очевидно, что этот творческий союз только крепнет. Дизайнеры раскрывают свои
-                        лучшие умения: Прада отвечает за сдержанную, но очень актуальную посадку вещей, Симонс
-                        экспериментирует с силуэтом — поэтому в коллекции мы видим баланс из ультракоротких
-                        шорт-юбок и ладно скроенных жакетов, графичных принтов и насыщенного цвета,
-                        архитектурных панам и рубашек с кракенами на спине. А еще сильной стороной Prada было и
-                        остается внимание к деталям. Треугольные кармашки с логотипом прямо на удлиненной задней
-                        части панамы, в ней же — прорези для дужек очков (кто сказал, что носить очки поверх
-                        головного убора — дурной тон?) и сумки, напоминающие непромокаемые дайверские мешки, —
-                        все это создает цельную картину о столь долгожданном отдыхе на море.</p>
-                </td>
-                <td>
-                    <div class="shows_pics"><img class="shows_pic" src="img/показ PRADA/2slobJmJAN4.jpg" alt="">
-                        <img class="shows_pic" src="/assets/img/показ PRADA/3GAJW809Mso.jpg" alt="">
-                        <img class="shows_pic" src="/assets/img/показ PRADA/7C6da-ybR7o.jpg" alt="">
-                        <img class="shows_pic" src="/assets/img/показ PRADA/9BFh_a-HdAQ.jpg" alt="">
-                        <img class="shows_pic" src="/assets/img/показ PRADA/ycPVlsIWkSM.jpg" alt="">
-                    </div>
-                </td>
+            <?php foreach ($shows as $item) : ?>
+                <tr>
+                    <th scope="row"><?= $item->id ?></th>
+                    <td><?= $item->title ?></td>
+                    <td>
+                        <div class="desc"><p> <?= $item->text ?></p></div>
+                    </td>
+                    <td>
+                        <div class="shows_pics">
+                            <?php foreach (Articles::get_photos($item->id) as $photo) : ?>
+                                <img class="shows_pic" src="<?= $photo->photo ?>" alt="">
+                            <?php endforeach ?>
+                        </div>
+                    </td>
 
-                <td>
-                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                        <button type="button" class="btn btn-success "><img class="icon" src="/assets/img/3643749-edit-pen-pencil-write-writing_113397.svg" alt="Редактировать"></button>
-
-                        <button type="button" class="btn btn-danger"><img class="icon" src="/assets/img/crossoutline_102628.svg" alt="Удалить"></button>
-                    </div>
-                </td>
-            </tr>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                            
+                        <!-- <button type="button" class="btn sheck_show btn-success"><img data-show-id="<?= $item->id ?>" class="icon" src="/assets/img/eyeoutline_102638.svg" alt="Посмотреть"></button> -->
+                        <button type="button" class="btn del_show btn-danger"><img data-show-id="<?= $item->id ?>" class="icon" src="/assets/img/crossoutline_102628.svg" alt="Удалить"></button>
+                        </div>
+                    </td>
+                </tr>
+            <?php endforeach ?>
         </tbody>
     </table>
 </div>
@@ -83,69 +80,23 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/admin/templates/header.php";
         </form>
     </div>
 </div>
-<!-- Модальное окно изменения показов -->
-<div class="modal-wrapper_show_change">
-    <div class="modal_main_show_change">
-        <div class="modal__close">&times;</div>
-        <h3 class="modal__title">Изменение показа</h3>
-        <form class="show_change" action="">
-            <div class="input-group mb-3 item_1">
-                <span class="input-group-text " id="basic-addon1">Название</span>
-                <input type="text" class="form-control" value="PRADA" aria-label="Название" aria-describedby="basic-addon1">
-            </div>
-
-            <div class="input-group mb-3 item_2">
-                <span class="input-group-text" id="basic_addon3">Описание</span>
-                <textarea class="form-control" placeholder="Описание" aria-describedby="basic-addon3" aria-label="Описание">Над коллекциями Prada вместе с Миуччей Прадой продолжает работать Раф Симонс, и становится очевидно, что этот творческий союз только крепнет. Дизайнеры раскрывают свои лучшие умения: Прада отвечает за сдержанную, но очень актуальную посадку вещей, Симонс экспериментирует с силуэтом — поэтому в коллекции мы видим баланс из ультракоротких шорт-юбок и ладно скроенных жакетов, графичных принтов и насыщенного цвета, архитектурных панам и рубашек с кракенами на спине. А еще сильной стороной Prada было и остается внимание к деталям. Треугольные кармашки с логотипом прямо на удлиненной задней части панамы, в ней же — прорези для дужек очков (кто сказал, что носить очки поверх головного убора — дурной тон?) и сумки, напоминающие непромокаемые дайверские мешки, — все это создает цельную картину о столь долгожданном отдыхе на море.</textarea>
-            </div>
-
-            <div class="input-group mb-3 item_3">
-                <span class="input-group-text" for="inputGroupFile01">Фото(минимум 3)</span>
-
-                <input type="file" multiple accept=".jpg, .jpeg, .png" class="form-control" id="inputGroupFile01">
-            </div>
-            <div class="show_pics item_4">
-                <img class="shows_pic" src="img/показ PRADA/3GAJW809Mso.jpg" alt="">
-                <img class="shows_pic" src="img/показ PRADA/7C6da-ybR7o.jpg" alt="">
-                <img class="shows_pic" src="img/показ PRADA/9BFh_a-HdAQ.jpg" alt="">
-                <img class="shows_pic" src="img/показ PRADA/ycPVlsIWkSM.jpg" alt="">
-            </div>
-            <div class="col-12 item_5">
-                <button type="submit" class="btn btn-success">Сохранить</button>
-            </div>
-        </form>
-    </div>
-</div>
 <!-- Модальное окно удаления показов -->
 <div class="modal-wrapper_del_show">
     <div class="modal_main_del_show">
-        <div class="modal__close">&times;</div>
-        <h3 class="modal__title">Удалить выбранные показы?(<p id="shows_count">1</p>)</h3>
+        <div class="modal__close_del_show">&times;</div>
+        <h3 class="modal__title">Удалить показ?</h3>
         <div class="del_show">
             <div class="shows mb-3">
                 <div class="btn-group">
-                    <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        PRADA
-                    </button>
-                    <div class="dropdown-menu">
-                        <div class="info">ID:<p id="info_id">1</p>
-                        </div>
-                        <div class="shows_pics"><img class="shows_pic" src="img/показ PRADA/2slobJmJAN4.jpg" alt="">
-                            <img class="shows_pic" src="img/показ PRADA/3GAJW809Mso.jpg" alt="">
-                            <img class="shows_pic" src="img/показ PRADA/7C6da-ybR7o.jpg" alt="">
-                            <img class="shows_pic" src="img/показ PRADA/9BFh_a-HdAQ.jpg" alt="">
-                            <img class="shows_pic" src="img/показ PRADA/ycPVlsIWkSM.jpg" alt="">
-                        </div>
-                    </div>
+                    <div class="info">ID:<p id="show_id"></p></div>
+                    <div class="info">Название:<p id="show_name"></p></div>
                 </div>
             </div>
-        </div>
-        <div class="col-6">
-            <button type="submit" class="btn btn-outline-danger">Удалить</button>
-            <button type="submit" class="btn btn-light">Отмена</button>
+            <div class="col-6">
+                <button type="submit" class="delete_show btn btn-outline-danger">Удалить</button>
+            </div>
         </div>
     </div>
-</div>
-<?php
-include_once $_SERVER["DOCUMENT_ROOT"] . "/views/admin/templates/footer.php";
-?>
+    <?php
+    include_once $_SERVER["DOCUMENT_ROOT"] . "/views/admin/templates/footer.php";
+    ?>

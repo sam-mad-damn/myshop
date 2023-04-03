@@ -18,16 +18,12 @@ $sizes=Product::get_all_sizes();
 // // if(!empty($_GET) && isset($_GET["status_id"])){
 // //     $orders=Order::filterByStatus($_GET["status_id"]);
 // // }
-
-// if (!empty($_GET) && isset($_GET["category_id"])) {
-//     if($_GET["category_id"]=="all"){
-//         $products=Product::all();
-//     }else{
-        
-//     $products = Product::sorting("category_id", $_GET["category_id"]);
-//     $text=" категории ".Category::find($_GET["category_id"])->name;
-//     $countries = Country::all();
-//     $categories = Category::all();
-//     }
-// }
+if (!empty($_GET) && isset($_GET["collection_id"])) {
+    if($_GET["collection_id"]=="all"){
+        $products=Product::all();
+    }else{
+    $products = Product::get_products_by_collection($_GET["collection_id"]);
+    $text=" коллекции ".Collection::find($_GET["collection_id"])->name;
+    }
+}
 include_once $_SERVER["DOCUMENT_ROOT"] . "/views/admin/products.view.php";

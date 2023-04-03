@@ -14,24 +14,27 @@ class Collection
     }
     public static function find($id)
     {
-        $query = Connection::make()->prepare("SELECT id, name FROM categories WHERE id=?");
+        $query = Connection::make()->prepare("SELECT * FROM collections WHERE id=?");
         $query->execute([$id]);
         return $query->fetch();
     }
-    public static function add($name)
+    public static function add($data)
     {
-        $query = Connection::make()->prepare("SELECT `id` FROM `categories` WHERE name=?");
-        $query->execute([$name]);
+        $query = Connection::make()->prepare("SELECT `id` FROM `collections` WHERE name=?");
+        $query->execute([$data["name"]]);
         if (!$query->fetch()) {
-            $query = Connection::make()->prepare("INSERT INTO `categories`(`name`) VALUES (?)");
-            $query->execute([$name]);
+            $query = Connection::make()->prepare("INSERT INTO `collections`(`main_photo`, `name`, `description`) VALUES (:photo,:name,:desc)");
+            $query->execute([
+                "photo"=>$data["photo"],
+                "name"=>$data["name"],
+                "desc"=>$data["description"]
+            ]);
             return true;
         }else return false;
          
     }
-    public static function del($category_id){
-        
-        $query = Connection::make()->prepare("DELETE FROM `categories` WHERE id=?");
-        $query->execute([$category_id]);
+    public static function del($collection_id){
+        $query = Connection::make()->prepare("DELETE FROM `collections` WHERE id=?");
+        $query->execute([$collection_id]);
     }
 }

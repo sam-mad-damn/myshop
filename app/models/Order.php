@@ -108,14 +108,14 @@ class Order
     //изменение статуса заказа
     public static function confirmOrder($order_id)
     {
-        $query = Connection::make()->prepare("UPDATE `orders` SET `status_id`=2,reason_cancel=null,`updated_at`=? WHERE id=?");
+        $query = Connection::make()->prepare("UPDATE `orders` SET `status_id`=2,cancel_reason=null,`updated_at`=? WHERE id=?");
         $query->execute([date("Y-m-d H:i:s"), $order_id]);
         return self::find($order_id);
     }
     //отклонение заказа
     public static function cancelOrder($order_id, $reason_cancel)
     {
-        $query = Connection::make()->prepare("UPDATE `orders` SET `status_id`=3,reason_cancel=?,`updated_at`=? WHERE id=?");
+        $query = Connection::make()->prepare("UPDATE `orders` SET `status_id`=5,cancel_reason=?,`updated_at`=? WHERE id=?");
         $query->execute([$reason_cancel, date("Y-m-d H:i:s"), $order_id]);
         return self::all();
     }
@@ -129,21 +129,47 @@ class Order
     //ищем итоговую стоимость всех товаров в заказе пользователя
     public static function get_total_cost($order_id)
     {
-        $query = Connection::make()->prepare("SELECT SUM(order_products.count*products.price) as total_sum FROM order_products INNER JOIN products ON order_products.product_id=products.id WHERE order_products.order_id=:order_id");
+        $query = Connection::make()->prepare("SELECT
+        SUM(
+            orders_products.quantity * products_positions.price
+        ) AS total_sum
+    FROM
+        orders_products
+    INNER JOIN products ON orders_products.product_id = products.product_position_id
+    INNER JOIN products_positions ON products_positions.id=products.product_position_id
+    WHERE products.product_position_id=products_positions.id AND orders_products.size_id=products.size_id AND orders_products.order_id=:order_id");
         $query->execute(["order_id" => $order_id]);
         return $query->fetch(\PDO::FETCH_COLUMN);
     }
     //ищем общее кол-во товаров в заказе пользователя
     public static function get_total_count($order_id)
     {
-        $query = Connection::make()->prepare("SELECT SUM(count) as total_count FROM order_products WHERE order_id=:order_id");
+        $query = Connection::make()->prepare("SELECT
+        SUM(quantity) AS total_count
+    FROM
+        orders_products
+    WHERE
+        order_id = :order_id");
         $query->execute(["order_id" => $order_id]);
         return $query->fetch(\PDO::FETCH_COLUMN);
     }
-    //поиск заказа по его айди
+    //поиск заказа по его статуса
     public static function find($id)
     {
-        $query = Connection::make()->prepare("SELECT orders.*, users.name as user, statuses.name as status FROM orders INNER JOIN users ON orders.user_id=users.id INNER JOIN statuses ON orders.status_id=statuses.id WHERE orders.id=:id");
+        $query = Connection::make()->prepare("SELECT
+        orders.*,
+        users.name AS user,
+        statuses.name AS status,
+        cities.name as city,
+        points.name as point
+        FROM
+        orders
+        INNER JOIN users ON orders.user_id = users.id
+        INNER JOIN statuses ON orders.status_id = statuses.id
+        INNER JOIN points ON orders.point_id=points.id
+        INNER JOIN cities ON points.city_id=cities.id
+        WHERE
+        orders.id = :id");
         $query->execute(["id" => $id]);
         return $query->fetch();
     }
@@ -164,4 +190,37 @@ class Order
         return $query->fetchAll();
         // return self::get_products($user_id);
     }
+    // 
+      //получаем айди товаров в заказе пользователя
+      public static function getProducts($order_id)
+      {
+          $query = Connection::make()->prepare(
+          "SELECT
+          users.name AS user,
+          orders.id AS order_id,
+          orders_products.product_id,
+          sizes.value as size,
+          products_positions.name,
+          products_positions.description,
+          products_positions.price,
+          orders_products.quantity,
+          products_positions.photo,
+          statuses.name AS status,
+          orders.created_at AS created_at,
+          orders.updated_at AS updated_at,
+          orders.pay_type
+      FROM
+          `orders_products`
+      INNER JOIN products ON orders_products.product_id = products.product_position_id
+      INNER JOIN products_positions ON products.product_position_id = products_positions.id
+      INNER JOIN orders ON orders_products.order_id = orders.id
+      INNER JOIN statuses ON orders.status_id = statuses.id
+      INNER JOIN users ON orders.user_id = users.id
+      INNER JOIN sizes ON products.size_id=sizes.id
+      WHERE
+      orders_products.size_id=products.size_id AND
+          order_id = ?");
+          $query->execute([$order_id]);
+          return $query->fetchAll();
+      }
 }
