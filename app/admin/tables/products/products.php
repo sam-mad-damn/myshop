@@ -23,7 +23,7 @@ if (!empty($_GET) && isset($_GET["collection_id"])) {
         $products=Product::all();
     }else{
     $products = Product::get_products_by_collection($_GET["collection_id"]);
-    $text=" коллекции ".Collection::find($_GET["collection_id"])->name;
+    $text=" коллекции  ". Collection::find($_GET["collection_id"])->name;
     }
 }
 include_once $_SERVER["DOCUMENT_ROOT"] . "/views/admin/products.view.php";

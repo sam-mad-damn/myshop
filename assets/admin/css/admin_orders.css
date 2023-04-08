@@ -52,9 +52,11 @@ th {
 }
 .btn-success {
   background-color: #82b97c;
+  color: #191616;
 }
 .btn-danger {
   background-color: #b97c7c;
+  color: #191616;
 }
 a {
   color: #191616;

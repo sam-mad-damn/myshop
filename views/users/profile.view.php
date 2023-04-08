@@ -50,7 +50,7 @@
         <?php if (isset($_SESSION["error"]["login"])) : ?>
           <p class="error"><?= $_SESSION["error"]["login"] ?></p>
         <?php endif ?>
-        <button class="save_profile" name="save_profile" hidden id="change_profile">Сохранить</button>
+        <button class="save_profile" name="save_profile" hidden >Сохранить</button>
       </form>
       <button class="change_profile" id="change_profile">Редактировать</button>
       <a href="/app/tables/users/logout.php"><button id="exit">Выйти</button></a>
@@ -89,6 +89,7 @@
               Статус:
               <div id="order_status"><?= $ord->status ?></div>
             </div>
+            <?php if ($ord->status_id!=5):?>
             <div class="order_address">
               Адрес доставки:
               <div id="order_address"><?= $ord->point ?></div>
@@ -97,8 +98,9 @@
               Ожидаемая дата прибытия:
               <div id="order_date"><?= $data ?></div>
             </div>
+            <?php endif;?>
           </div>
-      <?php endif;
+      <?php  endif;
       endforeach; ?>
       <?php if (empty($orders)) : ?>
         <h4 class="empty_order">У вас нет активных заказов</h4>

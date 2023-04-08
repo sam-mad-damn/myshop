@@ -1,5 +1,6 @@
 <?php
 
+use App\models\Articles;
 use App\models\Product;
 
 include_once $_SERVER["DOCUMENT_ROOT"] . "/bootstrap.php";
@@ -11,39 +12,37 @@ var_dump($_POST);
 unset($_SESSION["error"]);
 unset($_SESSION["good"]);
 
-if (isset($_FILES["photo"])) {
-
-    $_POST["photo"] = Product::find_position($_POST["product_id"])->photo;
+if (isset($_POST["change_art"])) {
+    // ищем фото статьи
+    $photo = Articles::find_photo($_POST["article_id"]);
+    var_dump($photo);
+    // если нашли, то записываем его в пост
+    if ($photo != false) {
+        $_POST["photo"] = $photo->photo;
+    }
+    // если мы не изменяем фото
     if (empty($_FILES["photo"]["name"])) {
         $name = htmlspecialchars($_POST["name"]);
-        $price = htmlspecialchars($_POST["price"]);
         $desc = htmlspecialchars($_POST["desc"]);
-        $material = htmlspecialchars($_POST["material"]);
-        //проверка 
-        if (!preg_match("/^[а-яА-Яa-zA-Z]{2,}$/ui", $name) || !preg_match("/^[1-9]{1}[0-9]{2,}$/ui", $price) || !preg_match("/^[а-яА-Я]{2,}$/ui", $material)) {
-            $_SESSION["error"] = "Ошибка: данные введены некорректно";
+        $_POST["name"] = $name;
+        $_POST["desc"] = $desc;
+        // не изменяем фото, если оно не выбрано
+        $res = Articles::change_article_help($_POST);
+        if ($res != null) {
+            $_SESSION["error"] = "Ошибка: не удалось изменить статью";
+            header("Location: /app/admin/tables/articles/articles.php");
         } else {
-            $_POST["name"] = $name;
-            $_POST["price"] = $price;
-            $_POST["desc"] = $desc;
-            $_POST["material"] = $material;
-
-            // не изменяем фото, если оно не выбрано
-            $res = Product::change_product_position($_POST);
-            if ($res != null) {
-                $_SESSION["error"] = "Ошибка: не удалось изменить товар($res)";
-             
-            } else {
-                $_SESSION["good"] = "Товар успешно изменен";
-                var_dump($res);
-                header("Location: /app/admin/tables/products/products.php");
-                
-            }
+            $_SESSION["good"] = "Статья успешно изменена";
+            var_dump($res);
+            header("Location: /app/admin/tables/articles/articles.php");
         }
     } else {
         // если выбрано новое фото, то удаляем старое
-        $new = explode("/", $_POST["photo"]);
-        unlink($_SERVER["DOCUMENT_ROOT"] . "/upload/" . $new[4]);
+        if ($photo != false) {
+            $new = explode("/", $photo->photo);
+            var_dump($new);
+            unlink($_SERVER["DOCUMENT_ROOT"] . "/upload/helps/" . $new[5]);
+        }
 
         $name = $_FILES["photo"]["name"];
         $tmp_name = $_FILES["photo"]["tmp_name"];
@@ -65,30 +64,31 @@ if (isset($_FILES["photo"])) {
                 //проверка размера
                 if ($size >= 3145728) {
                     $_SESSION["error"] = "изображение слишком большое";
+                    header("Location: /app/admin/tables/articles/articles.php");
                 } else {
                     //проверка загрузки файла
                     $new_name = time() . "_" . $name;
-                    if (!move_uploaded_file($tmp_name, $_SERVER["DOCUMENT_ROOT"] . "/upload/" . $new_name)) {
+                    if (!move_uploaded_file($tmp_name, $_SERVER["DOCUMENT_ROOT"] . "/upload/helps/" . $new_name)) {
                         $_SESSION["error"] = "не удалось загрузить изображение товара";
                     } else {
-                        
+                        header("Location: /app/admin/tables/articles/articles.php");
                     }
                 }
             }
         } else {
             $_SESSION["error"] = "расширение файла должно быть : " . implode(", ", $extensions);
-           
+            header("Location: /app/admin/tables/articles/articles.php");
         }
+
 
         //если нет ошибок в сессии
         if (empty($_SESSION["error"])) {
-            $_SESSION["good"] = "Товар успешно изменен";
+            $_SESSION["good"] = "Статья успешно изменена";
             // формируем новое название для нового изображения
-            $_POST["photo"] = $_SERVER["REQUEST_SCHEME"] . "://" . $_SERVER["HTTP_HOST"] . "/upload/" . $new_name;
-            $arr = explode("/", Product::find_position($_POST["product_id"])->photo);
-            $res = Product::change_product_position($_POST);
+            $_POST["photo"] = $_SERVER["REQUEST_SCHEME"] . "://" . $_SERVER["HTTP_HOST"] . "/upload/helps/" . $new_name;
+            $res = Articles::change_article_help($_POST);
 
-            header("Location: /app/admin/tables/products/products.php");
+            header("Location: /app/admin/tables/articles/articles.php");
         }
     }
-};
+}

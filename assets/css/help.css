@@ -1,27 +1,34 @@
-
-.helps{
+.helps {
   width: 900px;
   display: block;
   margin-left: 15%;
-  align-self:  center;
+  align-self: center;
+ 
 }
-.item{
+.cont{
+  background-image: url(/assets/img/1614438722_41-p-fon-minimalizm-temnii-72.jpg);
+  background-position: left bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.item {
   background-color: #f1f1f1;
 }
-.head{
+.head {
   background-color: #a199c3;
   color: #191616;
   font-family: "Lora-norm";
   padding: 5px;
 }
-.body{
+.body {
   font-family: "Lora-norm";
   padding: 10px;
 }
-.title{
+.title {
   font-family: "Wremena-norm";
 }
-.main-text{
+.main-text {
   font-size: 20px;
 }
 .sizes {
@@ -29,7 +36,7 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
-.size_table{
+.size_table {
   width: 500px;
   object-fit: contain;
 }

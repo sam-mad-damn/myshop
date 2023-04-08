@@ -53,15 +53,22 @@ class Basket
     //поиск товара в корзине пользователя
     public static function find($product_id, $size_id, $user_id)
     {
-        $query = Connection::make()->prepare("SELECT baskets.id as basket_id,
-        baskets.quantity, 
-        products_positions.*, 
-        baskets.quantity*products_positions.price as price_position,
-        products.count as count,
-        products.product_position_id as product_id,
-        sizes.value as size,
-        sizes.id as size_id
-         FROM baskets INNER JOIN products ON baskets.product_id=products.product_position_id INNER JOIN products_positions ON products.product_position_id=products_positions.id INNER JOIN sizes ON products.size_id=sizes.id WHERE baskets.user_id=:user_id AND products.product_position_id=:product_id AND products.size_id=:size_id ");
+        $query = Connection::make()->prepare("SELECT
+        baskets.id AS basket_id,
+        baskets.quantity,
+        products_positions.*,
+        baskets.quantity * products_positions.price AS price_position,
+        products.count AS COUNT,
+        products.product_position_id AS product_id,
+        sizes.value AS size,
+        sizes.id AS size_id
+    FROM
+        baskets
+    INNER JOIN products ON baskets.product_id = products.product_position_id
+    INNER JOIN products_positions ON products.product_position_id = products_positions.id
+    INNER JOIN sizes ON products.size_id = sizes.id
+    WHERE
+        baskets.user_id = :user_id AND baskets.product_id = :product_id AND baskets.size_id = :size_id AND products.product_position_id=:product_id AND products.size_id=:size_id");
         $query->execute([
             "product_id" => $product_id,
             "size_id" => $size_id,
@@ -76,7 +83,7 @@ class Basket
         $product_in_basket = self::find($product_id, $size_id, $user_id);
 
         //ищем такой товар на складе
-        $product = Product::find($product_id);
+        $product = Product::find($product_id,$size_id);
 
         //проверяем если товара нет в корзине, то добавить его в корзину кол-ве 1
         if (!$product_in_basket) {

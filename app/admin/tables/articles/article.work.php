@@ -1,19 +1,21 @@
 <?php
 
-use App\models\Product;
+use App\models\Articles;
+use App\models\Collection;
 
 include_once $_SERVER["DOCUMENT_ROOT"] . "/bootstrap.php";
 
 $stream = file_get_contents("php://input");
 if ($stream != null) {
     //находим айди продукта декодируя полученные данные из объекта(наш айдишник товара)
-    $id = json_decode($stream)->data->product_id ?? false;
-    $product=Product::find_position($id);
-    if($product==false){
-        $product=Product::find_position($id);
-    }
+    $id = json_decode($stream)->data??false;
+    $action=json_decode($stream)->action;
+    $result = match ($action){
+        "find"=>Articles::find($id)
+    } ;
+    $photo=Articles::find_photo($id);
     echo json_encode([
-        "product" => $product,
-        "sizes"=>Product::get_product_sizes($product->id)
+        "result"=>$result,
+        "photo"=>$photo
     ], JSON_UNESCAPED_UNICODE);
 }

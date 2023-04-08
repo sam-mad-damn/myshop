@@ -98,6 +98,38 @@ class Order
         $query->execute(["user_id" => $user_id]);
         return $query->fetchAll();
     }
+    //ищем покупки пользователя
+    public static function get_buys($user_id)
+    {
+        // $order_id=self::find_by_user($user_id);
+        $query = Connection::make()->prepare(
+            "SELECT
+        orders.`id`,
+        statuses.name AS status,
+        points.name AS point,
+        orders_products.quantity,
+        orders_products.size_id,
+        orders_products.product_id,
+        sizes.value AS size,
+        products_positions.name AS name,
+        products_positions.description AS description,
+        products_positions.price AS product_price,
+        products_positions.photo
+    FROM
+        orders
+    INNER JOIN statuses ON orders.status_id = statuses.id
+    INNER JOIN points ON orders.point_id = points.id
+    INNER JOIN orders_products ON orders_products.order_id = orders.id
+    INNER JOIN sizes ON orders_products.size_id = sizes.id
+    INNER JOIN products ON products.product_position_id = orders_products.product_id
+    INNER JOIN products_positions ON products_positions.id = products.product_position_id
+    WHERE
+    orders.status_id=4 AND
+        orders.user_id =:user_id AND orders_products.product_id = products.product_position_id AND orders_products.size_id = products.size_id"
+        );
+        $query->execute(["user_id" => $user_id]);
+        return $query->fetchAll();
+    }
 
     //получение списка статусов
     public static function getStatuses()
@@ -109,6 +141,13 @@ class Order
     public static function confirmOrder($order_id)
     {
         $query = Connection::make()->prepare("UPDATE `orders` SET `status_id`=2,cancel_reason=null,`updated_at`=? WHERE id=?");
+        $query->execute([date("Y-m-d H:i:s"), $order_id]);
+        return self::find($order_id);
+    }
+    //изменение статуса заказа
+    public static function completeOrder($order_id)
+    {
+        $query = Connection::make()->prepare("UPDATE `orders` SET `status_id`=4,cancel_reason=null,`updated_at`=? WHERE id=?");
         $query->execute([date("Y-m-d H:i:s"), $order_id]);
         return self::find($order_id);
     }

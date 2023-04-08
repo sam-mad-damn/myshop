@@ -12,6 +12,6 @@ $orders_count=count(Order::all());
 $products_count=count(Product::all());
 $collections_count=count(Collection::all());
 $shows_count=count(Articles::get_articles(6));
-
+$articles_count=count(Articles::get_all_articles());
 
 include_once $_SERVER["DOCUMENT_ROOT"] . "/views/admin/index.view.php";

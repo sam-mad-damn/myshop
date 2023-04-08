@@ -9,6 +9,9 @@
   justify-content: space-between;
   margin-bottom: 10px;
 }
+.text{
+  color: #877cb9;
+}
 .btn-light>p{
   
   margin-bottom: 0px;
@@ -21,42 +24,7 @@
   padding: 10px;
   font-family: "Wremena-bold";
 }
-.table {
-  border: #9d9d9d 1px solid;
-  font-family: "Wremena-bold";
-  color: #191616;
-  font-size: 18px;
-}
-.table-title {
-  background-color: #73ba9c;
-}
-th,
-td {
-  border: #4e4e4e 1px solid;
-}
-th {
-  font-size: 18px;
-}
 
-.icon {
-  width: 20px;
-  height: 20px;
-  object-fit: cover;
-}
-.btn {
-  padding: 4px;
-}
-.btn-success {
-  background-color: #82b97c;
-  color: #191616;
-  font-family: "Wremena-bold";
-}
-.btn-warning {
-  background-color: #ded067;
-}
-.btn-danger {
-  background-color: #b97c7c;
-}
 
 .product_pic {
   width: 100px;

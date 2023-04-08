@@ -40,7 +40,7 @@ if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
                     <td>
                         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                         <a href="/app/admin/tables/products/products.php?collection_id=<?= $item->id?>">
-                            <button type="submit" name="collection_id" value="<?= $item->id ?>" class="btn sheck_show btn-success"><img data-collection-id="<?= $item->id ?>" class="icon" src="/assets/img/eyeoutline_102638.svg" alt="Посмотреть"></button>
+                            <button type="submit" name="collection_id" value="<?= $item->id ?>" class="btn sheck_show btn-success"><img data-collection-id="<?= $item->id ?>" class="icon" src="/assets/img/free-icon-font-eye-3917112.png" alt="Посмотреть"></button>
                         </a>    
                         <button type="button" class="btn btn-danger"><img data-collection-id="<?= $item->id?>" class="icon del_collection" src="/assets/img/crossoutline_102628.svg" alt="Удалить"></button>
                         </div>

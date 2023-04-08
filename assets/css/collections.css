@@ -15,7 +15,6 @@
   width: 350px;
   height: 400px;
   object-fit: cover;
-  box-shadow: #7e7e7e 0px 5px 15px;
 }
 .collections {
   display: flex;
@@ -45,7 +44,6 @@
   width: 350px;
   height: 400px;
   background-color: #191616cf;
-  box-shadow: #7e7e7e 0px 5px 15px;
 }
 .collection_desc>p{
   font-family: "Wremena-norm";

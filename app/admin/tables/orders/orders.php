@@ -9,6 +9,7 @@ $link="admin_orders";
 
 $orders=Order::all();
 $statuses=Order::getStatuses();
+// фильтрация заказов по статусу
 if(!empty($_GET) && isset($_GET["status_id"])){
     if($_GET["status_id"]=="all"){
         $orders=Order::all();
@@ -20,6 +21,11 @@ if(!empty($_GET) && isset($_GET["status_id"])){
         
         $orders=Order::filterByStatus($_GET["status_id"]);
     }
+}
+
+// завершение заказа
+if(isset($_GET["order_id"])){
+    Order::completeOrder($_GET["order_id"]);
 }
 
 include_once $_SERVER["DOCUMENT_ROOT"] . "/views/admin/orders.view.php";

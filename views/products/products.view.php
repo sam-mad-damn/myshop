@@ -131,4 +131,4 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php" ?>
 </nav> -->
 </div>
 
-<?php include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/footer.php" ?>
+<?php unset($_SESSION["good"]);include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/footer.php" ?>

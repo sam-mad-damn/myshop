@@ -1,6 +1,10 @@
 function modalWork(btnName,modalName,closeName){
     function closeModalWindow(wrapper) {
         wrapper.style.display = 'none';
+        location.reload()
+        document.querySelectorAll(".del_photo").forEach(item => {
+            item.remove()
+        });
     }
     let modal=document.querySelector(modalName);
     

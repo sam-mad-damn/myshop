@@ -3,7 +3,7 @@ namespace App\helpers;
 
 const CONFIG_CONNECTION = [
     "host" => "localhost",
-    "dbname" => "shop",
+    "dbname" => "unifflo",
     "login" => "root",
     "password" => "",
     "options" => [

@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         document.querySelectorAll(".counts").forEach(element => {
                             if (element.id == item.value) {
                                 element.hidden = true
+                             
                             }
                         });
                     }
@@ -47,10 +48,13 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelector("[name='product_id']").value=product.id
 
             sizes.forEach(item => {
+                // чтобы размеры которые есть в базе сразу были включены
                 document.getElementById(`${item.size}-c`).checked = true
-                document.querySelectorAll(`[name='count_by_size[]']`).forEach(number => {
+                // сразу задаем инпутам кол-во товара размера на складе
+                document.querySelectorAll(`.count`).forEach(number => {
                     if (number.id == item.size_id) {
                         number.value=item.count
+                        number.disabled=false
                     }
                 })
             });
@@ -58,19 +62,34 @@ document.addEventListener("DOMContentLoaded", () => {
              // показать/скрыть поле для ввода количества
              document.querySelectorAll("[type='checkbox']").forEach(item => {
                 item.addEventListener("click", (e) => {
-                    
+                    // если флажок включен
                     if (e.target.checked) {
                         document.querySelectorAll(".counts").forEach(element => {
                             if (element.id == item.value) {
+                                // показываем нужное поле
                                 element.hidden = false
                             }
                         });
+                        document.querySelectorAll(`.count`).forEach(input=>{
+                            if (input.id == item.value) {
+                                input.disabled=false
+                            }
+                        })
+                    // если флажок выключен
                     } else {
                         document.querySelectorAll(".counts").forEach(element => {
                             if (element.id == item.value) {
+                                // прячем поле 
                                 element.hidden = true
+                                // element.disabled = true
                             }
                         });
+                        document.querySelectorAll(`.count`).forEach(input=>{
+                            if (input.id == item.value) {
+                                input.disabled=true
+                                
+                            }
+                        })
                     }
                 })
             })

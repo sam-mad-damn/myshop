@@ -2,16 +2,17 @@
 .blocks {
   padding: 10px;
   display: grid;
+  gap: 10px;
   grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2,190px);
 }
 .block {
-  width: 250px;
-  height: 200px;
+  width: 230px;
+  height: 180px;
   border-radius: 5px;
   margin-top: 10px;
   margin-left: 10px;
   padding: 10px;
-  box-shadow: #7e7e7e 0px 5px 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -37,6 +38,9 @@
 }
 .fashion_shows {
   background-color: #9a75b4;
+}
+.articles{
+  background-color: #d07575;
 }
 .icon {
   width: 80px;
@@ -65,7 +69,6 @@
   padding: 30px;
   width: 450px;
   margin-top: 30px;
-  box-shadow: #7e7e7e 0px 5px 15px;
 }
 .auth{
   display: flex;
@@ -75,7 +78,7 @@
 .login_btn {
   background-color: #191616;
   border: #191616 1px solid;
-  color: #fefefe;
+  color: #fefefe; 
   font-family: "Wremena-norm";
   font-size: 23px;
   height: 50px;
@@ -92,7 +95,6 @@ input {
   border: none;
   border-radius: 3px;
   padding: 3px 4px;
-  box-shadow: #b6b3b3 2px 5px 5px;
 }
 h3{
   text-align: center;

@@ -16,6 +16,7 @@
 }
 .table-title {
   background-color: #9a75b4;
+  font-family: "Lora-bold";
 }
 th,
 td {
@@ -65,7 +66,19 @@ td > p {
   transition: 1s;
   white-space:normal;
 }
-
+.shows{
+  display: grid;
+}
+.photos{
+  display: flex;
+}
+.del_photo{
+  width: 100px;
+  height: 100px;object-fit: contain;
+}
+.shows> .btn-group{
+  display: grid;
+}
 /* Модальное окно добавление */
 .modal-wrapper {
   position: fixed;
@@ -201,7 +214,7 @@ span {
 }
 .modal_main_del_show {
   position: relative;
-  max-width: 500px;
+  max-width: 550px;
   min-height: 220px;
   padding: 30px;
   background-color: #fefefe;
@@ -214,7 +227,7 @@ span {
 .dropdown-menu {
   padding: 10px;
 }
-.shows,
+
 .info,
 .shows_pics {
   display: flex;

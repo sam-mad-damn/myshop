@@ -8,9 +8,13 @@ if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
     header("Location: /app/admin/");
 }
 ?>
+<script src="/assets/admin/js/products.js"></script>
 <div class="block">
     <div class="header">
-        <h3>Товары (<?= count($products)?>)<?php if (count($products) > 0 && isset($text)): echo $text; else: echo ""; endif;?></a></h3>
+        <h3>Товары (<?= count($products) ?>)
+        <?php if (count($products) > 0 && isset($text)) : ?>
+            <?= $text ?>
+        <?php endif; ?></a></h3>
         <?php if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) : ?>
             <p class="error"><?= $_SESSION["error"] ?></p>
         <?php elseif (isset($_SESSION["good"]) && !empty($_SESSION["good"])) : ?>
@@ -70,9 +74,11 @@ if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
                     </td>
                     <td>
                         <div class="product_sizes">
-                            <?php foreach (Product::get_product_sizes($product->id) as $item) : ?>
-                                <p class="product_size"><?= $item->size ?> - <?= $item->count ?>шт.</p>
-                            <?php endforeach ?>
+                            <?php foreach (Product::get_product_sizes($product->id) as $item) :
+                                if ($item->count > 0) : ?>
+                                    <p class="product_size"><?= $item->size ?> - <?= $item->count ?>шт.</p>
+                            <?php endif;
+                            endforeach ?>
                         </div>
                     </td>
                     <td>
@@ -80,9 +86,9 @@ if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
                     </td>
                     <td>
                         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                            <button type="button" data-product-id="<?= $product->id?>" class="btn btn-success change_prod"><img data-product-id="<?= $product->id?>" class="icon" src="/assets/img/3643749-edit-pen-pencil-write-writing_113397.svg" alt="Редактировать"></button>
+                            <button type="button" data-product-id="<?= $product->id ?>" class="btn btn-success change_prod"><img data-product-id="<?= $product->id ?>" class="icon" src="/assets/img/free-icon-font-edit-3917361.png" alt="Редактировать"></button>
 
-                            <button type="button" data-product-id="<?= $product->id?>" class="btn btn-danger del_prod"><img class="icon" src="/assets/img/crossoutline_102628.svg" data-product-id="<?= $product->id?>" alt="Удалить"></button>
+                            <button type="button" data-product-id="<?= $product->id ?>" class="btn btn-danger del_prod"><img class="icon" src="/assets/img/free-icon-font-cross-3917759.png" data-product-id="<?= $product->id ?>" alt="Удалить"></button>
                         </div>
                     </td>
                 </tr>
@@ -136,8 +142,8 @@ if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
                         <label class="form-check-label" for="<?= $item->value ?>">
                             <?= $item->value ?>
                         </label>
-                        <div class="counts" hidden id="<?= $item->id?>">
-                            <label  for="<?= $item->id?>">Кол-во:</label><input type="number"  name="count_by_size[]" value="0" id="<?= $item->id?>">
+                        <div class="counts" hidden id="<?= $item->id ?>">
+                            <label for="<?= $item->id ?>">Кол-во:</label><input type="number" name="count_by_size[]" value="0" id="<?= $item->id ?>">
                         </div>
                     </div>
                 <?php endforeach ?>
@@ -197,10 +203,10 @@ if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
                         <label class="form-check-label" for="<?= $item->value ?>-c">
                             <?= $item->value ?>
                         </label>
-                        <div class="counts" hidden id="<?= $item->id?>">
-                            <label  for="<?= $item->id?>">Кол-во:</label><input type="number"  name="count_by_size[]" value="0" id="<?= $item->id?>">
+
+                        <div class="counts" id="<?= $item->id ?>" hidden>
+                            <label for="<?= $item->id ?>">Кол-во:</label><input type="number" class="count" name="count_by_size[]" disabled value="0" id="<?= $item->id ?>">
                         </div>
-                        
                     </div>
                 <?php endforeach ?>
             </div>
@@ -218,7 +224,7 @@ if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
         <h3 class="modal__title">Удалить товар?</h3>
         <div class="del_products">
             <div class="prod mb-3">
-            <div class="info">ID:<span id="info_id"></span>
+                <div class="info">ID:<span id="info_id"></span>
                 </div>
                 <div class="info">Название:<span id="info_status"></span>
                 </div>
@@ -227,14 +233,14 @@ if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
             </div>
         </div>
         <div class="col-6">
-        <form action="/app/admin/tables/products/del.product.php" method="POST">
+            <form action="/app/admin/tables/products/del.product.php" method="POST">
                 <input type="text" hidden name="product_id" id="inp_product_id" value="">
                 <button type="submit" class="btn btn-outline-danger del_product">Удалить</button>
             </form>
         </div>
     </div>
 </div>
-<script src="/assets/admin/js/products.js"></script>
+
 <?php
 unset($_SESSION["error"]);
 unset($_SESSION["good"]);

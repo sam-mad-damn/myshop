@@ -1,4 +1,8 @@
-/* Таблица*/
+.helps {
+  padding: 10px;
+  font-family: "Wremena-bold";
+}
+Таблица
 .header {
   display: flex;
   justify-content: space-between;
@@ -15,16 +19,15 @@
   font-size: 18px;
 }
 .table-title {
-  background-color: #757ed0;
-  font-family: "Lora-bold";
+  background-color: #d07575;
   font-family: "Lora-bold";
 }
 th,
 td {
- 
   border: #b5b5b5 1px solid;
 }
 th {
+  border: #b5b5b5 1px solid;
   font-size: 18px;
 }
 .table>:not(:last-child)>:last-child>* {
@@ -52,17 +55,34 @@ th {
   height: 150px;
   object-fit: cover;
 }
-h3{
-    display: flex;
+h3 {
+  display: flex;
 }
-/*Модальное окно*/
-.add_collection,
-.collection_change {
+.article_photo {
+  width: 300px;
+  height: 200px;
+  object-fit: contain;
+}
+.error {
+  color: crimson;
+}
+.good {
+  color: forestgreen;
+}
+#art_photo{
+  width: 150px;height: 150px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Модальное окно добавление товара*/
+.add_product {
+  height: 430px;
   display: grid;
   grid-template-areas:
-    "a "
-    "b "
-    "c ";
+    "a a"
+    "b b"
+    "c c";
 }
 .item1 {
   grid-area: a;
@@ -73,41 +93,9 @@ h3{
 .item3 {
   grid-area: c;
 }
-.item4 {
-  margin-top: 10px;
+.item8 {
+  margin-top: 20px;
 }
-.item_8 > .btn {
-  margin-top: 10px;
-}
-.change_collection_pic {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-}
-/* Изменение коллекции*/
-.modal-wrapper_collection_change {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  width: 100%;
-  height: 100%;
-  display: none;
-  overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.61);
-}
-.modal_main_collection_change {
-  position: relative;
-  max-width: 800px;
-  min-height: 440px;
-  padding: 30px;
-  background-color: #fefefe;
-  margin-top: 30px;
-  margin-left: auto;
-  margin-right: auto;
-  font-family: "Lora-norm";
-}
-/*Добавление коллекции*/
 .modal-wrapper {
   position: fixed;
   top: 0;
@@ -123,7 +111,7 @@ h3{
 .modal_main {
   position: relative;
   max-width: 800px;
-  min-height: 320px;
+  min-height: 520px;
   padding: 30px;
   background-color: #fefefe;
   margin-top: 30px;
@@ -131,10 +119,6 @@ h3{
   margin-right: auto;
   font-family: "Lora-norm";
 }
-span {
-  font-family: "Wremena-bold";
-}
-
 .modal__close {
   position: absolute;
   top: 0px;
@@ -149,9 +133,14 @@ span {
   font-size: 25px;
   margin-top: 0px;
   font-family: "Wremena-bold";
+  display: flex;
 }
-/*Модальное окно удаление*/
-.modal-wrapper_del_collection {
+.add_article {
+  display: grid;
+}
+
+/*Модальное окно удаление товара*/
+.modal-wrapper_del_products {
   position: fixed;
   top: 0;
   left: 0;
@@ -163,58 +152,85 @@ span {
   background-color: rgba(0, 0, 0, 0.61);
 }
 
-.modal_main_del_collection {
+.modal_main_del_products {
   position: relative;
   max-width: 500px;
-  min-height: 200px;
-  padding: 20px;
+  min-height: 220px;
+  padding: 30px;
   background-color: #fefefe;
   margin-top: 120px;
   margin-left: auto;
   margin-right: auto;
   font-family: "Lora-norm";
 }
-.modal__close_del_collections{
+.modal__close_del_products {
   position: absolute;
   top: 0px;
   right: 15px;
   cursor: pointer;
   font-size: 50px;
 }
-.modal__close_del_collections:hover {
+.modal__close_del_products:hover {
   color: #877cb9;
 }
-.info{
-  display: flex;
-}
-.collections{
-  display: grid;
-}
-#col_photo {
+.prod_pic {
   object-fit: cover;
   padding: 5px;
   width: 100px;
   height: 100px;
 }
-.btn-outline-danger {
-  font-family: "Lora-bold";
-}
-
 .dropdown-menu {
   padding: 10px;
-}
-
-.info,
-.shows_pics {
-  display: flex;
-}
-.shows_pic {
-  object-fit: cover;
-  padding: 5px;
-  width: 100px;
-  height: 100px;
 }
 .btn-outline-danger {
   font-family: "Wremena-bold";
 }
-
+#info_image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+/* Модальное окно изменение товара */
+.modal-wrapper_change_product {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  display: none;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.61);
+}
+.modal_main_change_product {
+  position: relative;
+  max-width: 800px;
+  min-height: 500px;
+  padding: 20px;
+  background-color: #fefefe;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "Lora-norm";
+}
+span {
+  font-family: "Wremena-bold";
+}
+.item_8 > .btn {
+  margin-top: 10px;
+}
+.change_product_pic {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+.modal__close_change_product {
+  position: absolute;
+  top: 0px;
+  right: 15px;
+  cursor: pointer;
+  font-size: 50px;
+}
+.modal__close_change_product:hover {
+  color: #877cb9;
+}

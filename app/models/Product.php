@@ -32,7 +32,7 @@ class Product
     //размеры определенного товара
     public static function get_product_sizes($id)
     {
-        $query = Connection::make()->prepare("SELECT products.*, sizes.value as size FROM products INNER JOIN sizes ON products.size_id=sizes.id WHERE product_position_id=:id");
+        $query = Connection::make()->prepare("SELECT products.*, sizes.value as size FROM products INNER JOIN sizes ON products.size_id=sizes.id WHERE product_position_id=:id AND count>0");
         $query->execute(["id" => $id]);
         return $query->fetchAll();
     }
@@ -44,7 +44,7 @@ class Product
         return $query->fetch();
     }
     //ищем товар на складе по его id
-    public static function find($id)
+    public static function find($id, $size_id)
     {
         $query = Connection::make()->prepare("SELECT products_positions.*, 
         materials.name as material, 
@@ -55,8 +55,11 @@ class Product
         INNER JOIN collections ON products_positions.collection_id=collections.id 
         INNER JOIN materials ON products_positions.material_id=materials.id 
         INNER JOIN products ON products.product_position_id=products_positions.id 
-        WHERE products.product_position_id=:id");
-        $query->execute(["id" => $id]);
+        WHERE products.product_position_id=:id AND products.size_id=:size_id AND products.count>0");
+        $query->execute([
+            "id" => $id,
+            "size_id" => $size_id
+        ]);
         return $query->fetch();
         // if (!$query->fetch()) {
         //     $query = Connection::make()->prepare("SELECT products_positions.*, 
@@ -184,13 +187,13 @@ class Product
         //проверяем наличие подключение
         $conn = $conn ?? Connection::make();
 
-        $query = $conn->prepare("UPDATE products SET count=count-:count WHERE product_position_id=:product_id");
+        $query = $conn->prepare("UPDATE products SET count=count-:count WHERE product_position_id=:product_id AND size_id=:size_id");
         //написать без цикла
         foreach ($basket as $product) {
             //подготовили параметры в нужном типе
             $query->bindValue("count", $product->quantity, \PDO::PARAM_INT);
             $query->bindValue("product_id", $product->product_id, \PDO::PARAM_INT);
-
+            $query->bindValue("size_id", $product->size_id,\PDO::PARAM_INT);
             $query->execute();
         }
     }
@@ -258,22 +261,42 @@ class Product
             "collection_id" => $data["collection"],
             "product_id" => $data["product_id"]
         ]);
-        if (isset($data["size"]) && !empty($data["size"])) {
-            foreach ($data["size"] as $key => $size_id) {
-                self::change_product($data["product_id"], $size_id, $data["count_by_size"][$key]);
+        // проверка на выбранные размеры
+        if (!isset($data["size"])) {
+            return "некорректно указаны размеры";
+            die();
+        } else {
+            // чистим все имеющиеся кол-ва товаров по размерам
+            for ($i = 1; $i < 4; $i++) {
+                self::change_product($data["product_id"], $i, 0);
             }
-        }else{
-            $query=Connection::make()->prepare("DELETE FROM `products` WHERE product_position_id=:id");
-            $query->execute(["id"=>$data["product_id"]]);
+            // добавляем выбранные кол-ва выбранным размерам
+            foreach($data["size"] as $key=>$size){
+                self::change_product($data["product_id"], $size, $data["count_by_size"][$key]);
+            }
+            
         }
     }
     public static function change_product($product_position_id, $size_id, $count)
     {
-        $query = Connection::make()->prepare("UPDATE `products` SET `count`=:count WHERE product_position_id=:product_position_id AND size_id=:size_id");
-        return $query->execute([
-            "count" => $count,
+        // поиск товара на складе
+        $query = Connection::make()->prepare("SELECT * FROM `products` WHERE product_position_id=:product_position_id AND size_id=:size_id");
+        $query->execute([
             "product_position_id" => $product_position_id,
             "size_id" => $size_id
         ]);
+        // если нашли
+        if ($query->fetch()) {
+            // изменяем его кол-во
+            $query = Connection::make()->prepare("UPDATE `products` SET `count`=:count WHERE product_position_id=:product_position_id AND size_id=:size_id");
+            $query->execute([
+                "count" => $count,
+                "product_position_id" => $product_position_id,
+                "size_id" => $size_id
+            ]);
+            // если не нашли, то добавляем
+        } else {
+            self::add_product($size_id, $product_position_id, $count, Connection::make());
+        }
     }
 }

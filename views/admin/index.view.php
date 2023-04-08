@@ -51,6 +51,17 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/admin/templates/header.auth.php
             <a href="/app/admin/tables/shows/show.php"><button class="block_btn">Подробнее...</button></a>
 
         </div>
+        <div class="block articles">
+            <div class="main_block">
+                <div class="block_info">
+                    <h4>Статьи</h4>
+                    <div class="count count_shows"><?= $articles_count ?></div>
+                </div>
+                <img class="icon fashion_shows_pic" src="/assets/img/icons8-документ-100.png" alt="">
+            </div>
+            <a href="/app/admin/tables/articles/articles.php"><button class="block_btn">Подробнее...</button></a>
+
+        </div>
     <?php else : ?>
         <div class="auth">
             <form class="auth_formA" method="POST" action="/app/admin/tables/users/auth.php">

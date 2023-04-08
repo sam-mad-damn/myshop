@@ -34,7 +34,6 @@
   margin-top: 30px;
   border-radius: 4px;
   border: none;
-  box-shadow: #7e7e7e 0px 5px 15px;
   transition: 0.4s;
 }
 .card:hover {
@@ -88,7 +87,6 @@
   margin-top: 30px;
   width: 1309px;
   
-  box-shadow: #7e7e7e 0px 5px 15px;
 }
 #block1:hover {
   cursor: pointer;
@@ -149,7 +147,7 @@ align-self:  center;
 }
 #picnewleft:hover {
   transition: 0.3s ease-in-out;
-  box-shadow: #7e7e7e 10px 10px ;
+  box-shadow: #b6b6b6 10px 10px ;
 }
 #picnewleft:not(:hover) {
   transition: 0.5s;
@@ -157,7 +155,7 @@ align-self:  center;
 
 #picnewright:hover {
   transition: 0.3s ease-in-out;
-  box-shadow: #7e7e7e -10px 10px ;
+  box-shadow: #b6b6b6 -10px 10px ;
 }
 #picnewright:not(:hover) {
   transition: 0.5s;

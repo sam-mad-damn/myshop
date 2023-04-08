@@ -10,7 +10,8 @@ if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
 ?>
 <div class="block">
     <div class="header">
-        <h3>Заказы(<?= count($orders) ?>) <?php if (count($orders) > 0 && isset($text)) echo $text; else echo "" ?></h3>
+        <h3>Заказы(<?= count($orders) ?>) <?php if (count($orders) > 0 && isset($text)) echo $text;
+                                            else echo "" ?></h3>
     </div>
     <form class="filter" action="/app/admin/tables/orders/orders.php">
         <h5>Фильтровать по статусу:</h5>
@@ -62,19 +63,26 @@ if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
                         <p id="status"><?= $item->status; ?></p>
                         <?php if ($item->status_id == 5) : ?>
                             <p>причина отмены: <?= $item->cancel_reason ?></p>
+                        <?php elseif ($item->status_id == 2) : ?>
+                            <button type="submit" class="btn btn-light confirm_order" ><a href="/app/admin/tables/orders/orders.php?order_id=<?=$item->id ?>">завершить заказ</a></button>
                         <?php endif; ?>
                     </td>
                     <td>
                         <form action="/app/admin/tables/orders/orders.products.php" method="POST">
                             <input type="text" hidden name="order_id" value="<?= $item->id ?>">
-                            <button type="submit" class="btn btn-success"><img class="icon check_order" data-order-id="<?= $item->id ?>" src="/assets/img/eyeoutline_102638.svg" alt="Подробнее"></button>
+                            <button type="submit" class="btn btn-success"><img class="icon check_order" data-order-id="<?= $item->id ?>" src="/assets/img/free-icon-font-eye-3917112.png" alt="Подробнее"></button>
                         </form>
+
                     </td>
                     <?php if ($item->status_id == 1) : ?>
                         <td>
                             <div>
-                                <button type="submit" class="btn btn-success confirm_order" data-order-id="<?= $item->id ?>">Подтвердить</button>
-                                <button type="button" class="btn btn-danger cancel_order" data-order-id="<?= $item->id ?>">Отклонить</button>
+                                <button type="submit" class="btn btn-success confirm_order" data-order-id="<?= $item->id ?>">
+                                    <img class="confirm_order" data-order-id="<?= $item->id ?>" src="/assets/img/free-icon-font-check-3917749.png" alt="" srcset="">
+                                </button>
+                                <button type="button" class="btn btn-danger cancel_order" data-order-id="<?= $item->id ?>">
+                                    <img class="cancel_order" data-order-id="<?= $item->id ?>" src="/assets/img/free-icon-font-cross-3917759.png" alt="" srcset="">
+                                </button>
                             </div>
                         </td>
                     <?php endif; ?>
