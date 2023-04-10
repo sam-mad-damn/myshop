@@ -19,7 +19,7 @@ if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
         <button name="exit" id="exit">Выйти</button>
     </form>
     <?php if (isset($_SESSION["superadmin"]) && $_SESSION["superadmin"]) : ?>
-        <button class="btn btn-outline-success add_admin">Добавить администратора</button>
+        <button class="btn btn-success add_admin">Добавить администратора</button>
     <?php endif ?>
     <div class="modal-wrapper">
         <div class="modal_main ">

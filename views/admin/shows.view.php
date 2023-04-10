@@ -7,8 +7,6 @@ if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
 
 use App\models\Articles;
 
-$count = 5; // количество полей для загрузки файлов
-$i = 0;
 ?>
 <script src="/assets/admin/js/shows.js"></script>
 <div class="block">
@@ -65,24 +63,21 @@ $i = 0;
         <form class="add_product" action="/app/admin/tables/shows/add.show.php" method="POST" enctype="multipart/form-data">
             <div class="input-group mb-3 item1">
                 <span class="input-group-text " id="basic-addon1">Название</span>
-                <input type="text" class="form-control" name="name" placeholder="Название" aria-label="Название" aria-describedby="basic-addon1">
+                <input type="text" class="form-control" required name="name" placeholder="Название" aria-label="Название" aria-describedby="basic-addon1">
             </div>
 
             <div class="input-group mb-3 item2">
                 <span class="input-group-text" id="basic_addon3">Описание</span>
-                <textarea class="form-control" name="desc" placeholder="Описание" aria-describedby="basic-addon3" aria-label="Описание"></textarea>
+                <textarea class="form-control" name="desc" required placeholder="Описание" aria-describedby="basic-addon3" aria-label="Описание"></textarea>
             </div>
 
             <div class="input-group mb-3 item3">
-                <span class="input-group-text" for="inputGroupFile01">Фото(минимум 3)</span>
-
+                <span class="input-group-text" for="inputGroupFile01">Фото</span>
+                <input required type="file" name="photo[]" accept=".jpg, .jpeg, .png, .webp" class="form-control" id="inputGroupFile01" multiple>
             </div>
-            <?php while (++$i <= $count) : ?>
-                <input type="file" name="photo[]" accept=".jpg, .jpeg, .png, .webp" class="form-control" id="inputGroupFile01">
-            <?php endwhile ?>
 
             <div class="col-12 item4">
-                <button type="submit" class="btn btn-success">Добавить показ</button>
+                <button type="submit" name="add" class="btn btn-success">Добавить показ</button>
             </div>
         </form>
     </div>

@@ -48,7 +48,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php";?>
             </div>
         </div>
         <div class="shows_txt">
-            <h4><?= $item->title ?></h4>
+            <h4><?= mb_strtoupper($item->title) ?></h4>
             <p><?= $item->text ?></p>
         </div>
     </div>
