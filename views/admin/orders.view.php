@@ -10,7 +10,7 @@ if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
 ?>
 <div class="block">
     <div class="header">
-        <h3>Заказы(<?= count($orders) ?>) <?php if (count($orders) > 0 && isset($text)) echo $text;
+        <h3>Заказы(<?= count($orders) ?>) <?php if (isset($text)) echo $text;
                                             else echo "" ?></h3>
     </div>
     <form class="filter" action="/app/admin/tables/orders/orders.php">
@@ -25,7 +25,7 @@ if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
         </button>
     </form>
     <?= $_SESSION["error"] ?? "" ?>
-    <table class="table table-hover">
+    <table class="table ">
         <thead>
             <tr class="table-title">
                 <th scope="col">ID</th>
@@ -40,7 +40,8 @@ if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
         </thead>
         <tbody>
             <?php foreach ($orders as $item) : ?>
-                <tr>
+                
+                <tr <?php if ($item->status_id == 2) : echo("class='confirm'"); endif;?>>
                     <th scope="row">
                         <p id="id"><?= $item->id ?></p>
                     </th>
@@ -64,7 +65,16 @@ if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
                         <?php if ($item->status_id == 5) : ?>
                             <p>причина отмены: <?= $item->cancel_reason ?></p>
                         <?php elseif ($item->status_id == 2) : ?>
-                            <button type="submit" class="btn btn-light confirm_order" ><a href="/app/admin/tables/orders/orders.php?order_id=<?=$item->id ?>">завершить заказ</a></button>
+                            <button type="submit" class="btn  confirm_order"><a href="/app/admin/tables/orders/orders.php?order_id=<?= $item->id ?>">завершить заказ</a></button>
+                        <?php elseif ($item->status_id == 1) : ?>
+                            <div>
+                                <button type="submit" class="btn btn-success confirm_order" data-order-id="<?= $item->id ?>">
+                                    <img class="confirm_order" data-order-id="<?= $item->id ?>" src="/assets/img/free-icon-font-check-3917749.png" alt="Подтвердить" srcset="">
+                                </button>
+                                <button type="button" class="btn btn-danger cancel_order" data-order-id="<?= $item->id ?>">
+                                    <img class="cancel_order" data-order-id="<?= $item->id ?>" src="/assets/img/free-icon-font-cross-3917759.png" alt="Отклонить" srcset="">
+                                </button>
+                            </div>
                         <?php endif; ?>
                     </td>
                     <td>
@@ -74,20 +84,9 @@ if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
                         </form>
 
                     </td>
-                    <?php if ($item->status_id == 1) : ?>
-                        <td>
-                            <div>
-                                <button type="submit" class="btn btn-success confirm_order" data-order-id="<?= $item->id ?>">
-                                    <img class="confirm_order" data-order-id="<?= $item->id ?>" src="/assets/img/free-icon-font-check-3917749.png" alt="" srcset="">
-                                </button>
-                                <button type="button" class="btn btn-danger cancel_order" data-order-id="<?= $item->id ?>">
-                                    <img class="cancel_order" data-order-id="<?= $item->id ?>" src="/assets/img/free-icon-font-cross-3917759.png" alt="" srcset="">
-                                </button>
-                            </div>
-                        </td>
-                    <?php endif; ?>
 
-                <?php endforeach; ?>
+
+                <?php  endforeach; ?>
                 </tr>
         </tbody>
     </table>

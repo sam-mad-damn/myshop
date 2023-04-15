@@ -51,10 +51,7 @@ th {
   object-fit: contain;
   margin-left: 5px;
 }
-td > p {
- 
- 
-}
+
 .desc{
   width: 200px;
   white-space: nowrap; /* Отменяем перенос текста */
@@ -70,11 +67,14 @@ td > p {
   display: grid;
 }
 .photos{
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 110px);
 }
 .del_photo{
+  object-fit: cover;
+  padding: 5px;
   width: 100px;
-  height: 100px;object-fit: contain;
+  height: 100px;
 }
 .shows> .btn-group{
   display: grid;
@@ -227,9 +227,11 @@ span {
 .dropdown-menu {
   padding: 10px;
 }
-
-.info,
 .shows_pics {
+  display: grid;
+  grid-template-columns: repeat(5, 110px);
+}
+.info {
   display: flex;
 }
 .shows_pic {

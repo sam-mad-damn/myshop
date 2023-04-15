@@ -103,7 +103,7 @@ label {
   font-family: "Lora-bold";
 }
 label > span {
-  color: crimson;
+  color: rgb(80, 73, 120);
 }
 .inputs_pas {
   display: grid;

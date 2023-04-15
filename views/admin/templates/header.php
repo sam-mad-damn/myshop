@@ -12,16 +12,17 @@
     <title>Админ</title>
 
     <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap.min.css" />
-<script src="\assets\js\bootstrap\bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="/assets/admin/css/<?= $link?>.css" />
+    <script src="\assets\js\bootstrap\bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/assets/admin/css/<?= $link ?>.css" />
     <link rel="stylesheet" href="\assets\admin\css\header.css" />
-    
+
 </head>
+
 <body>
     <div class="cont">
-    <ul class="navA flex-column">
+        <ul class="navA flex-column">
             <div class="lis">
-            <li class="nav-item">
+                <li class="nav-item">
                     <a class="navA-link " href="/app/admin/">Главная</a>
                 </li>
                 <li class="nav-item">
@@ -42,5 +43,7 @@
                 <li class="nav-item">
                     <a class="navA-link" href="/app/admin/tables/articles/articles.php">Статьи помощи</a>
                 </li>
+                <hr>
+                <li><a class="navA-link" href="/app/admin/tables/users/logout.php">Выйти</a></li>
             </div>
         </ul>

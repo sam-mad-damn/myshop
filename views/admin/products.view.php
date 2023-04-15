@@ -12,9 +12,9 @@ if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
 <div class="block">
     <div class="header">
         <h3>Товары (<?= count($products) ?>)
-        <?php if (count($products) > 0 && isset($text)) : ?>
-            <?= $text ?>
-        <?php endif; ?></a></h3>
+            <?php if (count($products) > 0 && isset($text)) : ?>
+                <?= $text ?>
+            <?php endif; ?></a></h3>
         <?php if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) : ?>
             <p class="error"><?= $_SESSION["error"] ?></p>
         <?php elseif (isset($_SESSION["good"]) && !empty($_SESSION["good"])) : ?>
@@ -127,7 +127,8 @@ if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
                 <span class="input-group-text" id="prod_collection">Коллекция</span>
                 <?php foreach ($collections as $item) : ?>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="collection" id="<?= $item->name ?>" value="<?= $item->id ?>">
+                        <input class="form-check-input" type="radio" name="collection" id="<?= $item->name ?>" value="<?= $item->id ?>" <?php if (isset($_GET["collection_id"]) && $item->id == $_GET["collection_id"]) : echo ("checked");
+                                                                                                                                        endif; ?>>
                         <label class="form-check-label" for="<?= $item->name ?>">
                             <?= $item->name ?>
                         </label>
@@ -138,12 +139,14 @@ if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
                 <span class="input-group-text" id="prod_size">Размер</span>
                 <?php foreach ($sizes as $item) : ?>
                     <div class="form-check">
-                        <input class="form-check-input" name="size[]" type="checkbox" value="<?= $item->id ?>" id="<?= $item->value ?>">
-                        <label class="form-check-label" for="<?= $item->value ?>">
-                            <?= $item->value ?>
-                        </label>
-                        <div class="counts" hidden id="<?= $item->id ?>">
-                            <label for="<?= $item->id ?>">Кол-во:</label><input type="number" name="count_by_size[]" value="0" id="<?= $item->id ?>">
+                        <div class="col-md-1">
+                            <input class="form-check-input" name="size[]" type="checkbox" value="<?= $item->id ?>" id="<?= $item->value ?>">
+                            <label class="form-check-label" for="<?= $item->value ?>">
+                                <?= $item->value ?>
+                            </label>
+                        </div>
+                        <div class="counts col" hidden id="<?= $item->id ?>">
+                            <label for="<?= $item->id ?>">Кол-во:</label><input type="number" name="count_by_size[]" class="count" value="1" id="<?= $item->id ?>">
                         </div>
                     </div>
                 <?php endforeach ?>
@@ -199,13 +202,14 @@ if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
                 <span class="input-group-text" id="basic-addon6">Размер</span>
                 <?php foreach ($sizes as $item) : ?>
                     <div class="form-check">
-                        <input class="form-check-input" name="size[]" type="checkbox" value="<?= $item->id ?>" id="<?= $item->value ?>-c">
-                        <label class="form-check-label" for="<?= $item->value ?>-c">
-                            <?= $item->value ?>
-                        </label>
-
-                        <div class="counts" id="<?= $item->id ?>" hidden>
-                            <label for="<?= $item->id ?>">Кол-во:</label><input type="number" class="count" name="count_by_size[]" disabled value="0" id="<?= $item->id ?>">
+                        <div class="col-md-1">
+                            <input class="form-check-input" name="size[]" type="checkbox" value="<?= $item->id ?>" id="<?= $item->value ?>-c">
+                            <label class="form-check-label" for="<?= $item->value ?>-c">
+                                <?= $item->value ?>
+                            </label>
+                        </div>
+                        <div class="counts col" id="<?= $item->id ?>" hidden>
+                            <label for="<?= $item->id ?>">Кол-во:</label><input type="number" class="count" name="count_by_size[]" disabled value="1" id="<?= $item->id ?>">
                         </div>
                     </div>
                 <?php endforeach ?>

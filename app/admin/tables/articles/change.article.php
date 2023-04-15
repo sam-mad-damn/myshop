@@ -70,14 +70,11 @@ if (isset($_POST["change_art"])) {
                     $new_name = time() . "_" . $name;
                     if (!move_uploaded_file($tmp_name, $_SERVER["DOCUMENT_ROOT"] . "/upload/helps/" . $new_name)) {
                         $_SESSION["error"] = "не удалось загрузить изображение товара";
-                    } else {
-                        header("Location: /app/admin/tables/articles/articles.php");
                     }
                 }
             }
         } else {
             $_SESSION["error"] = "расширение файла должно быть : " . implode(", ", $extensions);
-            header("Location: /app/admin/tables/articles/articles.php");
         }
 
 
@@ -87,8 +84,7 @@ if (isset($_POST["change_art"])) {
             // формируем новое название для нового изображения
             $_POST["photo"] = $_SERVER["REQUEST_SCHEME"] . "://" . $_SERVER["HTTP_HOST"] . "/upload/helps/" . $new_name;
             $res = Articles::change_article_help($_POST);
-
-            header("Location: /app/admin/tables/articles/articles.php");
         }
     }
 }
+header("Location: /app/admin/tables/articles/articles.php");

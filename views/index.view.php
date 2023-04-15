@@ -17,6 +17,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php" ?>
       </a>
     <?php endforeach ?>
     <a href="/app/tables/products/products.php"><img id="arrow" src="/assets/img/стрелка.png" alt="Перейти к товарам" /></a>
+    <a class="go_products" href="/app/tables/products/products.php">Перейти к товарам</a>
   </div>
 </div>
 <div class="collections">
@@ -32,9 +33,9 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php" ?>
   <div class="news_txt">
     <p>ПОКАЗЫ МОД</p>
   </div>
-  <div>
+ 
     <div class="news_all">
-      <a class="img_a" href="/app/tables/articles_fashion_shows/fashion_show.php"><img class="pic_new" id="picnewleft" src="/assets/img/Показ мод1.jpg" alt="" /></a>
+      <a  href="/app/tables/articles_fashion_shows/fashion_show.php"><img id="picnewleft" class="img_a" src="/assets/img/Показ мод1.jpg" alt="" /></a>
       <div class="block_news">
         <div class="line">
           <p class="new_head">НОВОСТИ В МИРЕ МОДЫ</p>
@@ -48,9 +49,9 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php" ?>
           </a>
         </div>
       </div>
-      <a class="img_a" href="/app/tables/articles_fashion_shows/fashion_show.php"><img class="pic_new" id="picnewright" src="/assets/img/Показы мод2.jpg" alt="" /></a>
+      <a  href="/app/tables/articles_fashion_shows/fashion_show.php"><img  class="img_a" id="picnewright" src="/assets/img/Показы мод2.jpg" alt="" /></a>
     </div>
-  </div>
+  
 </div>
 <div class="points">
   <div class="addresses_txt">
@@ -81,7 +82,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php" ?>
         </table>
     </div>
     <div class="map">
-      <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A5d2d751b341f2a01a49efbd45a5579b6002cab1e707f627ceb5e0190b7254d05&amp;width=100%25&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
+      <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A5d2d751b341f2a01a49efbd45a5579b6002cab1e707f627ceb5e0190b7254d05&amp;width=100%25&amp;lang=ru_RU&amp;scroll=true"></script>
     </div>
   </div>
 </div>

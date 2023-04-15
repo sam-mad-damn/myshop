@@ -36,7 +36,7 @@ class Product
         $query->execute(["id" => $id]);
         return $query->fetchAll();
     }
-    // 
+    // кол-во указанного товара
     public static function get_product_count($id)
     {
         $query = Connection::make()->prepare("SELECT SUM(count) as sum FROM `products` WHERE `product_position_id`=:product");
@@ -61,17 +61,6 @@ class Product
             "size_id" => $size_id
         ]);
         return $query->fetch();
-        // if (!$query->fetch()) {
-        //     $query = Connection::make()->prepare("SELECT products_positions.*, 
-        //         materials.name as material, 
-        //         collections.name as collection
-        //         FROM products_positions 
-        //         INNER JOIN collections ON products_positions.collection_id=collections.id 
-        //         INNER JOIN materials ON products_positions.material_id=materials.id 
-        //         WHERE products_positions.id=:id");
-        //     $query->execute(["id" => $id]);
-        //     return $query->fetch();
-        // }
     }
     public static function find_position($id)
     {
@@ -106,15 +95,6 @@ class Product
     {
         return implode(",", array_fill(0, count($array), "?"));
     }
-    //получаем товары по указанным категориям
-    // public static function getProductsByManyCategories($collections)
-    // {
-    //     $params = self::getParams($collections);
-
-    //     $query = Connection::make()->prepare("SELECT products_positions.* FROM products_positions WHERE collection_id IN($params)");
-    //     $query->execute($collections);
-    //     return $query->fetchAll();
-    // }
     public static function filter($data)
     {
         foreach ($data as $key => $val) {
@@ -132,7 +112,7 @@ class Product
             `products_positions`
         INNER JOIN products ON products.product_position_id = products_positions.id
         WHERE
-            products.size_id LIKE :size AND products_positions.collection_id LIKE :collection AND products_positions.material_id LIKE :material AND products_positions.price < :price
+            products.size_id LIKE :size AND products_positions.collection_id LIKE :collection AND products_positions.material_id LIKE :material AND products_positions.price < :price  AND products.count>0
         GROUP BY
             id");
         $query->execute([
@@ -193,12 +173,9 @@ class Product
             //подготовили параметры в нужном типе
             $query->bindValue("count", $product->quantity, \PDO::PARAM_INT);
             $query->bindValue("product_id", $product->product_id, \PDO::PARAM_INT);
-            $query->bindValue("size_id", $product->size_id,\PDO::PARAM_INT);
+            $query->bindValue("size_id", $product->size_id, \PDO::PARAM_INT);
             $query->execute();
         }
-    }
-    public static function add_material()
-    {
     }
     //добавление товарной позиции
     public static function add_product_position($data)
@@ -239,6 +216,9 @@ class Product
     //удаление товара 
     public static function delProduct($product_id)
     {
+        
+        // $prod_material=self::find_position($product_id)->material;
+        // Material::del($prod_material);
         $query = Connection::make()->prepare("DELETE FROM `products_positions` WHERE id=?");
         $query->execute([$product_id]);
         return true;
@@ -261,20 +241,14 @@ class Product
             "collection_id" => $data["collection"],
             "product_id" => $data["product_id"]
         ]);
-        // проверка на выбранные размеры
-        if (!isset($data["size"])) {
-            return "некорректно указаны размеры";
-            die();
-        } else {
-            // чистим все имеющиеся кол-ва товаров по размерам
-            for ($i = 1; $i < 4; $i++) {
-                self::change_product($data["product_id"], $i, 0);
-            }
-            // добавляем выбранные кол-ва выбранным размерам
-            foreach($data["size"] as $key=>$size){
-                self::change_product($data["product_id"], $size, $data["count_by_size"][$key]);
-            }
-            
+
+        // чистим все имеющиеся кол-ва товаров по размерам
+        for ($i = 1; $i < 4; $i++) {
+            self::change_product($data["product_id"], $i, 0);
+        }
+        // добавляем выбранные кол-ва выбранным размерам
+        foreach ($data["size"] as $key => $size) {
+            self::change_product($data["product_id"], $size, $data["count_by_size"][$key]);
         }
     }
     public static function change_product($product_position_id, $size_id, $count)

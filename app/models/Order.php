@@ -8,7 +8,7 @@ class Order
 {
     public static function all()
     {
-        $query = Connection::make()->query("SELECT orders.*, users.name as user, statuses.name as status FROM orders INNER JOIN users ON orders.user_id=users.id INNER JOIN statuses ON orders.status_id=statuses.id");
+        $query = Connection::make()->query("SELECT orders.*, users.name as user, statuses.name as status FROM orders INNER JOIN users ON orders.user_id=users.id INNER JOIN statuses ON orders.status_id=statuses.id ORDER BY orders.updated_at DESC");
         return $query->fetchAll();
     }
 
@@ -161,7 +161,7 @@ class Order
     //фильтрация по статусу
     public static function filterByStatus($status_id)
     {
-        $query = Connection::make()->prepare("SELECT orders.*, users.name as user, statuses.name as status FROM orders INNER JOIN users ON orders.user_id=users.id INNER JOIN statuses ON orders.status_id=statuses.id WHERE orders.status_id=?");
+        $query = Connection::make()->prepare("SELECT orders.*, users.name as user, statuses.name as status FROM orders INNER JOIN users ON orders.user_id=users.id INNER JOIN statuses ON orders.status_id=statuses.id WHERE orders.status_id=? ORDER BY orders.updated_at DESC");
         $query->execute([$status_id]);
         return $query->fetchAll();
     }

@@ -63,10 +63,10 @@ if (empty($_SESSION["error"])) {
         var_dump($_POST);
         $name = htmlspecialchars($_POST["name"]);
         $desc = htmlspecialchars($_POST["desc"]);
-        if (strlen($name) >= 10) {
+        if (strlen($desc) >= 10) {
             Articles::add_article_show($_POST);
         } else {
-            $_SESSION["error"] = "Не удалось добавить показ(некорректно указано имя)";
+            $_SESSION["error"] = "Не удалось добавить показ(слишком короткое описание)";
         }
     }
 }

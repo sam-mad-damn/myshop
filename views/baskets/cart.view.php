@@ -1,4 +1,7 @@
 <?php
+
+use App\models\Basket;
+
 include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php" ?>
 <script src="/assets/js/basket.js"></script>
 <div class="cart_txt">
@@ -57,6 +60,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php" ?>
                 <label class="count_prod" id="count-<?= $item->product_id ?>"><?= $item->quantity ?></label>
                 <button data-size-id="<?= $item->size_id ?>" data-product-id="<?= $item->product_id ?>" class="add count_btn" id="count_add">+</button>
               </div>
+              <p>Стоимость: <span class="tot_price"><?= Basket::get_total_cost($_SESSION["id"])  ?> р.</span></p>
             </div>
           </div>
         </div>

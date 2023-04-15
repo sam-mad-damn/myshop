@@ -65,15 +65,15 @@ cursor: pointer;
 /* #region Блок товара */
 .error{
   color: crimson;
-  font-size: 22px;
+  font-size: 17px;
 }
 .good{
-  color: rgb(23, 176, 110);
-  font-size: 22px;
+  color: rgb(35, 181, 79);
+  font-size: 19px;
 }
 .product {
   display: grid;
-  grid-template-columns: 600px 1fr;
+  grid-template-columns: 600px 550px;
   gap: 10%;
 }
 .photo {
@@ -112,7 +112,6 @@ cursor: pointer;
   font-family: "Lora-bold";
 }
 .info > p {
-  color: #505050;
   font-size: 20px;
   margin-bottom: 0.5rem;
 }
@@ -132,10 +131,13 @@ span>a:hover{
 }
 .card_size {
   padding: 5px;
-  font-size: 25px;
+  font-size: 20px;
   width: 70px;
   text-align: center;
   background-color: #fefefe;
+}
+.price{
+  font-family: "Lora-bold";
 }
 
 .active {

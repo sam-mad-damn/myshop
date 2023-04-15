@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(product_in_basket)
 
         document.querySelector('.total_cost').textContent = Number(total_cost) ?? 0;
+        // document.querySelector('.tot_price').textContent = Number(total_cost) ?? 0;
         document.querySelector('.total_count').textContent = total_count ?? 0;
         isBasketEmpty();
     }

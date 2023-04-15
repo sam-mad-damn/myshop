@@ -20,7 +20,6 @@ if (isset($_POST["btn_reg"])) {
     foreach ($_POST as $item) {
         if (empty($item) && $item!="0") {
             $_SESSION["error"] = "Ошибка: некорректно введены данные";
-            header("Location: /app/admin/tables/users/profile.php");
         }
     }
     if (empty($_SESSION["error"])) {

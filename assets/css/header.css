@@ -54,13 +54,14 @@ body::-webkit-scrollbar-track {
   text-align: center;
   color: #fefefe;
   height: 30px;
+  transition: 0.3s;
 }
 .headers > a:hover {
   color: #877cb9;
   cursor: pointer;
   height: 30px;
   border-radius: 0px;
-  transition: ease-in-out 0.4s;
+  
 }
 a:active,
 a:hover,

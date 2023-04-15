@@ -11,16 +11,16 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php";
     <img class="main_photo" src="<?= $product->photo ?>" alt="">
   </div>
   <div class="info">
-    <?php if (isset($_SESSION["error"]["auth"])) : ?>
-      <p class="error"><?= $_SESSION["error"]['auth'] ?></p>
+  <?php if (isset($_SESSION["error"]["auth"])) : ?>
+      <span class="error"><?= $_SESSION["error"]['auth'] ?></span>
     <?php endif ?>
     <?php if (isset($_SESSION["error"]["size"])) : ?>
-      <p class="error"><?= $_SESSION["error"]["size"] ?></p>
+      <span class="error"><?= $_SESSION["error"]["size"] ?></span>
     <?php elseif (isset($_SESSION["good"])) : ?>
-      <p class="good"><?= $_SESSION["good"] ?></p>
+      <span class="good"><?= $_SESSION["good"] ?></span>
     <?php endif ?>
     <h4 class="name"><?= $product->name ?></h4>
-    <h4><?= $product->price ?>р.</h4>
+    <h3 class="price"><?= $product->price ?>р.</h3>
     <h5><?= $product->description ?></h5>
     <p>Материал: <span><?= $product->material ?></span></p>
     <p>Коллекция: <span><a href="/app/tables/products/products.php?collection_id=<?= $product->collection_id ?>"><?= $product->collection ?></a></span></p>
@@ -38,16 +38,24 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php";
         </div>
 
         <button type="submit" class="collections_btn btn_basket">ДОБАВИТЬ В КОРЗИНУ</button>
-        <?php if (!empty($basket_products)) :
+
+        <?php
+        if (!empty($basket_products)) :
+          $count = 0;
           foreach ($basket_products as $prod) :
-            if ($prod->product_id == $product->id) : ?>
-              <p><a href="/app/tables/baskets/basket.php"> Товар уже есть в корзине</a></p>
-        <?php endif;
+            if ($prod->product_id == $product->id) : $count = 1;
+            endif;
           endforeach;
+          if ($count != 0) : ?>
+            <p><a href="/app/tables/baskets/basket.php"> Товар уже есть в корзине</a></p>
+        <?php endif;
         endif; ?>
+        
       </form>
+      
     <?php endif; ?>
   </div>
+  
 </div>
 <div class="collection_txt">
   <p>ТОВАРЫ ИЗ ЭТОЙ КОЛЛЕКЦИИ</p>

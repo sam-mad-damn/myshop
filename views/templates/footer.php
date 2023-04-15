@@ -21,12 +21,15 @@
     <a href="/app/tables/users/profile.php">
       <p>Мои данные</p>
     </a>
-    <a href="/app/tables/users/profile.php">
+    <a href="/app/tables/users/profile.php?orders=true">
       <p>Мои заказы</p>
     </a>
+    <?php
+        if (!isset($_SESSION["auth"]) || !$_SESSION["auth"]) : ?>
     <a href="/app/tables/users/auth.php">
       <p>Войти</p>
     </a>
+    <?php endif?>
   </div>
 </div>
 </div>

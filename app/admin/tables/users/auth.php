@@ -21,18 +21,21 @@ if (isset($_POST["btn_auth"])) {
             $_SESSION["id"] = $user->id;
             $_SESSION["name"] = $user->name;
             $_SESSION["admin"] = true;
-            header("Location: /app/admin");
         }
-        if($user->role == "суперадминистратор")
-        {
+        if ($user->role == "суперадминистратор") {
             $_SESSION["auth"] = true;
             $_SESSION["id"] = $user->id;
             $_SESSION["name"] = $user->name;
             $_SESSION["admin"] = true;
             $_SESSION["superadmin"] = true;
-            header("Location: /app/admin");
         }
-
-        
+        if ($user->role == "клиент") {
+            $_SESSION["auth"] = false;
+            $_SESSION["id"] = null;
+            $_SESSION["admin"] = false;
+            $_SESSION["error"] = "У вас недостаточно прав";
+            
+        }
     }
 }
+header("Location: /app/admin");

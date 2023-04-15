@@ -9,15 +9,14 @@ if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
     <h3>Личный кабинет</h3>
     <?= $_SESSION["error"]??""?>
     <?= $_SESSION["good"]??""?>
-    <form class="profile_form" action="/app/admin/tables/users/logout.php">
+    <div class="profile_form" >
         <div class="form_inp">
-            <label for="user_name">Логин:</label><input disabled type="text" name="name" id="user_name" value="<?= $user->login ?>" />
+            <label for="user_name">Логин: <span><?= $user->login ?></span></label>
         </div>
         <div class="form_inp">
-            <label for="user_email">E-mail:</label><input disabled type="email" name="email" id="user_email" value="<?= $user->email ?>" />
+            <label for="user_email">E-mail: <span><?= $user->email ?></span></label>
         </div>
-        <button name="exit" id="exit">Выйти</button>
-    </form>
+    </div>
     <?php if (isset($_SESSION["superadmin"]) && $_SESSION["superadmin"]) : ?>
         <button class="btn btn-success add_admin">Добавить администратора</button>
     <?php endif ?>

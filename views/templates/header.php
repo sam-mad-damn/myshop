@@ -22,7 +22,7 @@
     <div class="navigation sticky-top">
       <a href="/"><img class="logo" src="/assets/img/лого.png" alt="Логотип" /></a>
       <div class="headers">
-        <a href="/app/tables/collections/collections.php">
+        <a id="collec" href="/app/tables/collections/collections.php">
         Коллекции
         </a>
         <a href="/app/tables/products/products.php">

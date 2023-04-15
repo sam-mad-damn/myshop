@@ -46,7 +46,7 @@ if (!empty($_FILES["photo"]["name"])) {
             //проверка размера
             if ($size >= 3145728) {
                 $_SESSION["error"] = "Ошибка: изображение слишком большое";
-                header("Location: /app/admin/tables/articles/articles.php");
+                
                 // die();
             } else {
                 //проверка загрузки файла
@@ -54,18 +54,18 @@ if (!empty($_FILES["photo"]["name"])) {
                 if (!move_uploaded_file($tmp_name, $_SERVER["DOCUMENT_ROOT"] . "/upload/helps/" . $new_name)) {
                     $_SESSION["error"] = "Ошибка: не удалось загрузить изображение товара";
                 } else {
-                    header("Location: /app/admin/tables/articles/articles.php");
+                   
                     // die();
                 }
             }
         } else {
             $_SESSION["error"] = "Ошибка: выберите файл";
-            header("Location: /app/admin/tables/articles/articles.php");
+            
             // die();
         };
     } else {
         $_SESSION["error"] = "Ошибка: расширение файла должно быть : " . implode(", ", $extensions);
-        header("Location: /app/admin/tables/articles/articles.php");
+       
         // die();
     }
 
@@ -82,3 +82,4 @@ if (!empty($_FILES["photo"]["name"])) {
         var_dump(Articles::add_article_help($_POST));
     }
 }
+header("Location: /app/admin/tables/articles/articles.php");

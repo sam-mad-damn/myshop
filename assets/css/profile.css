@@ -123,7 +123,7 @@ label {
   display: flex;
   gap: 20px;
   padding: 10px;
-  min-height: 320px;
+  min-height: min-content;
 }
 .order_item:hover{
   cursor: pointer;
@@ -155,10 +155,9 @@ span, #order_status, #order_date, #order_address{
 .order_title, .order_status, .order_date, .order_address{
   display: flex;
   margin-top: 10px;
-}
-.order_title{
   font-size: 20px;
 }
+
 .empty_order{
   font-size:18px;
   margin-bottom: 180px;
@@ -167,14 +166,14 @@ span, #order_status, #order_date, #order_address{
   width: 350px;
 }
 .card_size {
-  border: #191616 1px solid;
+  /* border: #191616 1px solid; */
   padding: 5px;
   height: 30px;
   font-size: 18px;
   text-align: center;
-  background-color: #191616;
-  color: #fefefe;
-  font-family: "Wremena-norm";
+  /* background-color: #191616; */
+  /* color: #fefefe; */
+  /* font-family: "Wremena-norm"; */
 }
 .tab-pane>h4{
   font-family: "Lora-bold";

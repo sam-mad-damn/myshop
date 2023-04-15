@@ -13,7 +13,6 @@ unset($_POST["add"]);
 foreach ($_POST as $item) {
     if (empty($item)) {
         $_SESSION["error"] = 'Ошибка: вы заполнили не все поля';
-        // header("Location: /app/admin/tables/products/products.php");
         die();
     } else {
         $name = htmlspecialchars($_POST["name"]);
@@ -23,7 +22,7 @@ foreach ($_POST as $item) {
         //проверка 
         if (!preg_match("/^[а-яА-Яa-zA-Z]{2,}$/ui", $name) || !preg_match("/^[1-9]{1}[0-9]{2,}$/ui", $price) || !preg_match("/^[а-яА-Я]{2,}$/ui", $material)) {
             $_SESSION["error"] = "Ошибка: данные введены некорректно";
-            header("Location: /app/admin/tables/products/products.php");
+            // header("Location: /app/admin/tables/products/products.php");
             // die();
         }
     }
@@ -56,20 +55,13 @@ if (isset($_FILES["photo"])) {
                 $new_name = time() . "_" . $name;
                 if (!move_uploaded_file($tmp_name, $_SERVER["DOCUMENT_ROOT"] . "/upload/" . $new_name)) {
                     $_SESSION["error"] = "Ошибка: не удалось загрузить изображение товара";
-                } else {
-                    header("Location: /app/admin/tables/products/products.php");
-                    // die();
                 }
             }
         } else {
             $_SESSION["error"] = "Ошибка: выберите файл";
-            header("Location: /app/admin/tables/products/products.php");
-            // die();
         };
     } else {
         $_SESSION["error"] = "Ошибка: расширение файла должно быть : " . implode(", ", $extensions);
-        header("Location: /app/admin/tables/products/products.php");
-        // die();
     }
 
     //если нет ошибок в сессии
@@ -80,3 +72,4 @@ if (isset($_FILES["photo"])) {
         
     }
 };
+// header("Location: /app/admin/tables/products/products.php");

@@ -107,18 +107,18 @@ th {
   background-color: #7ac272;
   color: #191616;
   font-family: "Wremena-bold";
-  padding: 9px;
+  padding: 6px;
   border: none;
 }
 .btn-success >img,.btn-danger >img{
   opacity: 0.7;
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   
 }
 .btn-danger {
   background-color: #d87878;
-  padding: 9px;
+  padding: 6px;
   border: none;
 }
 h3 {
@@ -126,7 +126,9 @@ h3 {
 }
 .error {
   color: crimson;
+  font-size: 17px;
 }
 .good {
   color: forestgreen;
+  font-size: 17px;
 }

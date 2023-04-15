@@ -70,14 +70,11 @@ if (isset($_FILES["photo"])) {
                     $new_name = time() . "_" . $name;
                     if (!move_uploaded_file($tmp_name, $_SERVER["DOCUMENT_ROOT"] . "/upload/" . $new_name)) {
                         $_SESSION["error"] = "не удалось загрузить изображение товара";
-                    } else {
-                        
                     }
                 }
             }
         } else {
             $_SESSION["error"] = "расширение файла должно быть : " . implode(", ", $extensions);
-           
         }
 
         //если нет ошибок в сессии
@@ -88,7 +85,8 @@ if (isset($_FILES["photo"])) {
             $arr = explode("/", Product::find_position($_POST["product_id"])->photo);
             $res = Product::change_product_position($_POST);
 
-            header("Location: /app/admin/tables/products/products.php");
+           
         }
     }
 };
+header("Location: /app/admin/tables/products/products.php");

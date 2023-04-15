@@ -1,3 +1,7 @@
+.col-md-4>p{
+  font-size: 18px;
+  margin-bottom: 0px;
+}
 /* Таблица*/
 .product_photo{
   width: 100px;
@@ -17,11 +21,23 @@
   display: flex;
   gap: 20px;
 }
-.btn-light>p{
+.btn-light>a, .btn-light>p, .confirm_order>a{
   margin-bottom: 0px;
+  color: #191616;
+  text-decoration: none;
+}
+.btn-light>a:hover,.confirm_order>a:hover{
+  color: #191616;
+}
+.confirm_order{
+   background-color: #86c380;
+}
+.confirm_order:hover{
+  background-color: #6a9c65;
 }
 .btn-light{
-  background-color: #d3d3d3;
+  background-color: #e2e2e2;
+  border: none;
   margin-bottom: 5px;
 }
 .table {
@@ -40,6 +56,9 @@ td {
 }
 th {
   font-size: 18px;
+}
+.confirm{
+  background-color: #d5ffbe;
 }
 
 .icon {

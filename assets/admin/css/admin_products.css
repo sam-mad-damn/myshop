@@ -1,3 +1,6 @@
+.col>label{
+  margin-right: 5px;
+}
 /* Таблица*/
 .filter{
   display: flex;
@@ -134,7 +137,8 @@ span {
   display: flex;
   gap: 10px;
 }
-.counts>label{
+.count{
+  width: 50px;
 }
 /* Модальное окно добавление товара*/
 .add_product {

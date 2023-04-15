@@ -55,10 +55,10 @@ if (isset($_FILES["photo"])) {
             
             $name = htmlspecialchars($_POST["name"]);
             $desc = htmlspecialchars($_POST["description"]);
-            if (strlen($name) >= 10) {
+            if (strlen($desc) >= 10) {
                 Collection::add($_POST);
             } else {
-                $_SESSION["error"] = "Не удалось добавить категорию(некорректно указано имя)";
+                $_SESSION["error"] = "Не удалось добавить категорию(слишком короткое описание)";
             }
         }
     }
