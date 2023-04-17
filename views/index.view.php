@@ -16,8 +16,9 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php" ?>
         </div>
       </a>
     <?php endforeach ?>
-    <a href="/app/tables/products/products.php"><img id="arrow" src="/assets/img/стрелка.png" alt="Перейти к товарам" /></a>
+    <div><a href="/app/tables/products/products.php"><img id="arrow" src="/assets/img/стрелка.png" alt="Перейти к товарам" /></a>
     <a class="go_products" href="/app/tables/products/products.php">Перейти к товарам</a>
+    </div>
   </div>
 </div>
 <div class="collections">

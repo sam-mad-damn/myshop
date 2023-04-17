@@ -60,7 +60,7 @@ use App\models\Order;
       <a href="/app/tables/users/logout.php"><button id="exit">Выйти</button></a>
     </div>
     <div class="tab-pane fade <?php if( isset($_GET['orders']) && $_GET['orders']): echo('active show'); endif;?>" id="delivery-tab-pane" role="tabpanel" aria-labelledby="delivery-tab" tabindex="1">
-      <?php var_dump($orders);  foreach  ($orders as $ord) :
+      <?php foreach  ($orders as $ord) :
         if ($ord->status_id != 4) : ?>
           <div class="order" id="order_962941234">
             <div class="order_title">

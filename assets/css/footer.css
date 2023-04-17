@@ -58,3 +58,8 @@ a>p{
 .profile > a :hover {
   color: #877cb9;
 }
+@media screen and (min-width: 320px) and (max-width: 768px) {
+.footer{
+  display: none;
+}
+}
