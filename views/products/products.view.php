@@ -17,7 +17,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php" ?>
   </div>
 </div>
 <div class="products_block">
-  <form action="/app/tables/products/products.php">
+  <form class="sticky"action="/app/tables/products/products.php">
   <div class="features">
     <div class="accordion" id="accordionPanelsStayOpenExample">
       <div class="accordion-item">

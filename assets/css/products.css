@@ -1,22 +1,22 @@
 /* #region Блок товаров */
 .products_txt {
   background-color: #c8c8c8;
-  height: 50px;
+  height: 40px;
   margin-top: 30px;
 }
 .products_txt > p {
   text-align: center;
   font-family: "Lora-bold";
   color: #191616;
-  font-size: 23px;
-  padding: 6px;
+  font-size: 20px;
+  padding: 4px;
 }
 .products_txt > p:hover {
   cursor: default;
 }
 .sorting {
   position: absolute;
-  top: 130px;
+  top: 125px;
   right: 10px;
 }
 #sort {
@@ -30,7 +30,6 @@ label:hover {
 }
 /* Кнопка выпадающего списка */
 .dropbtn {
-  
   margin-top: 10px;
   background-color: #19161600;
   font-family: "Lora-bold";
@@ -84,7 +83,10 @@ label:hover {
 .features {
   margin-left: 30px;
   margin-top: 30px;
+  position: sticky;
+  top: 110px;
 }
+
 .accordion-item {
   border: 0px;
 }
@@ -284,3 +286,218 @@ hr {
   box-shadow: none;
 }
 /* #endregion */
+@media screen and (max-width: 1124px) and (min-width: 990px) {
+  /* #region Карточки товаров*/
+  .products {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .card {
+    transition: 0.6s;
+    margin-top: 10px;
+    margin-left: 15px;
+    background-color: #191616;
+    border: none;
+    border-radius: 5px;
+    color: #fefefe;
+    font-family: "Wremena-norm";
+    width: 300px;
+    min-height: 420px;
+    scale: 0.9;
+  }
+  .pic_card {
+    border-radius: 5px 5px 0 0;
+    width: 100%;
+    /* max-width: 250px; */
+    height: 240px;
+    object-fit: cover;
+  }
+  /* #endregion */
+}
+@media screen and (min-width: 940px) and (max-width: 990px) {
+  .products {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .card {
+    transition: 0.6s;
+    margin-top: 10px;
+    margin-left: 15px;
+    background-color: #191616;
+    border: none;
+    border-radius: 5px;
+    color: #fefefe;
+    font-family: "Wremena-norm";
+    width: 280px;
+    min-height: 420px;
+    scale: 0.9;
+  }
+}
+@media screen and (min-width: 630px) and (max-width: 850px) {
+  .products {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+@media screen and (min-width: 850px) and (max-width: 940px) {
+  .products {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .card {
+    transition: 0.6s;
+    margin-top: 10px;
+    margin-left: 15px;
+    background-color: #191616;
+    border: none;
+    border-radius: 5px;
+    color: #fefefe;
+    font-family: "Wremena-norm";
+    width: 250px;
+    min-height: 420px;
+    scale: 0.9;
+  }
+
+  .pic_card {
+    border-radius: 5px 5px 0 0;
+    width: 100%;
+    /* max-width: 250px; */
+    height: 240px;
+    object-fit: cover;
+  }
+}
+@media screen and (min-width: 575px) and (max-width: 630px) {
+  .sticky {
+    display: none;
+  }
+  .products {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .card {
+    transition: 0.6s;
+    margin-top: 10px;
+    margin-left: 15px;
+    background-color: #191616;
+    border: none;
+    border-radius: 5px;
+    color: #fefefe;
+    font-family: "Wremena-norm";
+    margin-left: 10%;
+    width: 250px;
+    min-height: 420px;
+    scale: 0.9;
+  }
+  .pic_card {
+    border-radius: 5px 5px 0 0;
+    width: 100%;
+    /* max-width: 250px; */
+    height: 240px;
+    object-fit: cover;
+  }
+}
+@media screen and (min-width: 450px) and (max-width: 575px) {
+  .card {
+    transition: 0.6s;
+    margin-top: 10px;
+    margin-left: 15px;
+    background-color: #191616;
+    border: none;
+    border-radius: 5px;
+    color: #fefefe;
+    font-family: "Wremena-norm";
+    margin-left: 13%;
+    width: 200px;
+    min-height: 420px;
+    scale: 0.9;
+  }
+  .pic_card {
+    border-radius: 5px 5px 0 0;
+    width: 100%;
+    /* max-width: 250px; */
+    height: 240px;
+    object-fit: cover;
+  }
+  .sticky {
+    display: none;
+  }
+  .products {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+@media screen and (min-width: 320px) and (max-width: 450px) {
+  .products_block{
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .products_txt {
+    height: 30px;
+  }
+  .products_txt > p {
+    font-size: 16px;
+  }
+  .card_head>h4{
+    font-size: 16px;
+  }
+  .card_main>p{
+    font-size: 14px;
+  }
+  .card {
+    transition: 0.6s;
+    margin-top: 10px;
+
+    background-color: #191616;
+    border: none;
+    border-radius: 5px;
+    color: #fefefe;
+    font-family: "Wremena-norm";
+    margin-left: 10%;
+    width: 250px;
+    min-height: 320px;
+    scale: 0.9;
+  }
+  .card_main,.card_head>h4,.card_gead>h5{
+    font-size: 16px;
+  }
+  .card_sizes>h5{
+    font-size: 14px;
+  }
+  .pic_card {
+    border-radius: 5px 5px 0 0;
+    width: 100%;
+    /* max-width: 250px; */
+    height: 150px;
+    object-fit: cover;
+  }
+  .accordion-button {
+   font-size: 16px;
+  }
+  .features{
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  label{
+    font-size: 14px;
+  }
+  .products {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .sorting {
+    display: none;
+  }
+}
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .sorting {
+    top: 100px;
+  }
+}

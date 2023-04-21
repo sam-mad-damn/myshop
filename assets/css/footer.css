@@ -4,7 +4,7 @@
   justify-content: center;
   padding: 10px;
   display: flex;
-justify-content: space-around;
+  justify-content: space-around;
   gap: 120px;
   background-color: #191616;
   height: 160px;
@@ -19,9 +19,8 @@ justify-content: space-around;
   display: flex;
   flex-direction: column;
   justify-content: center;
-
 }
-.footer_logo_pic{
+.footer_logo_pic {
   width: 220px;
   object-fit: cover;
 }
@@ -30,12 +29,13 @@ justify-content: space-around;
   margin-left: 20px;
   width: 200px;
 }
-.profile,.help{
+.profile,
+.help {
   display: flex;
   flex-direction: column;
   gap: 0px;
 }
-a>p{
+a > p {
   margin-bottom: 0px;
 }
 .profile > a {
@@ -58,8 +58,68 @@ a>p{
 .profile > a :hover {
   color: #877cb9;
 }
-@media screen and (min-width: 320px) and (max-width: 768px) {
-.footer{
-  display: none;
+@media screen and (min-width: 320px) and (max-width: 500px) {
+  .footer {
+    gap: 50px;
+  }
+  .fot_main {
+    border-bottom: #fefefe 2px solid;
+    padding-bottom: 5px;
+    font-size: 18px;
+    margin-top: 10px;
+  }
+  .profile > a,
+  .help > a {
+    text-decoration: none;
+    font-size: 15px;
+    text-align: center;
+    color: #fefefe;
+    font-family: "Wremena-norm";
+    transition: 0.4s;
+  }
+  .footer_logo {
+    display: none;
+  }
 }
+@media screen and (min-width: 880px) and (max-width: 1024px) {
+  /* Блок футера */
+  .footer {
+    /* margin-top: 90px; */
+    justify-content: center;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    gap: 90px;
+    background-color: #191616;
+    height: 190px;
+  }
+}
+@media screen and (min-width: 500px) and (max-width: 880px) {
+  .footer {
+    gap: 50px;
+  }
+  .fot_main {
+    border-bottom: #fefefe 2px solid;
+    padding-bottom: 5px;
+    font-size: 18px;
+    margin-top: 10px;
+  }
+  .profile > a,
+  .help > a {
+    text-decoration: none;
+    font-size: 15px;
+    text-align: center;
+    color: #fefefe;
+    font-family: "Wremena-norm";
+    transition: 0.4s;
+  }
+  .footer_logo_pic {
+    width: 180px;
+    object-fit: cover;
+  }
+  .footer_pic {
+    margin-top: 10px;
+    margin-left: 20px;
+    width: 160px;
+  }
 }

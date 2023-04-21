@@ -22,50 +22,69 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php" ?>
         </div>
       </a>
     <?php endforeach ?>
-    <a href="/app/tables/products/products.php"><img id="arrow" src="/assets/img/стрелка.png" alt="Перейти к товарам" /></a>
+    <div><a href="/app/tables/products/products.php"><img id="arrow" src="/assets/img/стрелка.png" alt="Перейти к товарам" /></a>
+    <a class="go_products" href="/app/tables/products/products.php">Перейти к товарам</a>
+    </div>
   </div>
 </div>
 <div class="main_block">
-  <div class="products">
-    <div class="title">
-      <h4>Краткое описание товаров(<span class="products_count total_count"><?= $total_count ?? 0 ?></span>)</h4>
-      <button class="btn clean_basket">Очистить корзину</button>
-    </div>
-    <div class="items">
-      <?php foreach ($basket as $item) : ?>
-        <div class="product" id="<?= $item->id ?>">
-          <div class="product_input">
-            <a class="product_a" href="/app/tables/products/product.php?id=<?= $item->product_id ?>?size=<?= $item->size_id ?>">
-              <h4 for="product_1"><?= $item->name ?></h4>
-            </a>
-            <button class="btn del_product delete" data-size-id="<?= $item->size_id ?>" data-product-id="<?= $item->product_id ?>">
-              &#215;</button>
-          </div>
-          <div class="info_product">
-            <a class="product_a" href="/app/tables/products/product.php?id=<?= $item->product_id ?>?size=<?= $item->size_id ?>"><img class="main_pic" src="<?= $item->photo ?>" alt="" /></a>
-            <div class="main_info">
+  <div class="m">
+    <div class="products">
+      <div class="title">
+        <h4>Краткое описание товаров(<span class="products_count total_count"><?= $total_count ?? 0 ?></span>)</h4>
+        <button class="btn clean_basket">Очистить корзину</button>
+      </div>
+      <div class="items">
+        <?php foreach ($basket as $item) : ?>
+          <div class="product" id="<?= $item->id ?>">
+            <div class="product_input">
               <a class="product_a" href="/app/tables/products/product.php?id=<?= $item->product_id ?>?size=<?= $item->size_id ?>">
-                <h5 class="description">
-                  <?= $item->description ?>
-                </h5>
+                <h4 for="product_1"><?= $item->name ?></h4>
               </a>
-              <div class="sizes">
-                <p>Размер:</p>
-                <button class="card_size"><?= $item->size ?></button>
+              <button class="btn del_product delete" data-size-id="<?= $item->size_id ?>" data-product-id="<?= $item->product_id ?>">
+                &#215;</button>
+            </div>
+            <div class="info_product">
+              <a class="product_a" href="/app/tables/products/product.php?id=<?= $item->product_id ?>?size=<?= $item->size_id ?>"><img class="main_pic" src="<?= $item->photo ?>" alt="" /></a>
+              <div class="main_info">
+                <a class="product_a" href="/app/tables/products/product.php?id=<?= $item->product_id ?>?size=<?= $item->size_id ?>">
+                  <h5 class="description">
+                    <?= $item->description ?>
+                  </h5>
+                </a>
+                <div class="sizes">
+                  <p>Размер:</p>
+                  <button class="card_size"><?= $item->size ?></button>
+                </div>
+                <p>Цена(за шт): <span class="price"><?= $item->price ?> р.</span></p>
+                <div class="count">
+                  <p>Количество:</p>
+                  <button id="count_del" class="del count_btn" data-product-id="<?= $item->product_id ?>" data-size-id="<?= $item->size_id ?>" class="count_btn">-</button>
+                  <label class="count_prod" id="count-<?= $item->product_id ?>"><?= $item->quantity ?></label>
+                  <button data-size-id="<?= $item->size_id ?>" data-product-id="<?= $item->product_id ?>" class="add count_btn" id="count_add">+</button>
+                </div>
+                <p>Стоимость: <span class="tot_price"><?= Basket::get_total_cost($_SESSION["id"])  ?> р.</span></p>
               </div>
-              <p>Цена(за шт): <span class="price"><?= $item->price ?> р.</span></p>
-              <div class="count">
-                <p>Количество:</p>
-                <button id="count_del" class="del count_btn" data-product-id="<?= $item->product_id ?>" data-size-id="<?= $item->size_id ?>" class="count_btn">-</button>
-                <label class="count_prod" id="count-<?= $item->product_id ?>"><?= $item->quantity ?></label>
-                <button data-size-id="<?= $item->size_id ?>" data-product-id="<?= $item->product_id ?>" class="add count_btn" id="count_add">+</button>
-              </div>
-              <p>Стоимость: <span class="tot_price"><?= Basket::get_total_cost($_SESSION["id"])  ?> р.</span></p>
             </div>
           </div>
-        </div>
-      <?php endforeach ?>
+        <?php endforeach ?>
 
+      </div>
+
+    </div>
+    <div class="address">
+      <div class="address_title">
+        <h4>Пункт выдачи</h4>
+        <button class="btn change_address">Изменить</button>
+      </div>
+      <p>
+        Адрес:
+        <span class="address_txt"><?php echo ($point->city . ", " . $point->name . ", ежедневно " . $point->work_time) ?></span>
+      </p>
+      <p>
+        Примерная дата доставки:
+        <span class="date_txt"><?= $data ?></span>
+      </p>
     </div>
   </div>
   <div class="result">
@@ -76,7 +95,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php" ?>
     </p>
     <p>
       Доставка:
-      <span class="res_address"><?php echo($point->city.", ".$point->name) ?></span>
+      <span class="res_address"><?php echo ($point->city . ", " . $point->name) ?></span>
     </p>
     <p>
       Оплата:
@@ -87,20 +106,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php" ?>
     </p>
     <button class="res_btn make-order" data-point="<?= $point->id ?>" data-user="<?= $_SESSION["id"] ?>">ОФОРМИТЬ ЗАКАЗ</button>
   </div>
-  <div class="address">
-    <div class="address_title">
-      <h4>Пункт выдачи</h4>
-      <button class="btn change_address">Изменить</button>
-    </div>
-    <p>
-      Адрес:
-      <span class="address_txt"><?php echo ($point->city.", ".$point->name . ", ежедневно " . $point->work_time) ?></span>
-    </p>
-    <p>
-      Примерная дата доставки:
-      <span class="date_txt"><?= $data ?></span>
-    </p>
-  </div>
+
 </div>
 </div>
 
@@ -113,7 +119,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php" ?>
       <div class="change_addresses">
         <?php foreach ($points as $item) : ?>
           <a href="/app/tables/baskets/basket.php?point_id=<?= $item->id ?>" class="modal_btn">
-            <? echo ($item->city.", ".$item->name . ", " . $item->work_time) ?>
+            <? echo ($item->city . ", " . $item->name . ", " . $item->work_time) ?>
           </a>
         <?php endforeach ?>
       </div>

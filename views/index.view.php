@@ -67,14 +67,14 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php" ?>
           
             <tr>
               <th><div>Город <span class="city"><?= $item->name ?></span></div></th>
-              <th>Время работы</th>
+              <th class='time'>Время работы</th>
             </tr>
           </thead>
           <tbody>
             <?php foreach (Basket::find_points_by_city($item->id) as $point) : ?>
               <tr>
                 <td><?= $point->name ?></td>
-                <td><?= $point->work_time ?></td>
+                <td class="time"><?= $point->work_time ?></td>
               </tr>
             <?php endforeach ?>
 

@@ -8,7 +8,7 @@
       <div class="block">
         <img class="collection_pic" src="<?= $item->main_photo ?>" alt="" />
         <div class="collection_desc">
-          <h3><?= mb_strtoupper($item->name) ?></h3>
+          <h4><?= mb_strtoupper($item->name) ?></h4>
           <hr>
           <p><?= $item->description ?></p>
           <button class="btn ">ПЕРЕЙТИ</button>

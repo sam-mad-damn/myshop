@@ -11,7 +11,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php";
     <img class="main_photo" src="<?= $product->photo ?>" alt="">
   </div>
   <div class="info">
-  <?php if (isset($_SESSION["error"]["auth"])) : ?>
+    <?php if (isset($_SESSION["error"]["auth"])) : ?>
       <span class="error"><?= $_SESSION["error"]['auth'] ?></span>
     <?php endif ?>
     <?php if (isset($_SESSION["error"]["size"])) : ?>
@@ -50,12 +50,12 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php";
             <p><a href="/app/tables/baskets/basket.php"> Товар уже есть в корзине</a></p>
         <?php endif;
         endif; ?>
-        
+
       </form>
-      
+
     <?php endif; ?>
   </div>
-  
+
 </div>
 <div class="collection_txt">
   <p>ТОВАРЫ ИЗ ЭТОЙ КОЛЛЕКЦИИ</p>
@@ -70,7 +70,9 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php";
         </div>
       </a>
     <?php endforeach ?>
+    <div>
     <a href="/app/tables/products/products.php?collection_id=<?= $product->collection_id ?>"><img id="arrow" src="/assets/img/стрелка.png" alt="Перейти к товарам этой коллекции" /></a>
+    <a class="go_products" href="/app/tables/products/products.php?collection_id=<?= $product->collection_id ?>">Перейти к товарам</a></div>
   </div>
 </div>
 

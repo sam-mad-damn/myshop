@@ -12,13 +12,13 @@
 }
 .products_txt {
   background-color: #c8c8c8;
-  height: 50px;
+  height: 40px;
 }
 .products_txt > p {
   text-align: center;
   font-family: "Lora-bold";
   color: #191616;
-  font-size: 23px;
+  font-size: 20px;
   padding: 6px;
 }
 .products_txt > p:hover {
@@ -95,13 +95,13 @@
 .collection_txt {
   margin-top: 120px;
   background-color: #c8c8c8;
-  height: 50px;
+  height: 40px;
 }
 .collection_txt > p {
   text-align: center;
   font-family: "Lora-bold";
   color: #191616;
-  font-size: 23px;
+  font-size: 20px;
   padding: 6px;
 }
 .collections_card {
@@ -120,7 +120,7 @@
   border: #191616 1px solid;
   color: #fefefe;
   font-family: "Wremena-norm";
-  font-size: 23px;
+  font-size: 20px;
   width: 100%;
   max-width: 350px;
   height: 68px;
@@ -137,13 +137,13 @@
 .news_txt {
   margin-top: 120px;
   background-color: #c8c8c8;
-  height: 50px;
+  height: 40px;
 }
 .news_txt > p {
   text-align: center;
   font-family: "Lora-bold";
   color: #191616;
-  font-size: 23px;
+  font-size: 20px;
   padding: 6px;
 }
 .news_all {
@@ -227,14 +227,14 @@
 .addresses_txt {
   margin-top: 80px;
   background-color: #c8c8c8;
-  height: 50px;
+  height: 40px;
   display: block;
 }
 .addresses_txt > p {
   text-align: center;
   font-family: "Lora-bold";
   color: #191616;
-  font-size: 23px;
+  font-size: 20px;
   margin-bottom: 0px;
   padding: 6px;
 }
@@ -279,7 +279,7 @@
 }
 /* #endregion */
 
-@media screen and (max-width: 1024px) and (min-width: 880px) {
+@media screen and (max-width: 1024px) and (min-width: 881px) {
   /* картинки показов */
   .img_a {
     margin-top: 50%;
@@ -321,23 +321,25 @@
     max-width: 380px;
     margin-left: 32%;
   }
+  #arrow {
+    display: none;
+  }
+  .go_products{
+    display: block;
+    margin-left: 10px;
+    margin-top: 40px;
+    /* margin-left: -20px; */
+  }
 
-  .logo {
-    width: 170px;
-    height: 40px;
-    margin-left: 30px;
-    margin-top: 25px;
-    transition: 0.4s;
-  }
-  .headers {
-    display: flex;
-    flex-direction: row;
-    margin-top: 30px;
-    gap: 40px;
-  }
 }
 @media screen and (min-width: 768px) and (max-width: 880px){
-  
+  .news_txt > p, .addresses_txt > p,.collection_txt > p,.products_txt > p {
+    font-size: 20px;
+    padding: 4px;
+  }
+  .news_txt, .addresses_txt,.collection_txt,.products_txt{
+    height: 40px;
+  }
   .img_a {
     margin-top: 50%;
     width: 100%;
@@ -353,82 +355,30 @@
     grid-template-columns: repeat(2, 370px);
     justify-items: center;
   }
-  .card_img {
-    border-radius: 5px 5px 0 0;
-    width: 100%;
-    min-width: 300px;
-    height: 240px;
-    object-fit: cover;
-    /* object-fit: cover; */
-    /* width: 100%; */
-    /* max-width: 250px; */
-    /* height: 100%;
-    max-height: 250.86px;
-    border-radius: 4px 4px 0px 0px; */
-  }
   #arrow {
     display: none;
   }
   .go_products {
     display: block;
+    margin-left: 10px;
+    margin-top: 40px;
   }
   .address {
     display: block;
     padding: 20px;
     width: 100%;
-    max-width: 400px;
+    max-width: 800px;
     align-self: center;
-    margin-left: 5%;
+    /* margin-left: 5%; */
   }
 
   .addresses {
     align-self: center;
     width: 100%;
-    min-width: 600px;
+    /* min-width: 600px; */
     height: auto;
-    font-size: 20px;
+    font-size: 18px;
   }
-  /* Блок футера */
-  .footer {
-    display: none;
-  }
-  .navigation {
-    position: cover;
-    height: 90px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    background: #191616;
-  }
-  .logo {
-    width: 160px;
-    height: 40px;
-    margin-left: 30px;
-    margin-top: 25px;
-    transition: 0.4s;
-  }
-  .headers {
-    display: flex;
-    flex-direction: row;
-    margin-top: 30px;
-    gap: 20px;
-  }
-  #cart {
-    width: 50px;
-    height: 50px;
-    /* position: absolute; */
-    /* z-index: 10; */
-    /* top: 120px; */
-    /* left: 175px; */
-    margin-right: 0px;
-    /* margin-top: -5px; */
-    transition: 0.4s;
-  }
-  #cart:hover {
-    scale: 1.1;
-    cursor: pointer;
-  }
-
   .block_news {
     height: min-content;
   }
@@ -436,55 +386,45 @@
     display: none;
   }
 }
-@media screen and (min-width: 880px) and (max-width: 1024px) {
-  .map {
+
+@media screen and (min-width: 320px) and (max-width: 425px) {
+  #arrow {
     display: none;
   }
-  .addresses {
-    align-self: center;
-    width: 100%;
-    min-width: 800px;
-    height: auto;
-    font-size: 15px;
-    /* margin-left: 0%; */
-  }
-  .address {
+  .go_products {
+    margin-left: 0px;
+    margin-top: 40px;
     display: block;
-    padding: 20px;
-    width: 100%;
-    min-width: 350px;
-    align-self: center;
-    /* margin-left: 15%; */
-    /* font-size: 15px; */
+    font-size: 14px;
   }
-  /* Блок футера */
-  .footer {
-    /* margin-top: 90px; */
-    justify-content: center;
-    padding: 10px;
-    display: flex;
-    justify-content: space-around;
-    gap: 90px;
-    background-color: #191616;
-    height: 190px;
-  }
-  .logo {
-    width: 160px;
-    height: 40px;
-    margin-left: 30px;
-    margin-top: 25px;
-    transition: 0.4s;
-  }
-  .headers {
-    display: flex;
-    flex-direction: row;
-    margin-top: 30px;
-    gap: 20px;
-  }
-}
-
-@media screen and (min-width: 320px) and (max-width: 768px){
   
+  .news_txt > p, .addresses_txt > p,.collection_txt > p,.products_txt > p {
+    font-size: 16px;
+    padding: 4px;
+    
+  }
+  .news_txt, .addresses_txt,.collection_txt{
+    height: 30px;
+    margin-top: 40px;
+  }
+  .products_txt{
+    height: 30px;
+  }
+  .news_all{
+    margin-top: 0px;
+  }
+  .new_head{
+    font-size: 16px;
+  }
+  .new_main,.new_next{
+    font-size: 14px;
+  }
+  .time{
+    display: none;
+  }
+  table{
+    font-size: 16px;
+  }
   /* карточки товаров */
   .products_cards {
     align-items: center;
@@ -493,11 +433,16 @@
     
     justify-items: center;
   }
+  
+  .card>p {
+    margin-top: 5%;
+    font-size: 14px;
+  }
   .card_img {
     border-radius: 5px 5px 0 0;
     width: 100%;
-    min-width: 300px;
-    height: 240px;
+    width: 200px;
+    height: 220px;
     object-fit: cover;
     /* object-fit: cover; */
     /* width: 100%; */
@@ -513,16 +458,40 @@
   .img_a {
     display: none;
   }
+  .map {
+    display: none;
+  }
+  .address {
+    display: block;
+    padding: 20px;
+    width: 100%;
+    max-width: 700px;
+    align-self: center;
+    /* margin-left: 5%; */
+  }
+
   .addresses {
     align-self: center;
     width: 100%;
-    max-width: 600px;
-    min-width: 300px;
+    /* min-width: 600px; */
     height: auto;
-    font-size: 15px;
-    /* margin-left: 0%; */
+    font-size: 16px;
   }
   .block_news{
-    max-height: 400px;
+    height: max-content;
+    /* max-height: 450px; */
   }
+  .collections_btn {
+    background-color: #191616;
+    border: #191616 1px solid;
+    color: #fefefe;
+    font-family: "Wremena-norm";
+    font-size: 16px;
+    width: 100%;
+    max-width: 350px;
+    height: 40px;
+    margin-top: 30px;
+    transition: 0.4s;
+  }
+  
 }

@@ -49,14 +49,15 @@
       </div>
 
     </div>
-    <div class="hamburger-menu">
+    <div class="hamburger-menu sticky-top">
       <input id="menu__toggle" type="checkbox" />
+      <li><a  href="/"><img class="logo-h" src="/assets/img/лого.png" alt="Логотип" /></a></li>
       <label class="menu__btn" for="menu__toggle">
         <span></span>
       </label>
 
       <ul class="menu__box">
-        <li><a  href="/"><img class="logo" src="/assets/img/лого.png" alt="Логотип" /></a></li>
+        
         <li><a class="menu__item" id="collec" href="/app/tables/collections/collections.php">
             Коллекции
           </a></li>

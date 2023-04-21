@@ -79,6 +79,21 @@ a {
   cursor: pointer;
 }
 
+.hamburger-menu{
+  background-color: #191616;
+  height: 70px;
+  display: none;
+}
+.logo-h{
+  position: fixed;
+  z-index: 5;
+  width: 160px;
+  height: 40px;
+  left: 7%;
+  top: 2%;
+  transition: 0.4s;
+  display: none;
+}
 #menu__toggle {
   opacity: 0;
 }
@@ -175,24 +190,8 @@ a {
   color: #877cb9;
 }
 @media screen and (min-width: 320px) and (max-width: 768px) {
-  #menu__toggle {
-    opacity: 0;
-  }
-
-  #menu__toggle:checked ~ .menu__btn > span {
-    transform: rotate(45deg);
-  }
-  #menu__toggle:checked ~ .menu__btn > span::before {
-    top: 0;
-    transform: rotate(0);
-  }
-  #menu__toggle:checked ~ .menu__btn > span::after {
-    top: 0;
-    transform: rotate(90deg);
-  }
-  #menu__toggle:checked ~ .menu__box {
-    visibility: visible;
-    right: 0;
+  .hamburger-menu{
+    display: block;
   }
 
   .menu__btn {
@@ -222,14 +221,7 @@ a {
 
     transition-duration: 0.25s;
   }
-  .menu__btn > span::before {
-    content: "";
-    top: -8px;
-  }
-  .menu__btn > span::after {
-    content: "";
-    top: 8px;
-  }
+
 
   .menu__box {
     display: block;
@@ -272,15 +264,66 @@ a {
     background-color: #efefef;
     color: #877cb9;
   }
-  .logo {
-    width: 160px;
-    height: 40px;
-    margin-left: 20%;
-    margin-bottom: 25px;
-    transition: 0.4s;
+  .logo-h {
+    display: block;
+   
   }
   .navigation {
     display: none;
+  }
+}
+@media screen and (min-width: 880px) and (max-width: 1024px) {
+  .logo {
+    width: 160px;
+    height: 40px;
+    margin-left: 30px;
+    margin-top: 25px;
+    transition: 0.4s;
+  }
+  .headers {
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    gap: 20px;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 880px){
+ 
+  .navigation {
+    position: cover;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background: #191616;
+  }
+  .logo {
+    width: 160px;
+    height: 40px;
+    margin-left: 30px;
+    margin-top: 25px;
+    transition: 0.4s;
+  }
+  .headers {
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    gap: 20px;
+  }
+  #cart {
+    width: 50px;
+    height: 50px;
+    /* position: absolute; */
+    /* z-index: 10; */
+    /* top: 120px; */
+    /* left: 175px; */
+    margin-right: 0px;
+    /* margin-top: -5px; */
+    transition: 0.4s;
+  }
+  #cart:hover {
+    scale: 1.1;
+    cursor: pointer;
   }
 
 }
