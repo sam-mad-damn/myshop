@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+    document.querySelector(".basket_is_empty").innerHTML=''
     modalWork(".change_address",".modal-wrapper",".modal__close");
     isBasketEmpty()
     //функция проверки пустоты корзины, вывод Корзина пуста
@@ -53,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
             //отправляем запрос на создание заказа
             outOnPage("add_order", {"user_id":e.target.dataset.user,"point":e.target.dataset.point,"pay_type": payType});
             //Надпись Заказ оформлен
-            document.querySelector(".basket_is_empty").innerHTML = "Заказ успешно оформлен!";
+            document.querySelector(".basket_is_empty").innerHTML = "Заказ успешно оформлен! Вы можете следить за ним в своем профиле в разделе 'Мои заказы'.";
             //очистка всей корзины
             document.querySelectorAll(".item").forEach(item => item.remove())
         }

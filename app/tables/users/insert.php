@@ -9,7 +9,7 @@ $surname = htmlspecialchars($_POST["surname"]);
 $login = htmlspecialchars($_POST["login"]);
 $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
 
-var_dump($_POST);
+
 if (isset($_POST["btn_reg"])) {
     $_SESSION["name"] = $_POST["name"];
     $_SESSION["surname"] = $_POST["surname"];

@@ -1,4 +1,4 @@
-body{
+body {
   min-height: 500px;
 }
 
@@ -52,16 +52,15 @@ body{
 .form_inp {
   display: flex;
   gap: 10px;
-  
 }
-.form_inp>input {
-font-size: 18px;
+.form_inp > input {
+  font-size: 18px;
 }
 label {
   font-size: 18px;
 }
-.span_label{
-   color: #191616;
+.span_label {
+  color: #191616;
 }
 
 #change_profile,
@@ -74,7 +73,7 @@ label {
   transition: 0.5s;
   background-color: #d2d2d2;
 }
-.save_profile{
+.save_profile {
   font-family: "Lora-bold";
   font-size: 18px;
   color: #191616;
@@ -82,20 +81,21 @@ label {
   transition: 0.5s;
   background-color: #d2d2d2;
 }
-#exit{
+#exit {
   margin-left: 10px;
 }
 #exit:hover,
-#change_profile:hover,.save_profile:hover {
+#change_profile:hover,
+.save_profile:hover {
   background-color: #877cb9;
   color: #fefefe;
 }
 
-#data-tab-pane{
+#data-tab-pane {
   border: #9d9d9d 1px solid;
   padding: 10px;
 }
-.error{
+.error {
   font-size: 18px;
   margin: 0px;
   color: crimson;
@@ -103,63 +103,71 @@ label {
 /* #endregion */
 
 /* #region Заказы*/
-.order{
+.order {
   padding: 10px;
   font-family: "Lora-bold";
   font-size: 16px;
   border: #9d9d9d 1px solid;
-  
 }
-.order_products{
+.order_products {
   margin-left: 30px;
   display: grid;
-  grid-template-columns: repeat(2,1fr);
-  
+  grid-template-columns: repeat(2, 1fr);
+
   justify-content: space-between;
   gap: 20px;
   padding: 10px;
 }
-.order_item{
+.order_item {
   display: flex;
   gap: 20px;
   padding: 10px;
   min-height: min-content;
 }
-.order_item:hover{
+.order_item:hover {
   cursor: pointer;
   border: #9d9d9d 1px solid;
 }
-.order_item:hover .order_pic{
+.order_item:hover .order_pic {
   box-shadow: none;
-
 }
-.order_number{
+.order_number {
   color: #877cb9;
 }
-.info_product>p, .order_status, .order_date , .order_address{
+.info_product > p,
+.order_status,
+.order_date,
+.order_address {
   color: #7b7b7b;
   font-family: "Lora-bold";
 }
-span, #order_status, #order_date, #order_address{
+span,
+#order_status,
+#order_date,
+#order_address {
   color: #191616;
   margin-left: 10px;
   font-family: "Lora-bold";
 }
-.order_pic{
+.order_pic {
   object-fit: cover;
-  width: 220px;height: 250px;
+  width: 220px;
+  height: 250px;
   border: #9d9d9d 1px solid;
   /* box-shadow: #7e7e7e 0px 5px 15px; */
 }
 
-.order_title, .order_status, .order_date, .order_address{
+.order_title,
+.order_status,
+.order_date,
+.order_address {
   display: flex;
   margin-top: 10px;
   font-size: 20px;
 }
 
-.empty_order{
-  font-size:18px;
+.empty_order {
+  font-size: 18px;
   margin-bottom: 180px;
   font-family: "Lora-bold";
   padding: 30px;
@@ -175,46 +183,115 @@ span, #order_status, #order_date, #order_address{
   /* color: #fefefe; */
   /* font-family: "Wremena-norm"; */
 }
-.tab-pane>h4{
+.tab-pane > h4 {
   font-family: "Lora-bold";
 }
 /* #endregion */
 
 /* #region Покупки*/
-.buy{
+.buy {
   padding: 10px;
   display: grid;
-  grid-template-columns: repeat( 4, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 30px;
   min-height: 100px;
 }
-.buy_item{
+.buy_item {
   padding: 10px;
   display: flex;
   flex-direction: column;
 }
-.buy_item:hover .buy_pic{
+.buy_item:hover .buy_pic {
   box-shadow: none;
 }
-.buy_item:hover{
-/* box-shadow: #7e7e7e 0px 5px 15px; */
-border: #9d9d9d 1px solid;
-cursor: pointer;
+.buy_item:hover {
+  /* box-shadow: #7e7e7e 0px 5px 15px; */
+  border: #9d9d9d 1px solid;
+  cursor: pointer;
 }
-.buy_info{
+.buy_info {
   display: flex;
   justify-content: space-between;
   font-family: "Lora-bold";
   font-size: 20px;
   color: #191616;
 }
-.buy_info>p{
+.buy_info > p {
   margin-bottom: 0px;
   margin-top: 10px;
 }
-.buy_pic{
-  width: 100%;height: 220px;
+.buy_pic {
+  width: 100%;
+  height: 220px;
   object-fit: cover;
   /* box-shadow: #7e7e7e 0px 5px 15px; */
 }
 /* #endregion */
+
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+}
+@media screen and (max-width: 767px) and (min-width: 420px) {
+}
+@media screen and (max-width: 420px) and (min-width: 320px) {
+  /* профиль */
+  .profile{
+    margin-bottom: 42%;
+  }
+  .tab-pane {
+    width: 100%;
+  }
+  /* личные данные */
+  .profile_form {
+    width: 100%;
+    color: #191616;
+    margin-left: 0%;
+  }
+  label {
+    font-size: 14px;
+  }
+  .nav {
+    font-size: 16px;
+  }
+  .save_profile,
+  #change_profile,
+  #exit {
+    font-size: 16px;
+    border: none;
+    margin-left: 0%;
+  }
+  .form_inp > input {
+    font-size: 14px;
+  }
+  /* заказы */
+  .order_pic {
+    object-fit: cover;
+    width: 100%;
+    height: 200px;
+    border: #9d9d9d 1px solid;
+    /* box-shadow: #7e7e7e 0px 5px 15px; */
+}
+.order_title, .order_status, .order_date, .order_address {
+  font-size: 16px;
+}
+.order_item {
+  width: 100%;
+  min-width: 350px;
+  display: grid;
+  gap: 20px;
+  padding: 10px;
+  height: 100%;
+}
+.order_products{
+  margin-left: 0px;
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 0px;
+}
+.info_product>p{
+  font-size: 14px;
+}
+/* покупки */
+.buy{
+  grid-template-columns: 1fr;
+}
+}

@@ -412,6 +412,7 @@
   }
   .news_all{
     margin-top: 0px;
+    display: grid;
   }
   .new_head{
     font-size: 16px;
@@ -455,9 +456,19 @@
     display: none;
   }
   /* картинки показов */
-  .img_a {
-    display: none;
-  }
+  .img_a{
+
+      width: 100%; 
+     max-width: 50%;
+    height: 100%;
+    transition: 0.3s;
+    display: block;
+   
+    margin-left: 25%;
+}
+#picnewleft{
+  margin-top: 10%;
+}
   .map {
     display: none;
   }

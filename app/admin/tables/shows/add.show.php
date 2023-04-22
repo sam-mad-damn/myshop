@@ -4,8 +4,7 @@ use App\models\Articles;
 
 include_once $_SERVER["DOCUMENT_ROOT"] . "/bootstrap.php";
 
-var_dump($_POST);
-var_dump($_FILES);
+
 
 if (isset($_FILES["photo"])) {
     foreach ($_FILES["photo"]["error"] as $key => $error) {
@@ -14,7 +13,7 @@ if (isset($_FILES["photo"])) {
         $tmp_name = $_FILES["photo"]["tmp_name"][$key];
         $error = $error;
         $size = $_FILES["photo"]["size"][$key];
-        var_dump($error);
+       
 
         //проверка расширения файла
         $extensions = ["png", "gif", "jpeg", "jpg", "webp", "jfif"];
@@ -60,7 +59,7 @@ if (empty($_SESSION["error"])) {
 
     $_SESSION["good"] = "Показ успешно добавлен";
     if (isset($_POST["add"])) {
-        var_dump($_POST);
+        
         $name = htmlspecialchars($_POST["name"]);
         $desc = htmlspecialchars($_POST["desc"]);
         if (strlen($desc) >= 10) {

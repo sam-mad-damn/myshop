@@ -112,6 +112,7 @@ a {
 #menu__toggle:checked ~ .menu__box {
   visibility: visible;
   right: 0;
+  transition: 0.25s;
 }
 
 .menu__btn {
@@ -139,7 +140,7 @@ a {
 
   background-color: #616161;
 
-  transition-duration: 0.25s;
+  transition: 0.25s;
 }
 .menu__btn > span::before {
   content: "";
@@ -168,7 +169,7 @@ a {
   background-color: #191616;
   box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.2);
 
-  transition-duration: 0.25s;
+  transition: 0.25s;
 }
 
 .menu__item {
@@ -183,7 +184,7 @@ a {
 
   text-decoration: none;
 
-  transition-duration: 0.25s;
+  transition: 0.25s;
 }
 .menu__item:hover {
   background-color: #efefef;
@@ -219,7 +220,7 @@ a {
 
     background-color: #877cb9;
 
-    transition-duration: 0.25s;
+    transition: 0.25s;
   }
 
 
@@ -241,7 +242,7 @@ a {
     background-color: #191616;
     box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.2);
 
-    transition-duration: 0.25s;
+    transition: 0.25s;
 
     z-index: 2;
   }
@@ -258,7 +259,7 @@ a {
 
     text-decoration: none;
 
-    transition-duration: 0.25s;
+    transition: 0.25s;
   }
   .menu__item:hover {
     background-color: #efefef;

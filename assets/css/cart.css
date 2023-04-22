@@ -13,6 +13,10 @@
 
   font-family: "Lora-bold";
 }
+.basket_is_empty{
+  font-size: 16px;
+  color: rgb(43, 154, 61);
+}
 .go_prod_btn {
   background-color: #191616;
   border: #191616 1px solid;

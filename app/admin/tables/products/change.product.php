@@ -5,8 +5,7 @@ use App\models\Product;
 include_once $_SERVER["DOCUMENT_ROOT"] . "/bootstrap.php";
 
 
-var_dump($_FILES);
-var_dump($_POST);
+
 
 unset($_SESSION["error"]);
 unset($_SESSION["good"]);
@@ -35,7 +34,7 @@ if (isset($_FILES["photo"])) {
              
             } else {
                 $_SESSION["good"] = "Товар успешно изменен";
-                var_dump($res);
+                
                 header("Location: /app/admin/tables/products/products.php");
                 
             }

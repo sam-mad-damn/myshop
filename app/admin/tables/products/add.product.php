@@ -4,8 +4,7 @@ use App\models\Product;
 
 include_once $_SERVER["DOCUMENT_ROOT"] . "/bootstrap.php";
 
-var_dump($_FILES);
-var_dump($_POST);
+
 
 unset($_SESSION["error"]);
 unset($_SESSION["good"]);
@@ -68,7 +67,7 @@ if (isset($_FILES["photo"])) {
     if (empty($_SESSION["error"])) {
         $_SESSION["good"] = "Товар успешно добавлен";
         $_POST["photo"] = $_SERVER["REQUEST_SCHEME"] . "://" . $_SERVER["HTTP_HOST"] . "/upload/" . $new_name;
-        var_dump(Product::add_product_position($_POST));
+        
         
     }
 };

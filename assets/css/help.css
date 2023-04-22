@@ -3,9 +3,8 @@
   display: block;
   margin-left: 15%;
   align-self: center;
- 
 }
-.cont{
+.cont {
   background-image: url(/assets/img/1614438722_41-p-fon-minimalizm-temnii-72.jpg);
   background-position: left bottom;
   background-size: cover;
@@ -39,4 +38,30 @@
 .size_table {
   width: 500px;
   object-fit: contain;
+}
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+  
+}
+@media screen and (max-width: 767px) and (min-width: 420px) {
+}
+@media screen and (max-width: 420px) and (min-width: 320px) {
+  .helps{
+    margin-left: 0%;
+    width: 100%;
+  }
+  .head,.body{
+    padding: 7px;
+  }
+  .main-text{
+    font-size: 16px;
+  }
+  .body>h3{
+    font-size: 18px;
+  }
+  .sizes{
+    grid-template-columns: 1fr;
+  }
+  .size_table{
+    width: 100%;
+  }
 }

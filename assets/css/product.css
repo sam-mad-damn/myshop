@@ -1,23 +1,7 @@
 body {
   min-height: 500px;
 }
-/* #region пустая корзина */
-.empty {
-  padding: 10px;
-  font-family: "Lora-bold";
-}
-.back {
-  color: #191616;
-  font-size: 20px;
-  padding: 10px;
-}
-.empt_bas {
-  margin-bottom: 315px;
-}
-.back:hover {
-  color: #877cb9;
-}
-/* #endregion */
+
 .go_products {
   color: #191616;
   font-family: "Lora-bold";
@@ -482,8 +466,8 @@ height: 40px;
     border: #191616 1px solid;
     color: #fefefe;
     font-family: "Wremena-norm";
-    position: absolute;
-    bottom: -47%;
+    position: static;
+    margin-top: 20%;
     transition: 0.5s;
     font-size: 18px;
     width: max-content;
@@ -491,7 +475,7 @@ height: 40px;
   }
   .collection_txt {
     height: 30px;
-    margin-top: 35%;
+    margin-top: 15%;
   }
   .collection_txt > p {
     font-size: 16px;
@@ -510,7 +494,7 @@ height: 40px;
     margin-top: 20px;
   }
   .products_cards {
-    margin-left: 40px;
+    margin-left: 20%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

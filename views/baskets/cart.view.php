@@ -9,6 +9,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php" ?>
 </div>
 <div hidden class="empty_basket">
   <div class="empty_desc">
+    <p class="basket_is_empty"></p>
     <h4>Ваша корзина пуста!</h4>
     <h5>Вы можеть выбрать понравившийся товар в разделе "Товары"</h5>
     <h5>Последние поступления:</h5>

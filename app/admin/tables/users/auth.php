@@ -7,7 +7,7 @@ unset($_SESSION["error"]);
 
 if (isset($_POST["btn_auth"])) {
     $user = User::getUser($_POST["mail"], $_POST["password"]);
-    var_dump($user);
+    
     if ($user == null) {
         $_SESSION["auth"] = false;
         $_SESSION["id"] = null;

@@ -3,7 +3,7 @@
 use App\models\User;
 
 include_once $_SERVER["DOCUMENT_ROOT"] . "/bootstrap.php";
-var_dump($_POST);
+
 unset($_SESSION["error"]);
 if (isset($_POST["btn_reg"])) {
     $name = htmlspecialchars($_POST["name"]);

@@ -12,7 +12,7 @@ if (isset($_POST["save_profile"])) {
     $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
 
     $_POST["user_id"] = $_SESSION["id"];
-    var_dump($_POST);
+   
     $_SESSION["name"] = $_POST["name"];
     $_SESSION["surname"] = $_POST["surname"];
     $_SESSION["email"] = $_POST["email"];
