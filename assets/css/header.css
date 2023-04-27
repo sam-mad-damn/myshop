@@ -1,9 +1,11 @@
 @font-face {
   font-family: "Wremena-norm";
+  font-display: swap;
   src: url(/assets/fonts/Wremena/Wremena.ttf);
 }
 @font-face {
   font-family: "Lora-bold";
+  font-display: swap;
   src: url(/assets/fonts/Lora/Lora-SemiBold.ttf);
 }
 body {

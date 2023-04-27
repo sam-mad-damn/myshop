@@ -83,7 +83,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/views/templates/header.php" ?>
         </table>
     </div>
     <div class="map">
-      <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A5d2d751b341f2a01a49efbd45a5579b6002cab1e707f627ceb5e0190b7254d05&amp;width=100%25&amp;lang=ru_RU&amp;scroll=true"></script>
+      <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A5d2d751b341f2a01a49efbd45a5579b6002cab1e707f627ceb5e0190b7254d05&amp;width=100%25&amp;lang=ru_RU&amp;scroll=true;title=map"></script>
     </div>
   </div>
 </div>
